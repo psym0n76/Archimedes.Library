@@ -3,14 +3,9 @@ using System.Data.SqlClient;
 
 namespace Archimedes.Library.Helpers
 {
-    public interface IHangfireHelpers
+    public static class HangfireHelpers
     {
-        string GetHangfireConnectionString(string dbName,string server);
-    }
-
-    public  class HangfireHelpers : IHangfireHelpers
-    {
-        public  string GetHangfireConnectionString(string dbName,string server)
+        public static string GetHangfireConnectionString(string dbName, string server)
         {
             using (var conn = new SqlConnection($"Server={server};Integrated Security=SSPI"))
             {
@@ -26,6 +21,6 @@ namespace Archimedes.Library.Helpers
             }
 
             return $"Server={server};Database={dbName};Integrated Security=SSPI;";
-        } 
+        }
     }
 }
