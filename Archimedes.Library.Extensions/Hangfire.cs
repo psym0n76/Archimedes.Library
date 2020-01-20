@@ -1,11 +1,10 @@
-﻿
-using System.Data.SqlClient;
+﻿using System.Data.SqlClient;
 
-namespace Archimedes.Library.Helpers
+namespace Archimedes.Library.Extensions
 {
-    public static class HangfireHelpers
+    public static class Hangfire
     {
-        public static string GetHangfireConnectionString(string dbName, string server)
+        public static string GetHangfireConnectionString(this string result, string dbName, string server)
         {
             using (var conn = new SqlConnection($"Server={server};Integrated Security=SSPI"))
             {
