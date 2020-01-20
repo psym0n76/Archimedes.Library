@@ -5,7 +5,9 @@ VisualStudioVersion = 16.0.29609.76
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Archimedes.Library.Message", "Archimedes.Library.Message\Archimedes.Library.Message.csproj", "{CBA99E36-3A59-411A-99F4-2CAC539D9E4B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Archimedes.Library.Extensions", "Archimedes.Library.Extensions\Archimedes.Library.Extensions.csproj", "{DEDF29A8-3AF2-4467-8B35-E48635FF11C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Archimedes.Library.Extensions", "Archimedes.Library.Extensions\Archimedes.Library.Extensions.csproj", "{DEDF29A8-3AF2-4467-8B35-E48635FF11C9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Archimedes.Library.Domain", "Archimedes.Library.Domain\Archimedes.Library.Domain.csproj", "{F390A70B-F3E9-4B94-864D-38BC14398FE2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{DEDF29A8-3AF2-4467-8B35-E48635FF11C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DEDF29A8-3AF2-4467-8B35-E48635FF11C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DEDF29A8-3AF2-4467-8B35-E48635FF11C9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F390A70B-F3E9-4B94-864D-38BC14398FE2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F390A70B-F3E9-4B94-864D-38BC14398FE2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F390A70B-F3E9-4B94-864D-38BC14398FE2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F390A70B-F3E9-4B94-864D-38BC14398FE2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
