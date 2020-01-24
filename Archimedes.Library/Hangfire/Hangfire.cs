@@ -34,12 +34,12 @@ namespace Archimedes.Library.Extensions
                               FROM WINDOWS WITH DEFAULT_DATABASE=[master], 
                               DEFAULT_LANGUAGE=[us_english]
                         END
-                        GO
+                       
                         CREATE USER [WebDatabaseUser] 
                           FOR LOGIN [IIS APPPOOL\DefaultAppPool]
-                        GO
+                   
                         EXEC sp_addrolemember 'db_owner', 'WebDatabaseUser'
-                        GO
+                        ;
                       ", conn))
                 {
                     command.ExecuteNonQuery();
