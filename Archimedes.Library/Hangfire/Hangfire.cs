@@ -1,42 +1,43 @@
 ﻿using System.Data.SqlClient;
+using Archimedes.Library.Domain;
 
-namespace Archimedes.Library.Extensions
+namespace Archimedes.Library.Hangfire
 {
     public static class Hangfire
     {
-        public static string BuildTestHangfireConnection(this string result, string dbName, string server)
+        public static string BuildTestHangfireConnection(this Config config)
         {
-            using (var conn = new SqlConnection($"Server={server};Trusted_Connection=True;"))
+            using (var conn = new SqlConnection($"Server={config.DatabaseServer};Trusted_Connection=True;"))
             {
                 conn.Open();
 
                 using (var command = new SqlCommand(string.Format(
                     @"IF NOT EXISTS (SELECT name FROM sys.databases WHERE name = N'{0}') 
                                     create database [{0}];
-                      ", dbName), conn))
+                      ", config.HangfireDatabaseName), conn))
                 {
                     command.ExecuteNonQuery();
                 }
             }
 
-            return $"Server={server};Database={dbName};Trusted_Connection=True;;";
+            return $"Server={config.DatabaseServer};Database={config.HangfireDatabaseName};Trusted_Connection=True;;";
         }
 
-        public static void SetInternetInformationServicesPermissions(this string server,string appPooolName)
+        public static void SetInternetInformationServicesPermissions(this Config config)
         {
-            using (var conn = new SqlConnection($"Server={server};Trusted_Connection=True;"))
+            using (var conn = new SqlConnection($"Server={config.DatabaseServer};Trusted_Connection=True;"))
             {
                 conn.Open();
 
-                using (var command = new SqlCommand($@"IF NOT EXISTS (SELECT name FROM sys.server_principals WHERE name = 'IIS APPPOOL\{appPooolName}')
+                using (var command = new SqlCommand($@"IF NOT EXISTS (SELECT name FROM sys.server_principals WHERE name = 'IIS APPPOOL\{config.AppPool}')
                         BEGIN
-                            CREATE LOGIN [IIS APPPOOL\{appPooolName}] 
+                            CREATE LOGIN [IIS APPPOOL\{config.AppPool}] 
                               FROM WINDOWS WITH DEFAULT_DATABASE=[master], 
                               DEFAULT_LANGUAGE=[us_english]
                         END
                        
                         CREATE USER [WebDatabaseUser] 
-                          FOR LOGIN [IIS APPPOOL\{appPooolName}]
+                          FOR LOGIN [IIS APPPOOL\{config.AppPool}]
                    
                         EXEC sp_addrolemember 'db_owner', 'WebDatabaseUser'
                         ;

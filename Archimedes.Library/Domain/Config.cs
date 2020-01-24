@@ -9,7 +9,7 @@
         public string RabbitHutchConnection { get; set; }
         public string HangfireDatabaseName { get; set; }
         public string DatabaseServer { get; set; }
-        public string IisAppPool { get; set; }
+        public string AppPool { get; set; }
 
     }
 }
