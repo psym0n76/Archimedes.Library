@@ -29,19 +29,18 @@ namespace Archimedes.Library.Hangfire
             {
                 conn.Open();
 
-                using (var command = new SqlCommand($@"IF NOT EXISTS (SELECT name FROM sys.server_principals WHERE name = 'IIS APPPOOL\{config.AppPool}')
+                using (var command = new SqlCommand(
+                    $@"IF NOT EXISTS (SELECT name FROM sys.server_principals WHERE name = 'IIS APPPOOL\{config.AppPool}')
                         BEGIN
                             CREATE LOGIN [IIS APPPOOL\{config.AppPool}] 
                               FROM WINDOWS WITH DEFAULT_DATABASE=[master], 
                               DEFAULT_LANGUAGE=[us_english]
-                        END
-                       
+
                         CREATE USER [WebDatabaseUser] 
                           FOR LOGIN [IIS APPPOOL\{config.AppPool}]
                    
                         EXEC sp_addrolemember 'db_owner', 'WebDatabaseUser'
-                        ;
-                      ", conn))
+                        END;", conn))
                 {
                     command.ExecuteNonQuery();
                 }
