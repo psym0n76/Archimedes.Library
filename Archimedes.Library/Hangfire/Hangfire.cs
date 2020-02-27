@@ -5,7 +5,7 @@ namespace Archimedes.Library.Hangfire
 {
     public static class Hangfire
     {
-        public static string BuildTestHangfireConnection(this Config config)
+        public static string BuildHangfireConnection(this Config config)
         {
             using (var conn = new SqlConnection($"Server={config.DatabaseServer};Trusted_Connection=True;"))
             {
