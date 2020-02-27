@@ -20,7 +20,7 @@ namespace Archimedes.Library.Hangfire
                 }
             }
 
-            return $"Server={config.DatabaseServer};Database={config.HangfireDatabaseName};Trusted_Connection=True;;";
+            return $"Server={config.DatabaseServer};Database={config.HangfireDatabaseName};Trusted_Connection=True;";
         }
 
         public static void SetInternetInformationServicesPermissions(this Config config)
