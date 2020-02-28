@@ -56,7 +56,7 @@ namespace Archimedes.Library.Message.Dto
 
         /// <summary>
         /// The price BidHigh price.
-        /// </summary
+        /// </summary>
         [JsonProperty(PropertyName = "askhigh")]
         public double AskHigh { get; set; }
 

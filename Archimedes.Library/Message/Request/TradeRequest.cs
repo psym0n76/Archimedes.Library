@@ -2,7 +2,7 @@
 
 namespace Archimedes.Library.Message
 {
-    public class RequestPrice : IRequest
+    public class TradeRequest:IRequest
     {
         public string Text { get; set; }
         public IList<string> Properties { get; set; }
