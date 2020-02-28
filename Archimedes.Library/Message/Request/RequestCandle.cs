@@ -2,7 +2,7 @@
 
 namespace Archimedes.Library.Message
 {
-    public class RequestCandle:IRequest
+    public class RequestCandle : IRequest
     {
         public string Text { get; set; }
         public IList<string> Properties { get; set; }

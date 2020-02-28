@@ -1,10 +1,12 @@
-﻿namespace Archimedes.Library.Message
+﻿using System.Collections.Generic;
+using Archimedes.Library.Message.Dto;
+
+namespace Archimedes.Library.Message
 {
-    public class ResponsePrice : IResponse
+    public class ResponsePrice : IResponse<PriceDto>
     {
         public string Text { get; set; }
         public string Status { get; set; }
-
-
+        public List<PriceDto> Payload { get; set; }
     }
 }

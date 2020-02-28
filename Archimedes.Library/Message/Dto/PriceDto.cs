@@ -1,63 +1,81 @@
 ﻿using System;
+using Newtonsoft.Json;
 
 namespace Archimedes.Library.Message.Dto
 {
-    public class PriceDto
-    {
+     public class PriceDto
+    { 
+
         /// <summary>
-        /// The historical candle entity.
+        /// The market
         /// </summary>
-        public class CandleDto
-        {
-            /// <summary>
-            /// The candle timestamp.
-            /// </summary>
-            public DateTime Timestamp { get; set; }
+        [JsonProperty(PropertyName = "market")]
+        public string  Market { get; set; }
 
-            /// <summary>
-            /// The candle BidOpen price.
-            /// </summary>
-            public double BidOpen { get; set; }
+        /// <summary>
+        /// The market
+        /// </summary>
+        [JsonProperty(PropertyName = "granularity")]
+        public string  Granularity { get; set; }
 
-            /// <summary>
-            /// The candle BidClose price.
-            /// </summary>
-            public double BidClose { get; set; }
+        /// <summary>
+        /// The price BidOpen price.
+        /// </summary>
+        [JsonProperty(PropertyName = "bidopen")]
+        public double BidOpen { get; set; }
 
-            /// <summary>
-            /// The candle BidHigh price.
-            /// </summary>
-            public double BidHigh { get; set; }
+        /// <summary>
+        /// The price BidClose price.
+        /// </summary>
+        [JsonProperty(PropertyName = "bidclose")]
+        public double BidClose { get; set; }
 
-            /// <summary>
-            /// The candle BidLow price.
-            /// </summary>
-            public double BidLow { get; set; }
+        /// <summary>
+        /// The price BidHigh price.
+        /// </summary>
+        [JsonProperty(PropertyName = "bidhigh")]
+        public double BidHigh { get; set; }
 
-            /// <summary>
-            /// The candle AskOpen price.
-            /// </summary>
-            public double AskOpen { get; set; }
+        /// <summary>
+        /// The price BidLow price.
+        /// </summary>
+        [JsonProperty(PropertyName = "bidlow")]
+        public double BidLow { get; set; }
 
-            /// <summary>
-            /// The candle AskClose price.
-            /// </summary>
-            public double AskClose { get; set; }
+        /// <summary>
+        /// The price AskOpen price.
+        /// </summary>
+        [JsonProperty(PropertyName = "askopen")]
+        public double AskOpen { get; set; }
 
-            /// <summary>
-            /// The candle BidHigh price.
-            /// </summary>
-            public double AskHigh { get; set; }
+        /// <summary>
+        /// The price AskClose price.
+        /// </summary>
+        [JsonProperty(PropertyName = "askclose")]
+        public double AskClose { get; set; }
 
-            /// <summary>
-            /// The candle AskLow price.
-            /// </summary>
-            public double AskLow { get; set; }
+        /// <summary>
+        /// The price BidHigh price.
+        /// </summary
+        [JsonProperty(PropertyName = "askhigh")]
+        public double AskHigh { get; set; }
 
-            /// <summary>
-            /// The candle tick quantity value.
-            /// </summary>
-            public double TickQty { get; set; }
-        }
+        /// <summary>
+        /// The price AskLow price.
+        /// </summary>
+        [JsonProperty(PropertyName = "asklow")]
+        public double AskLow { get; set; }
+
+        /// <summary>
+        /// The price tick quantity value.
+        /// </summary>
+        [JsonProperty(PropertyName = "tickqty")]
+        public double TickQty { get; set; }
+
+        /// <summary>
+        /// The price timestamp.
+        /// </summary>
+        [JsonProperty(PropertyName = "timestamp")]
+        public DateTime Timestamp { get; set; }
     }
 }
