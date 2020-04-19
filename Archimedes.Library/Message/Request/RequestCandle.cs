@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Archimedes.Library.Message
 {
-    public class CandleRequest : IRequest
+    public class RequestCandle : IRequest
     {
         public string Text { get; set; }
         public IList<string> Properties { get; set; }

@@ -3,7 +3,7 @@ using Archimedes.Library.Domain;
 
 namespace Archimedes.Library.Hangfire
 {
-    public static class Hangfire
+    public static class HangfireSetup
     {
         public static string BuildHangfireConnection(this Config config)
         {

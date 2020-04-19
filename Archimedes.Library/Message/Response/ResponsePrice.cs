@@ -3,10 +3,10 @@ using Archimedes.Library.Message.Dto;
 
 namespace Archimedes.Library.Message
 {
-    public class CandleResponse : IResponse<CandleDto>
+    public class ResponsePrice : IResponse<PriceDto>
     {
         public string Text { get; set; }
         public string Status { get; set; }
-        public List<CandleDto> Payload { get; set; }
+        public List<PriceDto> Payload { get; set; }
     }
 }
