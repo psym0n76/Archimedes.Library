@@ -9,8 +9,8 @@ namespace Archimedes.Library.Message
         public IList<string> Properties { get; set; }
         public string Market { get; set; }
         public string Granularity { get; set; }
-        public string DateTo { get; set; }
-        public string DateFrom { get; set; }
+        public DateTime DateTo { get; set; }
+        public DateTime DateFrom { get; set; }
         public string Status { get; set; }
     }
 }
