@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Archimedes.Library.Types;
 
 namespace Archimedes.Library.Message
 {
@@ -18,7 +19,7 @@ namespace Archimedes.Library.Message
 
         public int Interval { get; set; }
         public string Market { get; set; }
-        public string TimeFrame { get; set; }
+        public GranularityType TimeFrame { get; set; }
         public string TimeFrameInterval => $"{Interval}{TimeFrame}";
 
 
@@ -80,12 +81,12 @@ namespace Archimedes.Library.Message
             var delta = _endDate - _startDate;
             var intervals = 0;
 
-            if (TimeFrame == "minute")
+            if (TimeFrame.Value == GranularityType.Minute.Value)
             {
                 intervals = (int) delta.TotalMinutes / Interval;
             }
 
-            if (TimeFrame == "hour")
+            if (TimeFrame.Value == GranularityType.Hour.Value)
             {
                 intervals = (int) delta.TotalHours / Interval;
             }
