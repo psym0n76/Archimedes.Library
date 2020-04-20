@@ -5,14 +5,14 @@ namespace Archimedes.Library.Message
 {
     public class RequestCandle : IRequest
     {
-        private readonly DateTime _toDate;
-        private readonly DateTime _fromDate;
+        private readonly DateTime _endDate;
+        private readonly DateTime _startDate;
         private readonly int _maxIntervals;
 
-        public RequestCandle(DateTime fromDate, DateTime toDate, int maxIntervals)
+        public RequestCandle(DateTime startDate, DateTime endDate, int maxIntervals)
         {
-            _fromDate = fromDate;
-            _toDate = toDate;
+            _startDate = startDate;
+            _endDate = endDate;
             _maxIntervals = maxIntervals;
         }
 
@@ -20,6 +20,10 @@ namespace Archimedes.Library.Message
         public string Market { get; set; }
         public string TimeFrame { get; set; }
         public string TimeFrameInterval => $"{Interval}{TimeFrame}";
+
+
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
 
 
         public int Intervals => IntervalCount();
@@ -43,8 +47,8 @@ namespace Archimedes.Library.Message
             bool splitDateRange;
             var dateRange = new List<DateRange>();
 
-            var intFromDate = _fromDate;
-            var intToDate = _toDate;
+            var intFromDate = _startDate;
+            var intToDate = _endDate;
 
             do
             {
@@ -57,14 +61,14 @@ namespace Archimedes.Library.Message
 
                 var range = new DateRange()
                 {
-                    DateFrom = intFromDate,
-                    DateTo = intToDate
+                    StartDate = intFromDate,
+                    EndDate = intToDate
                 };
 
                 dateRange.Add(range);
 
                 intFromDate = intToDate;
-                intToDate = _toDate;
+                intToDate = _endDate;
 
             } while (splitDateRange);
 
@@ -73,7 +77,7 @@ namespace Archimedes.Library.Message
 
         public int IntervalCount()
         {
-            var delta = _toDate - _fromDate;
+            var delta = _endDate - _startDate;
             var intervals = 0;
 
             if (TimeFrame == "minute")
@@ -92,7 +96,7 @@ namespace Archimedes.Library.Message
 
     public class DateRange      
     {
-        public DateTime DateFrom { get; set; }
-        public DateTime DateTo { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
     }
 }
