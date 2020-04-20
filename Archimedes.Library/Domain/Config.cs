@@ -8,8 +8,9 @@
         public string DatabaseServerConnection { get; set; }
         public string RabbitHutchConnection { get; set; }
         public string HangfireDatabaseName { get; set; }
-        public string DatabaseServer { get; set; }
+        public string DatabaseServer { get; set; }  
         public string AppPool { get; set; }
         public string ApiRepositoryUrl { get; set; }
+        public int MaxIntervalCandles { get; set; }
     }
 }
