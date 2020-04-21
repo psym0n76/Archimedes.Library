@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Archimedes.Library.Domain;
 using Archimedes.Library.Types;
 
 namespace Archimedes.Library.Message
@@ -19,8 +20,8 @@ namespace Archimedes.Library.Message
 
         public int Interval { get; set; }
         public string Market { get; set; }
-        public GranularityType TimeFrame { get; set; }
         public string TimeFrameInterval => $"{Interval}{TimeFrame}";
+        public GranularityType TimeFrame { get; set; }
 
 
         public DateTime StartDate { get; set; }
@@ -93,11 +94,5 @@ namespace Archimedes.Library.Message
 
             return intervals;
         }
-    }
-
-    public class DateRange      
-    {
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
     }
 }
