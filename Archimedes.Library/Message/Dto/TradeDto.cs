@@ -11,7 +11,7 @@ namespace Archimedes.Library.Message.Dto
         [JsonProperty(PropertyName = "direction")]
         public string Direction { get; set; }
 
-        //[JsonProperty(PropertyName = "timestamp")]
-        //public DateTime Timestamp { get; set; }
+        [JsonProperty(PropertyName = "timestamp")]
+        public DateTime Timestamp { get; set; }
     }
 }
