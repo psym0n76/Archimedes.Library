@@ -44,8 +44,8 @@ namespace Archimedes.Library.Message
             return $"Candle Request -  " +
                    $"{nameof(Market)}: {Market} " +
                    $"{nameof(TimeFrameInterval)}: {TimeFrameInterval} " +
-                   $"{nameof(_startDate)}: {_startDate} " +
-                   $"{nameof(_endDate)}: {_endDate} " +
+                   $"StartDate: {_startDate} " +
+                   $"EndDate: {_endDate} " +
                    $"{nameof(Intervals)}: {Intervals}";
         }
 
