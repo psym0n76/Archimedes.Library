@@ -81,17 +81,17 @@ namespace Archimedes.Library.Message.Dto
         public override string ToString()
         {
             return 
-                $"Timestamp: {Timestamp} " +
-                $"Market: {Market} " +
-                $"TickQuantity: {TickQty} " +
-                $"BidOpen: {BidOpen} " +
-                $"BidHigh: {BidHigh} " +
-                $"BidLow: {BidLow} " +
-                $"BidClose: {BidClose}" +
-                $"AskOpen: {AskOpen} " +
-                $"AskHigh: {AskHigh} " +
-                $"AskLow: {AskLow} " +
-                $"AskClose: {AskClose}";
+                $"{nameof(Timestamp)}: {Timestamp} " +
+                $"{nameof(Market)}: {Market} " +
+                $"{nameof(TickQty)}: {TickQty} " +
+                $"{nameof(BidOpen)}: {BidOpen} " +
+                $"{nameof(BidHigh)}: {BidHigh} " +
+                $"{nameof(BidLow)}: {BidLow} " +
+                $"{nameof(BidClose)}: {BidClose}" +
+                $"{nameof(AskOpen)}: {AskOpen} " +
+                $"{nameof(AskHigh)}: {AskHigh} " +
+                $"{nameof(AskLow)}: {AskLow} " +
+                $"{nameof(AskClose)}: {AskClose}";
         }
     }
 }
