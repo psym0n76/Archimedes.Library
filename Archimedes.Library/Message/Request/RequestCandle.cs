@@ -42,11 +42,11 @@ namespace Archimedes.Library.Message
         public override string ToString()
         {
             return $"Candle Request -  " +
-                   $"{nameof(Market)}: {Market} " +
-                   $"{nameof(TimeFrameInterval)}: {TimeFrameInterval} " +
-                   $"StartDate: {_startDate} " +
-                   $"EndDate: {_endDate} " +
-                   $"{nameof(Intervals)}: {Intervals}";
+                   $"\n{nameof(Market)}: {Market} " +
+                   $"\n{nameof(TimeFrameInterval)}: {TimeFrameInterval} " +
+                   $"\n StartDate: {_startDate} " +
+                   $"\n EndDate: {_endDate} " +
+                   $"\n {nameof(Intervals)}: {Intervals}";
         }
 
         private List<DateRange> CalculateDateRanges()

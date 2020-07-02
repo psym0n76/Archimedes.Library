@@ -18,14 +18,20 @@
 
 
 
+
         public override string ToString()
         {
             var result =
-                $"{nameof(ApplicationName)}: {ApplicationName} {nameof(AppVersion)}: {AppVersion} " +
-                $"{nameof(EnvironmentName)}: {EnvironmentName} {nameof(DatabaseServerConnection)}: {DatabaseServerConnection} " +
-                $"{nameof(RabbitHutchConnection)}: {RabbitHutchConnection} {nameof(HangfireDatabaseName)}: {HangfireDatabaseName} " +
-                $"{nameof(DatabaseServer)}: {DatabaseServer} {nameof(AppPool)}:{AppPool} " +
-                $"{nameof(ApiRepositoryUrl)}:{ApiRepositoryUrl} {nameof(MaxIntervalCandles)}: {MaxIntervalCandles}";
+                $"\n{nameof(ApplicationName)}: {ApplicationName}" +
+                $"\n{nameof(AppVersion)}: {AppVersion}" +
+                $"\n{nameof(EnvironmentName)}: {EnvironmentName}" +
+                $"\n{nameof(DatabaseServerConnection)}: {DatabaseServerConnection}" +
+                $"\n{nameof(RabbitHutchConnection)}: {RabbitHutchConnection}" +
+                $"\n{nameof(HangfireDatabaseName)}: {HangfireDatabaseName}" +
+                $"\n{nameof(DatabaseServer)}: {DatabaseServer}" +
+                $"\n{nameof(AppPool)}:{AppPool}" +
+                $"\n{nameof(ApiRepositoryUrl)}:{ApiRepositoryUrl}" +
+                $"\n{nameof(MaxIntervalCandles)}: {MaxIntervalCandles}";
 
             return result;
         }
