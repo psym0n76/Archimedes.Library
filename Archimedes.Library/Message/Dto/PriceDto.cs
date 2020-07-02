@@ -82,16 +82,16 @@ namespace Archimedes.Library.Message.Dto
         {
             return 
                 $"\n{nameof(Timestamp)}: {Timestamp}" +
-                $"\n{nameof(Market)}: {Market}" +
-                $"\n{nameof(TickQty)}: {TickQty}" +
+                $" {nameof(Market)}: {Market}" +
+                $" {nameof(TickQty)}: {TickQty}" +
                 $"\n{nameof(BidOpen)}: {BidOpen}" +
-                $"\n{nameof(BidHigh)}: {BidHigh}" +
-                $"\n{nameof(BidLow)}: {BidLow}" +
-                $"\n{nameof(BidClose)}: {BidClose}" +
+                $" {nameof(BidHigh)}: {BidHigh}" +
+                $" {nameof(BidLow)}: {BidLow}" +
+                $" {nameof(BidClose)}: {BidClose}" +
                 $"\n{nameof(AskOpen)}: {AskOpen}" +
-                $"\n{nameof(AskHigh)}: {AskHigh}" +
-                $"\n{nameof(AskLow)}: {AskLow}" +
-                $"\n{nameof(AskClose)}: {AskClose}";
+                $" {nameof(AskHigh)}: {AskHigh}" +
+                $" {nameof(AskLow)}: {AskLow}" +
+                $" {nameof(AskClose)}: {AskClose}";
         }
     }
 }
