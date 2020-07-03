@@ -5,9 +5,12 @@ namespace Archimedes.Library.Message
 {
     public class ResponsePrice : IResponse<PriceDto>
     {
+        private ResponsePrice()
+        {
+        }
         public string Text { get; set; }
         public string Status { get; set; }
-        public IEnumerable<PriceDto> Payload { get; set; }
+        public List<PriceDto> Payload { get; set; }
 
         public override string ToString()
         {

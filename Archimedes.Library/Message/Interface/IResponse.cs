@@ -6,6 +6,6 @@ namespace Archimedes.Library.Message
     {
         string Text { get; set; }
         string Status { get; set; }
-        IEnumerable<T> Payload { get; set; }
+        List<T> Payload { get; set; }
     }
 }

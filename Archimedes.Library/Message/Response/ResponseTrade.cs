@@ -5,9 +5,13 @@ namespace Archimedes.Library.Message
 {
     public class ResponseTrade : IResponse<TradeDto>
     {
+        private ResponseTrade()
+        {
+        }
+
         public string Text { get; set; }
         public string Status { get; set; }
-        public IEnumerable<TradeDto> Payload { get; set; }
+        public List<TradeDto> Payload { get; set; }
 
         public override string ToString()
         {
