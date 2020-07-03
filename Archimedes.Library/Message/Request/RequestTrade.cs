@@ -8,7 +8,9 @@ namespace Archimedes.Library.Message
         public IList<string> Properties { get; set; }
         public string Status { get; set; }
         public string Account { get; set; }
-        public string Lots { get; set; }
+        public int Lots { get; set; }
         public string  Market { get; set; }
+
+        public string BuySell { get; set; }
     }
 }
