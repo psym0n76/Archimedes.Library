@@ -7,5 +7,6 @@ namespace Archimedes.Library.Message
         public string Text { get; set; }
         public IList<string> Properties { get; set; }
         public string Status { get; set; }
+        public string Market { get; set; }
     }
 }
