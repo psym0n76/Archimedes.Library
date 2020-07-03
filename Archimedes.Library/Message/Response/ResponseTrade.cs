@@ -7,7 +7,7 @@ namespace Archimedes.Library.Message
     {
         public string Text { get; set; }
         public string Status { get; set; }
-        public List<TradeDto> Payload { get; set; }
+        public IEnumerable<TradeDto> Payload { get; set; }
 
         public override string ToString()
         {
@@ -18,7 +18,7 @@ namespace Archimedes.Library.Message
                 payload += tradeDto.ToString();
             }
 
-            return $"Trade Response Text: {Text} Status: {Status} Rows: {Payload.Count} Payload: {payload}";
+            return $"Trade Response Text: {Text} Status: {Status} Rows: {Payload} Payload: {payload}";
         }
     }
 }
