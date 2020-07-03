@@ -5,7 +5,7 @@ namespace Archimedes.Library.Message
 {
     public class ResponseCandle : IResponse<CandleDto>
     {
-        private ResponseCandle()
+        public ResponseCandle()
         {
         }
 

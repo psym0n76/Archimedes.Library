@@ -5,7 +5,7 @@ namespace Archimedes.Library.Message
 {
     public class ResponsePrice : IResponse<PriceDto>
     {
-        private ResponsePrice()
+        public ResponsePrice()
         {
         }
         public string Text { get; set; }

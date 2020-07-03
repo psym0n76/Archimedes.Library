@@ -5,7 +5,7 @@ namespace Archimedes.Library.Message
 {
     public class ResponseTrade : IResponse<TradeDto>
     {
-        private ResponseTrade()
+        public ResponseTrade()
         {
         }
 
