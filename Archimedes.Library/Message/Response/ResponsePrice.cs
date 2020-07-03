@@ -10,18 +10,18 @@ namespace Archimedes.Library.Message
         }
         public string Text { get; set; }
         public string Status { get; set; }
-        public List<PriceDto> Payload { get; set; }
+        //public List<PriceDto> Payload { get; set; }
 
-        public override string ToString()
-        {
-            var payload = "";
+        //public override string ToString()
+        //{
+        //    var payload = "";
 
-            foreach (var priceDto in Payload)
-            {
-                payload += priceDto.ToString();
-            }
+        //    foreach (var priceDto in Payload)
+        //    {
+        //        payload += priceDto.ToString();
+        //    }
 
-            return $"Price Response Text: {Text} Status: {Status} Rows: {Payload} Payload: {payload}";
-        }
+        //    return $"Price Response Text: {Text} Status: {Status} Rows: {Payload} Payload: {payload}";
+        //}
     }
 }
