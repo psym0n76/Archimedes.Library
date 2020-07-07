@@ -5,10 +5,6 @@ namespace Archimedes.Library.Message
 {
     public class ResponseTrade : IResponse<TradeDto>
     {
-        public ResponseTrade()
-        {
-        }
-
         public string Text { get; set; }
         public string Status { get; set; }
         public List<TradeDto> Payload { get; set; }
