@@ -2,11 +2,16 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>8</LangVersion>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="newtonsoft.json" Version="11.0.2" />
+    <PackageReference Include="EasyNetQ" Version="5.2.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="EasyNetQ\" />
   </ItemGroup>
 
 </Project>

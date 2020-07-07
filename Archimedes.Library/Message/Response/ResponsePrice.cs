@@ -5,9 +5,6 @@ namespace Archimedes.Library.Message
 {
     public class ResponsePrice : IResponse<PriceDto>
     {
-        public ResponsePrice()
-        {
-        }
         public string Text { get; set; }
         public string Status { get; set; }
         public List<PriceDto> Payload { get; set; }
@@ -18,7 +15,7 @@ namespace Archimedes.Library.Message
 
             foreach (var priceDto in Payload)
             {
-                payload += priceDto.ToString();
+                payload += $"\n{priceDto}";
             }
 
             return $"Price Response Text: {Text} Status: {Status} Rows: {Payload} Payload: {payload}";

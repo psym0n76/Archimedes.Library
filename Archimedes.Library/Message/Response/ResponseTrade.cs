@@ -19,7 +19,7 @@ namespace Archimedes.Library.Message
 
             foreach (var tradeDto in Payload)
             {
-                payload += tradeDto.ToString();
+                payload += $"\n{tradeDto}";
             }
 
             return $"Trade Response Text: {Text} Status: {Status} Rows: {Payload} Payload: {payload}";

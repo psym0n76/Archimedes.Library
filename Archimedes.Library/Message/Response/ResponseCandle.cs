@@ -19,7 +19,7 @@ namespace Archimedes.Library.Message
 
             foreach (var candleDto in Payload)
             {
-                payload += $"/n {candleDto}";
+                payload += $"\n{candleDto}";
             }
 
             return $"Candle Response Text: {Text} Status: {Status} Rows: {Payload} Payload: {payload}";
