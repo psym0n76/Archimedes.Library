@@ -13,5 +13,10 @@ namespace Archimedes.Library.Message.Dto
 
         [JsonProperty(PropertyName = "timestamp")]
         public DateTime Timestamp { get; set; }
+
+        public override string ToString()
+        {
+            return $"\n{nameof(Market)}:{Market} {nameof(Direction)}:{Direction} {nameof(Timestamp)}:{Timestamp}";
+        }
     }
 }

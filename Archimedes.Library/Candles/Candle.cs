@@ -1,8 +1,7 @@
 ﻿using System;
-using Fx.Domain.Candles.OHLC;
-using Fx.Domain.Enums;
+using Archimedes.Library.Enums;
 
-namespace Fx.Domain.Candles
+namespace Archimedes.Library.Candles
 {
     public class Candle : IComparable<Candle>
     {
@@ -27,11 +26,16 @@ namespace Fx.Domain.Candles
 
         public override string ToString()
         {
-            return $"Open: {Open} High: {High} Low: {Low} Close: {Close} " +
-                   $"Market: {Market.GetDescription()} " +
-                   $"TimeFrame: {TimeFrame.GetDescription()} " +
-                   $"TimeStamp: {TimeStamp}";
+            return
+                $"\n{nameof(TimeStamp)}: {TimeStamp}" +
+                $" {nameof(Market)}: {Market}" +
+                $" {nameof(TimeFrame)}: {TimeFrame.GetDescription()}" +
+                $"\n{nameof(Open)}: {Open}" +
+                $" {nameof(High)}: {High}" +
+                $" {nameof(Low)}: {Low}" +
+                $" {nameof(Close)}: {Close}";
         }
+
 
         public int CompareTo(Candle c)
         {

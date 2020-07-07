@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Fx.Domain.Candles.OHLC
+namespace Archimedes.Library.Candles
 {
     public class Price
     {

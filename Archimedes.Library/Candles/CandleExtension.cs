@@ -1,6 +1,7 @@
-﻿using Fx.Domain.Enums;
+﻿
+using Archimedes.Library.Enums;
 
-namespace Fx.Domain.Candles
+namespace Archimedes.Library.Candles
 {
     public static class CandleExtension
     {
@@ -20,7 +21,7 @@ namespace Fx.Domain.Candles
             return Colour.Black;
         }
 
-        public static OHLC.Price Top(this Candle c)
+        public static Price Top(this Candle c)
         {
             if (c.Color() == Colour.Green)
             {
@@ -30,7 +31,7 @@ namespace Fx.Domain.Candles
             return c.Open;
         }
 
-        public static OHLC.Price Bottom(this Candle c)
+        public static Price Bottom(this Candle c)
         {
             if (c.Color() == Colour.Red)
             {

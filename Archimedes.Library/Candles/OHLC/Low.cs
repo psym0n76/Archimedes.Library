@@ -1,4 +1,4 @@
-﻿namespace Fx.Domain.Candles.OHLC
+﻿namespace Archimedes.Library.Candles
 {
     public class Low : Price
     {

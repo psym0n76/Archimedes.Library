@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel;
 
-namespace Fx.Domain.Enums
+namespace Archimedes.Library
 {
     public static class EnumExtension
     {

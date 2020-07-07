@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace Fx.Domain.Enums
+namespace Archimedes.Library.Enums
 {
     public enum Market
     {
