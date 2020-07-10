@@ -8,6 +8,7 @@ namespace Archimedes.Library.Message
         public string Text { get; set; }
         public string Status { get; set; }
         public List<TradeDto> Payload { get; set; }
+        public RequestTrade Request { get; set; }
 
         public override string ToString()
         {

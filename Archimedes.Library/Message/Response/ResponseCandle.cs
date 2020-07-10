@@ -5,13 +5,10 @@ namespace Archimedes.Library.Message
 {
     public class ResponseCandle : IResponse<CandleDto>
     {
-        public ResponseCandle()
-        {
-        }
-
         public string Text { get; set; }
         public string Status { get; set; }
         public List<CandleDto> Payload { get; set; }
+        public RequestCandle Request { get; set; }
 
         public override string ToString()
         {
