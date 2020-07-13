@@ -21,7 +21,7 @@ namespace Archimedes.Library.Message
         public int Interval { get; set; }
         public string Market { get; set; }
         public string TimeFrameInterval => $"{Interval}{TimeFrame}";
-        public GranularityType TimeFrame { get; set; }
+        public string TimeFrame { get; set; }
 
 
         public DateTime StartDate { get; set; }
@@ -87,14 +87,17 @@ namespace Archimedes.Library.Message
             var delta = _endDate - _startDate;
             var intervals = 0;
 
-            if (TimeFrame.Value == GranularityType.Minute.Value)
+            //if (TimeFrame.Value == GranularityType.Minute.Value
+
+            if (TimeFrame == "Min")
             {
-                intervals = (int) delta.TotalMinutes / Interval;
+                intervals = (int) delta.TotalMinutes / Interval; 
             }
 
-            if (TimeFrame.Value == GranularityType.Hour.Value)
+            //if (TimeFrame.Value == GranularityType.Hour.Value)
+            if (TimeFrame == "H")
             {
-                intervals = (int) delta.TotalHours / Interval;
+                intervals = (int) delta.TotalHours / Interval; 
             }
 
             return intervals;
