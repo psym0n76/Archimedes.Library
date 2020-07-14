@@ -1,6 +1,5 @@
 ﻿using System;
 using Archimedes.Library.Message;
-using Archimedes.Library.Types;
 using NUnit.Framework;
 
 namespace Archimedes.Library.Tests
@@ -17,7 +16,7 @@ namespace Archimedes.Library.Tests
             var subject = new RequestCandle(startDate, endDate, 7666)
             {
                 Interval = 5,
-                TimeFrame = GranularityType.Minute
+                TimeFrame = "Min"
             };
 
             var result = subject.IntervalCount();
@@ -34,7 +33,7 @@ namespace Archimedes.Library.Tests
             var subject = new RequestCandle(startDate, endDate, 7666)
             {
                 Interval = 4,
-                TimeFrame = GranularityType.Hour
+                TimeFrame = "H"
             };
 
             var result = subject.IntervalCount();
@@ -47,7 +46,7 @@ namespace Archimedes.Library.Tests
         public void Should_create_a_collection_of_start_and_end_Date(DateTime startDate, DateTime endDate,
             DateTime expectedStartDate, DateTime expectedEndDate)
         {
-            var subject = new RequestCandle(startDate, endDate, 100) {Interval = 5, TimeFrame = GranularityType.Minute};
+            var subject = new RequestCandle(startDate, endDate, 100) {Interval = 5, TimeFrame = "Min"};
 
             var result = subject.DateRanges;
 
@@ -63,7 +62,7 @@ namespace Archimedes.Library.Tests
             var startDate = new DateTime(2020,04,20,10,00,00);
             var endDate = new DateTime(2020,04,20,10,55,00);
 
-            var subject = new RequestCandle(startDate, endDate,10){Interval = 5,TimeFrame = GranularityType.Minute};
+            var subject = new RequestCandle(startDate, endDate,10){Interval = 5,TimeFrame = "Min"};
 
             var result = subject.DateRanges;
 
@@ -79,7 +78,7 @@ namespace Archimedes.Library.Tests
             var startDate = new DateTime(2020,04,20,10,00,00);
             var endDate = new DateTime(2020,04,20,10,55,00);
 
-            var subject = new RequestCandle(startDate, endDate,10){Interval = 5,TimeFrame = GranularityType.Minute};
+            var subject = new RequestCandle(startDate, endDate,10){Interval = 5,TimeFrame = "Min"};
 
             var result = subject.DateRanges;
 
