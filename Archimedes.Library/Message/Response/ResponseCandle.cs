@@ -19,7 +19,11 @@ namespace Archimedes.Library.Message
                 payload += $"\n{candleDto}";
             }
 
-            return $"Candle Response Text: {Text} Status: {Status} Rows: {Payload} Payload: {payload}";
+            return $"\nCandle Response:" +
+                   $"\n{nameof(Text)}: {Text} " +
+                   $"\n{nameof(Status)}: {Status} Rows: {Payload.Count} " +
+                   $"\n{nameof(Payload)}: {payload}";
+
         }
     }
 }

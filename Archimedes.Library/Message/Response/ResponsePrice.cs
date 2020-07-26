@@ -19,7 +19,10 @@ namespace Archimedes.Library.Message
                 payload += $"\n{priceDto}";
             }
 
-            return $"Price Response Text: {Text} Status: {Status} Rows: {Payload} Payload: {payload}";
+            return $"\nPrice Response:" +
+                   $"\n{nameof(Text)}: {Text} " +
+                   $"\n{nameof(Status)}: {Status} Rows: {Payload.Count} " +
+                   $"\n{nameof(Payload)}: {payload}";
         }
     }
 }
