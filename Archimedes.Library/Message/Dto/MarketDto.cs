@@ -14,11 +14,9 @@ namespace Archimedes.Library.Message.Dto
 
         public override string ToString()
         {
-            return $"\nMarket Response:" +
-                   $"\n{nameof(Name)}: {Name} " +
-                   $"\n{nameof(TimeFrameInterval)}: {TimeFrameInterval}" +
-                   $"\n{nameof(Active)}: {Active} " +
-                   $"\n{nameof(MaxDate)}: {MaxDate} {nameof(LastUpdated)}: {LastUpdated}";
+            return $"\n Market dto:" +
+                   $"\n  {nameof(Name)}: {Name} {nameof(TimeFrameInterval)}: {TimeFrameInterval} {nameof(Active)}: {Active} " +
+                   $"\n  {nameof(MaxDate)}: {MaxDate} {nameof(LastUpdated)}: {LastUpdated}";
         }
     }
 }

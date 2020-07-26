@@ -11,10 +11,10 @@ namespace Archimedes.Library.Message
 
         public override string ToString()
         {
-            return $"\nPrice Request: " +
-                   $"\n{nameof(Market)}: {Market} " +
-                   $"\n{nameof(Status)}: {Status} " +
-                   $"\n{nameof(Text)}: {Text}";
+            return $"\n Price Request: " +
+                   $"\n  {nameof(Market)}: {Market} " +
+                   $"\n  {nameof(Status)}: {Status} " +
+                   $"\n  {nameof(Text)}: {Text}";
         }
     }
 }
