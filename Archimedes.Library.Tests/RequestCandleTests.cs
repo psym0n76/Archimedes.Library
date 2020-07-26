@@ -87,5 +87,22 @@ namespace Archimedes.Library.Tests
             Assert.That(result[1].StartDate, Is.EqualTo(new DateTime(2020,04,20,10,50,00)));
             Assert.That(result[1].EndDate, Is.EqualTo(new DateTime(2020,04,20,10,55,00)));
         }
+
+
+        [Test]
+        public void Should_create_a_collection_of_start_and_end_Dates_three()
+        {
+            var startDate = new DateTime(2020,07,01,00,00,00);
+            var endDate = new DateTime(2020,07,27,21,30,00);
+
+            var subject = new RequestCandle(startDate, endDate,5000){Interval = 1,TimeFrame = "Min"};
+
+            var result = subject.DateRanges;
+
+            Assert.That(result.Count, Is.EqualTo(8));
+
+            Assert.That(result[1].StartDate, Is.EqualTo(new DateTime(2020,07,04,11,20,00)));
+            Assert.That(result[7].EndDate, Is.EqualTo(new DateTime(2020,07,27,21,30,00)));
+        }
     }
 }

@@ -43,8 +43,8 @@ namespace Archimedes.Library.Message
         {
             return $"\n {nameof(RequestCandle)}" +
                    $"\n  {nameof(Market)}: {Market} {nameof(TimeFrameInterval)}: {TimeFrameInterval} " +
-                   $"\n  StartDate: {_startDate} EndDate: {_endDate} " +
-                   $"\n  {nameof(Intervals)}: {Intervals}";
+                   $"\n  {nameof(StartDate)}: {StartDate} {nameof(EndDate)}: {EndDate} " +
+                   $"\n  {nameof(Intervals)}: {Intervals} ({DateRanges.Count} requests)";
         }
 
         private List<DateRange> CalculateDateRanges()
