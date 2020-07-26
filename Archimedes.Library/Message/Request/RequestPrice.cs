@@ -8,5 +8,13 @@ namespace Archimedes.Library.Message
         public IList<string> Properties { get; set; }
         public string Status { get; set; }
         public string Market { get; set; }
+
+        public override string ToString()
+        {
+            return $"Price Request -  " +
+                   $"\n{nameof(Market)}: {Market} " +
+                   $"\n{nameof(Status)}: {Status} " +
+                   $"\n {nameof(Text)}: {Text}";
+        }
     }
 }
