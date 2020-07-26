@@ -19,9 +19,9 @@ namespace Archimedes.Library.Message
                 payload += $"\n{tradeDto}";
             }
 
-            return $"\n Trade Response:" +
-                   $"\n  Text: {Text} Status: {Status} Rows: {Payload} " +
-                   $"\n  Payload: {payload}";
+            return $"\n {nameof(ResponseTrade)}" +
+                   $"\n  {nameof(Text)}: {Text} {nameof(Status)}: {Status} Rows: {Payload.Count} " +
+                   $"\n  {nameof(Payload)}: {payload}";
         }
     }
 }

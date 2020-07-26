@@ -41,9 +41,8 @@ namespace Archimedes.Library.Message
 
         public override string ToString()
         {
-            return $"\n Candle Request:" +
-                   $"\n  {nameof(Market)}: {Market} " +
-                   $"\n  {nameof(TimeFrameInterval)}: {TimeFrameInterval} " +
+            return $"\n {nameof(RequestCandle)}" +
+                   $"\n  {nameof(Market)}: {Market} {nameof(TimeFrameInterval)}: {TimeFrameInterval} " +
                    $"\n  StartDate: {_startDate} EndDate: {_endDate} " +
                    $"\n  {nameof(Intervals)}: {Intervals}";
         }
