@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using Archimedes.Library.Domain;
-using Archimedes.Library.Types;
 
 namespace Archimedes.Library.Message
 {
@@ -35,7 +34,7 @@ namespace Archimedes.Library.Message
         // potentially remove these
         public string Text { get; set; }
         public string Status { get; set; }
-        public IList<string> Properties { get; set; }
+        public List<string> Properties { get; set; }
 
 
 
