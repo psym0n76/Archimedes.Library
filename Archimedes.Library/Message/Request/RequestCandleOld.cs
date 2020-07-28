@@ -4,23 +4,20 @@ using Archimedes.Library.Domain;
 
 namespace Archimedes.Library.Message
 {
-    public class RequestCandle : IRequest
+    public class RequestCandleOld : IRequest
     {
-        //private readonly DateTime _endDate;
-        //private readonly DateTime _startDate;
-        //private readonly int _maxIntervals;
+        private readonly DateTime _endDate;
+        private readonly DateTime _startDate;
+        private readonly int _maxIntervals;
 
-        //public RequestCandle(DateTime startDate, DateTime endDate, int maxIntervals)
-        //{
-        //    _startDate = startDate;
-        //    _endDate = endDate;
-        //    _maxIntervals = maxIntervals;
-        //}
-
+        public RequestCandleOld(DateTime startDate, DateTime endDate, int maxIntervals)
+        {
+            _startDate = startDate;
+            _endDate = endDate;
+            _maxIntervals = maxIntervals;
+        }
 
         public int Interval { get; set; }
-
-        public int MaxIntervals { get; set; }
         public string Market { get; set; }
         public string TimeFrameInterval => $"{Interval}{TimeFrame}";
         public string TimeFrame { get; set; }
@@ -31,7 +28,7 @@ namespace Archimedes.Library.Message
 
 
         public int Intervals => IntervalCount();
-        public List<DateRange> DateRanges { get; set; }
+        public List<DateRange> DateRanges => CalculateDateRanges();
 
 
         // potentially remove these
@@ -54,15 +51,15 @@ namespace Archimedes.Library.Message
             bool splitDateRange;
             var dateRange = new List<DateRange>();
 
-            var intFromDate = StartDate;
-            var intToDate = EndDate;
+            var intFromDate = _startDate;
+            var intToDate = _endDate;
 
             do
             {
                 splitDateRange = false;
-                if (intToDate >= intFromDate.AddMinutes(MaxIntervals * Interval))
+                if (intToDate >= intFromDate.AddMinutes(_maxIntervals * Interval))
                 {
-                    intToDate = intFromDate.AddMinutes(MaxIntervals * Interval);
+                    intToDate = intFromDate.AddMinutes(_maxIntervals * Interval);
                     splitDateRange = true;
                 }
 
@@ -75,7 +72,7 @@ namespace Archimedes.Library.Message
                 dateRange.Add(range);
 
                 intFromDate = intToDate;
-                intToDate = EndDate;
+                intToDate = _endDate;
 
             } while (splitDateRange);
 
@@ -84,7 +81,7 @@ namespace Archimedes.Library.Message
 
         public int IntervalCount()
         {
-            var delta = EndDate - StartDate;
+            var delta = _endDate - _startDate;
             var intervals = 0;
 
             //if (TimeFrame.Value == GranularityType.Minute.Value
