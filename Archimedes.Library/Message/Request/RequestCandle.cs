@@ -49,7 +49,7 @@ namespace Archimedes.Library.Message
                    $"\n  {nameof(Intervals)}: {Intervals} ({DateRanges.Count} requests)";
         }
 
-        private List<DateRange> CalculateDateRanges()
+        public List<DateRange> CalculateDateRanges()
         {
             bool splitDateRange;
             var dateRange = new List<DateRange>();
