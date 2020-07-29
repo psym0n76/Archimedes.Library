@@ -6,18 +6,6 @@ namespace Archimedes.Library.Message
 {
     public class RequestCandle : IRequest
     {
-        //private readonly DateTime _endDate;
-        //private readonly DateTime _startDate;
-        //private readonly int _maxIntervals;
-
-        //public RequestCandle(DateTime startDate, DateTime endDate, int maxIntervals)
-        //{
-        //    _startDate = startDate;
-        //    _endDate = endDate;
-        //    _maxIntervals = maxIntervals;
-        //}
-
-
         public int Interval { get; set; }
 
         public int MaxIntervals { get; set; }
@@ -31,7 +19,7 @@ namespace Archimedes.Library.Message
 
 
         public int Intervals => IntervalCount();
-        public List<DateRange> DateRanges { get; set; }
+        public List<DateRange> DateRanges => CalculateDateRanges();
 
 
         // potentially remove these
@@ -39,11 +27,9 @@ namespace Archimedes.Library.Message
         public string Status { get; set; }
         public List<string> Properties { get; set; }
 
-
-
         public override string ToString()
         {
-            return $"\n {nameof(RequestCandleOld)}" +
+            return $"\n {nameof(RequestCandle)}" +
                    $"\n  {nameof(Market)}: {Market} {nameof(TimeFrameInterval)}: {TimeFrameInterval} " +
                    $"\n  {nameof(StartDate)}: {StartDate} {nameof(EndDate)}: {EndDate} " +
                    $"\n  {nameof(Intervals)}: {Intervals} ({DateRanges.Count} requests)";
@@ -79,7 +65,10 @@ namespace Archimedes.Library.Message
 
             } while (splitDateRange);
 
+            //DateRanges = dateRange;
+
             return dateRange;
+
         }
 
         public int IntervalCount()
