@@ -13,11 +13,17 @@ namespace Archimedes.Library.Tests
         public void Should_Count_intervals_in_5_min_that_match_expected(DateTime startDate, DateTime endDate,
             int expected)
         {
-            var subject = new RequestCandleOld(startDate, endDate, 7666)
+
+            var subject = new RequestCandle()
             {
+                StartDate = startDate,
+                EndDate = endDate,
                 Interval = 5,
-                TimeFrame = "Min"
+                TimeFrame = "Min",
+                MaxIntervals = 7666
+
             };
+
 
             var result = subject.IntervalCount();
 
@@ -30,10 +36,15 @@ namespace Archimedes.Library.Tests
         public void Should_Count_intervals_in_1_hour_that_match_expected(DateTime startDate, DateTime endDate,
             int expected)
         {
-            var subject = new RequestCandleOld(startDate, endDate, 7666)
+
+            var subject = new RequestCandle()
             {
+                StartDate = startDate,
+                EndDate = endDate,
                 Interval = 4,
-                TimeFrame = "H"
+                TimeFrame = "H",
+                MaxIntervals = 7666
+                
             };
 
             var result = subject.IntervalCount();
@@ -46,7 +57,16 @@ namespace Archimedes.Library.Tests
         public void Should_create_a_collection_of_start_and_end_Date(DateTime startDate, DateTime endDate,
             DateTime expectedStartDate, DateTime expectedEndDate)
         {
-            var subject = new RequestCandleOld(startDate, endDate, 100) {Interval = 5, TimeFrame = "Min"};
+
+            var subject = new RequestCandle()
+            {
+                StartDate = startDate,
+                EndDate = endDate,
+                Interval = 5,
+                TimeFrame = "Min",
+                MaxIntervals = 100
+            };
+
 
             var result = subject.DateRanges;
 
@@ -62,7 +82,14 @@ namespace Archimedes.Library.Tests
             var startDate = new DateTime(2020,04,20,10,00,00);
             var endDate = new DateTime(2020,04,20,10,55,00);
 
-            var subject = new RequestCandleOld(startDate, endDate,10){Interval = 5,TimeFrame = "Min"};
+            var subject = new RequestCandle()
+            {
+                StartDate = startDate,
+                EndDate = endDate,
+                Interval = 5,
+                TimeFrame = "Min",
+                MaxIntervals = 10
+            };
 
             var result = subject.DateRanges;
 
@@ -78,7 +105,14 @@ namespace Archimedes.Library.Tests
             var startDate = new DateTime(2020,04,20,10,00,00);
             var endDate = new DateTime(2020,04,20,10,55,00);
 
-            var subject = new RequestCandleOld(startDate, endDate,10){Interval = 5,TimeFrame = "Min"};
+            var subject = new RequestCandle()
+            {
+                StartDate = startDate,
+                EndDate = endDate,
+                Interval = 5,
+                TimeFrame = "Min",
+                MaxIntervals = 10
+            };
 
             var result = subject.DateRanges;
 
@@ -95,7 +129,14 @@ namespace Archimedes.Library.Tests
             var startDate = new DateTime(2020,07,01,00,00,00);
             var endDate = new DateTime(2020,07,27,21,30,00);
 
-            var subject = new RequestCandleOld(startDate, endDate,5000){Interval = 1,TimeFrame = "Min"};
+            var subject = new RequestCandle()
+            {
+                StartDate = startDate,
+                EndDate = endDate,
+                Interval = 1,
+                TimeFrame = "Min",
+                MaxIntervals = 5000
+            };
 
             var result = subject.DateRanges;
 
