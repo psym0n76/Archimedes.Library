@@ -16,7 +16,7 @@ namespace Archimedes.Library.Message
 
             foreach (var priceDto in Payload)
             {
-                payload += $"\n{priceDto}";
+                payload += $"\n  {priceDto}";
             }
 
             return $"\n {nameof(ResponsePrice)}" +
