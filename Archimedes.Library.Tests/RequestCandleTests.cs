@@ -144,6 +144,8 @@ namespace Archimedes.Library.Tests
 
             Assert.That(result[1].StartDate, Is.EqualTo(new DateTime(2020,07,04,11,20,00)));
             Assert.That(result[7].EndDate, Is.EqualTo(new DateTime(2020,07,27,21,30,00)));
+            Assert.That(subject.DateRangesCounter,Is.EqualTo(8));
+            Assert.That(subject.DateRangesCounter,Is.Not.EqualTo(7));
         }
     }
 }

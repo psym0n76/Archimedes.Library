@@ -21,6 +21,8 @@ namespace Archimedes.Library.Message
         public int Intervals => IntervalCount();
         public List<DateRange> DateRanges => CalculateDateRanges();
 
+        public int DateRangesCounter { get; set; }
+
 
         // potentially remove these
         public string Text { get; set; }
@@ -32,7 +34,7 @@ namespace Archimedes.Library.Message
             return $"\n {nameof(RequestCandle)}" +
                    $"\n  {nameof(Market)}: {Market} {nameof(TimeFrameInterval)}: {TimeFrameInterval} " +
                    $"\n  {nameof(StartDate)}: {StartDate} {nameof(EndDate)}: {EndDate} " +
-                   $"\n  {nameof(Intervals)}: {Intervals} ({DateRanges.Count} requests)";
+                   $"\n  {nameof(Intervals)}: {Intervals} ({DateRangesCounter} requests)";
         }
 
         public List<DateRange> CalculateDateRanges()
@@ -66,6 +68,9 @@ namespace Archimedes.Library.Message
             } while (splitDateRange);
 
             //DateRanges = dateRange;
+
+            DateRangesCounter = dateRange.Count;
+
 
             return dateRange;
 
