@@ -1,4 +1,5 @@
 ﻿using System.Text;
+using System.Threading;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
@@ -7,12 +8,13 @@ namespace Archimedes.Library.RabbitMq
     public class Consumer : IConsumer
     {
         // todo add sender/this
-        public delegate void RabbitMqMessageHandler(RabbitMqMessageArgs args);
+        public delegate void RabbitMqMessageHandler(string message);
+
         public event RabbitMqMessageHandler HandleMessage;
 
-        public void Subscribe(string queueName, string exchange, int port)
+        public void Subscribe(string queueName, string exchange, string host, int port)
         {
-            var factory = new ConnectionFactory() {HostName = "localhost", Port = port};
+            var factory = new ConnectionFactory() {HostName = host, Port = port};
             using var connection = factory.CreateConnection();
             using var channel = connection.CreateModel();
 
@@ -30,22 +32,15 @@ namespace Archimedes.Library.RabbitMq
 
             while (true)
             {
+                Thread.Sleep(5000);
             }
-
         }
 
-        private  void Consumer_Received(object sender, BasicDeliverEventArgs e)
+        private void Consumer_Received(object sender, BasicDeliverEventArgs e)
         {
             var body = e.Body.ToArray();
             var message = Encoding.UTF8.GetString(body);
-
-            //invoke a event
-            HandleMessage?.Invoke(new RabbitMqMessageArgs(){Message = message});
+            HandleMessage?.Invoke(message);
         }
-    }
-
-    public class RabbitMqMessageArgs
-    {
-        public string Message { get; set; }
     }
 }

@@ -2,6 +2,6 @@
 {
     public interface IProducer
     {
-        void PublishMessage(string queueName, string exchange, string message);
+        void PublishMessage(string queueName, string exchange, string message, string host, int port);
     }
 }
