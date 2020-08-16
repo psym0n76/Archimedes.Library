@@ -17,15 +17,15 @@ namespace Archimedes.Library.Tests
 
             subject.HandleMessage += Subject_HandleMessage;
 
-            subject.Subscribe("CandleQueue", "Archimedes_DEV",5673);
+            subject.Subscribe("CandleQueue", "Archimedes_DEV","localhost",5673);
 
 
 
         }
 
-        private void Subject_HandleMessage(RabbitMqMessageArgs args)
+        private void Subject_HandleMessage(string args)
         {
-            Debug.Print(args.Message);
+            Debug.Print(args);
         }
 
         private IConsumer GetSubjectUnderTest1()
@@ -41,9 +41,8 @@ namespace Archimedes.Library.Tests
 
             for (int i = 0; i < 5; i++)
             {
-                subject.PublishMessage("CandleQueue","Archimedes_DEV","TestMessage " + i);
-                subject.PublishMessage("CandleQueue","Archimedes_DEV","TestMessage " + i);
-                subject.PublishMessage("CandleQueue","Archimedes_DEV","TestMessage " + i); 
+                subject.PublishMessage("CandleQueue","Archimedes_DEV","TestMessage " + i,"localhost",5673);
+
             }
         }
 
