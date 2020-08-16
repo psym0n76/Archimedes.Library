@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using Archimedes.Library.Message;
 using Archimedes.Library.RabbitMq;
 using NUnit.Framework;
 using NUnit.Framework.Interfaces;
@@ -39,16 +40,19 @@ namespace Archimedes.Library.Tests
         {
             var subject = GetSubjectUnderTest();
 
+
+            var req = new RequestCandle(){Text = "test"};
+
+
             for (int i = 0; i < 5; i++)
             {
-                subject.PublishMessage("CandleQueue","Archimedes_DEV","TestMessage " + i,"localhost",5673);
-
+                subject.PublishMessage("CandleQueue","Archimedes_DEV",req);
             }
         }
 
-        private IProducer GetSubjectUnderTest()
+        private IProducer<RequestCandle> GetSubjectUnderTest()
         {
-            return new Producer();
+            return new Producer<RequestCandle>("localhost",5673);
         }
     }
 }
