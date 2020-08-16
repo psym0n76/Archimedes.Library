@@ -16,7 +16,7 @@ namespace Archimedes.Library.RabbitMq
             _port = port;
         }
 
-        public void PublishMessage(string queueName, string exchange, T message)
+        public void PublishMessage(T message, string queueName, string exchange)
         {
 
             var factory = new ConnectionFactory()

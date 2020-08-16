@@ -40,13 +40,11 @@ namespace Archimedes.Library.Tests
         {
             var subject = GetSubjectUnderTest();
 
-
             var req = new RequestCandle(){Text = "test"};
-
 
             for (int i = 0; i < 5; i++)
             {
-                subject.PublishMessage("CandleQueue","Archimedes_DEV",req);
+                subject.PublishMessage(req,"CandleQueue","Archimedes_DEV");
             }
         }
 
