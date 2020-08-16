@@ -34,7 +34,7 @@ namespace Archimedes.Library.Tests
         }
 
         [Test]
-        [Ignore("integration test")]
+       [Ignore("integration test")]
         public void Should_CreateQueue_PublishMessage()
         {
             var subject = GetSubjectUnderTest();

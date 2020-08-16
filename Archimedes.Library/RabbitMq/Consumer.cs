@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Reflection;
+using System.Text;
 using System.Threading;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
@@ -7,14 +8,17 @@ namespace Archimedes.Library.RabbitMq
 {
     public class Consumer : IConsumer
     {
-        // todo add sender/this
         public delegate void RabbitMqMessageHandler(string message);
 
         public event RabbitMqMessageHandler HandleMessage;
 
         public void Subscribe(string queueName, string exchange, string host, int port)
         {
-            var factory = new ConnectionFactory() {HostName = host, Port = port};
+            var factory = new ConnectionFactory()
+            {
+                HostName = host, Port = port,
+                ClientProvidedName = $"{Assembly.GetCallingAssembly().GetName().Name}.{exchange}.{queueName}"
+            };
             using var connection = factory.CreateConnection();
             using var channel = connection.CreateModel();
 

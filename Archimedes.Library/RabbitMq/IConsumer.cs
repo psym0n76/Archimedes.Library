@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace Archimedes.Library.RabbitMq
+﻿namespace Archimedes.Library.RabbitMq
 {
     public interface IConsumer
     {
