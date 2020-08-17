@@ -2,6 +2,6 @@
 {
     public interface IProducer<T> where T : class
     {
-        void PublishMessage(T message, string queueName, string exchange);
+        void PublishMessage(T message, string queueName);
     }
 }
