@@ -12,19 +12,30 @@ namespace Archimedes.Library.RabbitMq
 
         public event RabbitMqMessageHandler HandleMessage;
 
-        public void Subscribe(string queueName, string exchange, string host, int port)
+        private readonly string _host;
+        private readonly int _port;
+        private readonly string _exchange;
+
+        public Consumer(string host, int port, string exchange)
+        {
+            _host = host;
+            _port = port;
+            _exchange = exchange;
+        }
+
+        public void Subscribe(string queueName)
         {
             var factory = new ConnectionFactory()
             {
-                HostName = host, Port = port,
-                ClientProvidedName = $"{Assembly.GetCallingAssembly().GetName().Name}.{exchange}.{queueName}"
+                HostName = _host, Port = _port,
+                ClientProvidedName = $"{Assembly.GetCallingAssembly().GetName().Name}.{_exchange}.{queueName}"
             };
             using var connection = factory.CreateConnection();
             using var channel = connection.CreateModel();
 
-            channel.ExchangeDeclare(exchange, ExchangeType.Direct);
+            channel.ExchangeDeclare(_exchange, ExchangeType.Direct);
 
-            channel.QueueBind(queueName, exchange, "");
+            channel.QueueBind(queueName, _exchange, "");
 
             var consumer = new EventingBasicConsumer(channel);
 

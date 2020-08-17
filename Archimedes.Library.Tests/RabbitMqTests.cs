@@ -44,13 +44,13 @@ namespace Archimedes.Library.Tests
 
             for (int i = 0; i < 5; i++)
             {
-                subject.PublishMessage(req,"CandleQueue","Archimedes_DEV");
+                subject.PublishMessage(req,"CandleQueue");
             }
         }
 
         private IProducer<RequestCandle> GetSubjectUnderTest()
         {
-            return new Producer<RequestCandle>("localhost",5673);
+            return new Producer<RequestCandle>("localhost",5673,"");
         }
     }
 }
