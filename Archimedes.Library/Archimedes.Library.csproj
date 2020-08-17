@@ -6,13 +6,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="EasyNetQ" Version="5.2.0" />
-    <PackageReference Include="rabbitmq" Version="3.6.2" />
+    <PackageReference Include="Newtonsoft.Json" Version="9.0.1" />
+    <PackageReference Include="RabbitMQ.Client" Version="6.1.0" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="EasyNetQ\" />
   </ItemGroup>
 
 </Project>
