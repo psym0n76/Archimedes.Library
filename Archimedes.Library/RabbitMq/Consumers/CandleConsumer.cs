@@ -6,17 +6,18 @@ using RabbitMQ.Client.Events;
 
 namespace Archimedes.Library.RabbitMq
 {
-    public class Consumer : IConsumer
+    public class CandleConsumer : ICandleConsumer
     {
 
-        public event MessageHandler HandleMessage;
+        public event CandleMessageHandler HandleMessage;
 
         private readonly string _host;
         private readonly int _port;
         private readonly string _exchange;
         private readonly string _queue;
 
-        public Consumer(string host, int port, string exchange, string queue)
+
+        public CandleConsumer(string host, int port, string exchange, string queue)
         {
             _host = host;
             _port = port;

@@ -2,7 +2,7 @@
 {
     public interface IConsumer
     {
-        event Consumer.RabbitMqMessageHandler HandleMessage;
-        void Subscribe(string queueName);
+        event MessageHandler HandleMessage;
+        void Subscribe();
     }
 }

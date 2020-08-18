@@ -15,20 +15,20 @@ namespace Archimedes.Library.Tests
 
             var subject = GetSubjectUnderTest1();
 
-            subject.HandleMessage += Subject_HandleMessage;
-
-            subject.Subscribe("CandleQueue");
+            subject.HandleMessage += Subject_HandleMessage1;
+            subject.Subscribe();
 
         }
 
-        private void Subject_HandleMessage(string args)
+        private void Subject_HandleMessage1(object sender, MessageHandlerEventArgs args)
         {
-            Debug.Print(args);
+            throw new System.NotImplementedException();
         }
+
 
         private static IConsumer GetSubjectUnderTest1()
         {
-            return new Consumer("",1,"");
+            return new Consumer("",1,"","");
         }
 
         [Test]
