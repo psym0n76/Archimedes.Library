@@ -3,5 +3,6 @@
     public interface ICandleConsumer
     {
         event CandleMessageHandler HandleMessage;
+        void Subscribe();
     }
 }

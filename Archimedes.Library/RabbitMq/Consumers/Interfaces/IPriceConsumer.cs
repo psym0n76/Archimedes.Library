@@ -3,5 +3,6 @@
     public interface IPriceConsumer
     {
         event PriceMessageHandler HandleMessage;
+        void Subscribe();
     }
 }
