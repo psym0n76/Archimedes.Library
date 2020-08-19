@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Archimedes.Library.Domain;
 using Archimedes.Library.Message.Dto;
 
 namespace Archimedes.Library.Message
@@ -13,7 +14,11 @@ namespace Archimedes.Library.Message
         public DateTime EndDate { get; set; }
 
         public List<CandleDto> Candles { get; set; }
+        public int MaxIntervals { get; set; }
 
+
+        public List<DateRange> DateRanges { get; set; }
+        public int Intervals { get; set; }
 
         public override string ToString()
         {
