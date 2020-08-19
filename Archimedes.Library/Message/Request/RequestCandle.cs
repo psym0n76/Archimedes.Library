@@ -71,7 +71,6 @@ namespace Archimedes.Library.Message
 
             DateRangesCounter = dateRange.Count;
 
-
             return dateRange;
 
         }
