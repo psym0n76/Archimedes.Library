@@ -25,6 +25,7 @@ namespace Archimedes.Library.Tests
             };
 
 
+
             var result = subject.IntervalCount();
 
             Assert.That(result, Is.EqualTo(expected));
