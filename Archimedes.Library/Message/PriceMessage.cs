@@ -11,6 +11,8 @@ namespace Archimedes.Library.Message
 
         public List<PriceDto> Prices { get; set; }
 
+        public List<string> Logs { get; set; }
+
         public override string ToString()
         {
             return $"\n {nameof(PriceMessage)}" +
