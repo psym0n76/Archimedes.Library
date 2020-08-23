@@ -9,6 +9,10 @@ namespace Archimedes.Library.Message
         public List<string> Properties { get; set; }
         public string Market { get; set; }
 
+        public string Account { get; set; }
+        public int Lots { get; set; }
+        public string BuySell { get; set; }
+
         public List<TradeDto> Trades { get; set; }
 
         public List<string> Logs { get; set; }
