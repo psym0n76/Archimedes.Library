@@ -1,4 +1,5 @@
 ﻿using System;
+using Archimedes.Library.Extensions;
 using Archimedes.Library.Message;
 using NUnit.Framework;
 
@@ -14,7 +15,7 @@ namespace Archimedes.Library.Tests
             int expected)
         {
 
-            var subject = new RequestCandle()
+            var subject = new CandleMessage()
             {
                 StartDate = startDate,
                 EndDate = endDate,
@@ -24,11 +25,9 @@ namespace Archimedes.Library.Tests
 
             };
 
+            subject.CountCandleIntervals();
 
-
-            var result = subject.IntervalCount();
-
-            Assert.That(result, Is.EqualTo(expected));
+            Assert.That(subject.Intervals, Is.EqualTo(expected));
         }
 
         [TestCase("2020-04-20T08:00:00", "2020-04-20T12:00:00", 1)]
@@ -38,7 +37,7 @@ namespace Archimedes.Library.Tests
             int expected)
         {
 
-            var subject = new RequestCandle()
+            var subject = new CandleMessage()
             {
                 StartDate = startDate,
                 EndDate = endDate,
@@ -48,9 +47,9 @@ namespace Archimedes.Library.Tests
                 
             };
 
-            var result = subject.IntervalCount();
+            subject.CountCandleIntervals();
 
-            Assert.That(result, Is.EqualTo(expected));
+            Assert.That(subject.Intervals, Is.EqualTo(expected));
         }
 
 
@@ -59,7 +58,7 @@ namespace Archimedes.Library.Tests
             DateTime expectedStartDate, DateTime expectedEndDate)
         {
 
-            var subject = new RequestCandle()
+            var subject = new CandleMessage()
             {
                 StartDate = startDate,
                 EndDate = endDate,
@@ -68,7 +67,7 @@ namespace Archimedes.Library.Tests
                 MaxIntervals = 100
             };
 
-
+            subject.CalculateDateRanges();
             var result = subject.DateRanges;
 
             Assert.That(result.Count, Is.EqualTo(1));
@@ -83,7 +82,7 @@ namespace Archimedes.Library.Tests
             var startDate = new DateTime(2020,04,20,10,00,00);
             var endDate = new DateTime(2020,04,20,10,55,00);
 
-            var subject = new RequestCandle()
+            var subject = new CandleMessage()
             {
                 StartDate = startDate,
                 EndDate = endDate,
@@ -91,6 +90,8 @@ namespace Archimedes.Library.Tests
                 TimeFrame = "Min",
                 MaxIntervals = 10
             };
+
+            subject.CalculateDateRanges();
 
             var result = subject.DateRanges;
 
@@ -106,7 +107,7 @@ namespace Archimedes.Library.Tests
             var startDate = new DateTime(2020,04,20,10,00,00);
             var endDate = new DateTime(2020,04,20,10,55,00);
 
-            var subject = new RequestCandle()
+            var subject = new CandleMessage()
             {
                 StartDate = startDate,
                 EndDate = endDate,
@@ -115,6 +116,7 @@ namespace Archimedes.Library.Tests
                 MaxIntervals = 10
             };
 
+            subject.CalculateDateRanges();
             var result = subject.DateRanges;
 
             Assert.That(result.Count, Is.EqualTo(2));
@@ -130,7 +132,7 @@ namespace Archimedes.Library.Tests
             var startDate = new DateTime(2020,07,01,00,00,00);
             var endDate = new DateTime(2020,07,27,21,30,00);
 
-            var subject = new RequestCandle()
+            var subject = new CandleMessage()
             {
                 StartDate = startDate,
                 EndDate = endDate,
@@ -139,14 +141,15 @@ namespace Archimedes.Library.Tests
                 MaxIntervals = 5000
             };
 
+            subject.CalculateDateRanges();
             var result = subject.DateRanges;
 
             Assert.That(result.Count, Is.EqualTo(8));
 
             Assert.That(result[1].StartDate, Is.EqualTo(new DateTime(2020,07,04,11,20,00)));
             Assert.That(result[7].EndDate, Is.EqualTo(new DateTime(2020,07,27,21,30,00)));
-            Assert.That(subject.DateRangesCounter,Is.EqualTo(8));
-            Assert.That(subject.DateRangesCounter,Is.Not.EqualTo(7));
+            //Assert.That(subject.DateRangesCounter,Is.EqualTo(8));
+            //Assert.That(subject.DateRangesCounter,Is.Not.EqualTo(7));
         }
     }
 }

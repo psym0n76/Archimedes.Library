@@ -30,24 +30,5 @@ namespace Archimedes.Library.Tests
         {
             return new Consumer("",1,"","");
         }
-
-        [Test]
-       [Ignore("integration test")]
-        public void Should_CreateQueue_PublishMessage()
-        {
-            var subject = GetSubjectUnderTest();
-
-            var req = new RequestCandle(){Text = "test"};
-
-            for (var i = 0; i < 5; i++)
-            {
-                subject.PublishMessage(req,"CandleQueue");
-            }
-        }
-
-        private static IProducer<RequestCandle> GetSubjectUnderTest()
-        {
-            return new Producer<RequestCandle>("localhost",5673,"");
-        }
     }
 }

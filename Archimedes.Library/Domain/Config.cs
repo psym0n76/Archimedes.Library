@@ -2,7 +2,6 @@
 {
     public class Config
     {
-
         public string ApiRepositoryUrl { get; set; }
         public string ApplicationName { get; set; }
         public string AppPool { get; set; }
@@ -15,9 +14,11 @@
 
         public int MaxIntervalCandles { get; set; }
         public string RabbitHutchConnection { get; set; }
+        public string RabbitHost { get; set; }
+        public string RabbitPort { get; set; }
+        public string RabbitExchange { get; set; }
 
-
-
+        
 
         public override string ToString()
         {
@@ -31,7 +32,10 @@
                 $"\n{nameof(DatabaseServer)}: {DatabaseServer}" +
                 $"\n{nameof(AppPool)}:{AppPool}" +
                 $"\n{nameof(ApiRepositoryUrl)}:{ApiRepositoryUrl}" +
-                $"\n{nameof(MaxIntervalCandles)}: {MaxIntervalCandles}";
+                $"\n{nameof(MaxIntervalCandles)}: {MaxIntervalCandles}" +
+                $"\n{nameof(RabbitHost)}: {RabbitHost}" +
+                $"\n{nameof(RabbitPort)}: {RabbitPort}" + 
+                $"\n{nameof(RabbitExchange)}: {RabbitExchange}";
 
             return result;
         }
