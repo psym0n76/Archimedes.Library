@@ -13,6 +13,8 @@ namespace Archimedes.Library.Message
 
         public List<string> Logs { get; set; }
 
+        public bool Success { get; set; }
+
         public override string ToString()
         {
             return $"\n {nameof(PriceMessage)}" +

@@ -21,6 +21,7 @@ namespace Archimedes.Library.Message
         public List<DateRange> DateRanges { get; set; }
         public int Intervals { get; set; }
 
+        public bool Success { get; set; }
         public List<string> Logs { get; set; }
 
         public override string ToString()
