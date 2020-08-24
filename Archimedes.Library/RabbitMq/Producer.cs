@@ -37,7 +37,7 @@ namespace Archimedes.Library.RabbitMq
             var body = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(message));
 
             channel.BasicPublish(exchange: _exchange,
-                routingKey: "",
+                routingKey: queueName,
                 basicProperties: null,
                 body: body);
         }
