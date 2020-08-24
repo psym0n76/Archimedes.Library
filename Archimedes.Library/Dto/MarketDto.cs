@@ -27,10 +27,10 @@ namespace Archimedes.Library.Message.Dto
         public string TimeFrameInterval => $"{Interval}{TimeFrame}";
 
         [JsonProperty(PropertyName = "brokerTimeMinInterval")]
-        public string BrokerTimeMinInterval => $"{TimeFrame.Substring(1, 1).ToLower()}{Interval}";
+        public string BrokerTimeMinInterval => $"{TimeFrame.Substring(0, 1).ToLower()}{Interval}";
 
         [JsonProperty(PropertyName = "brokerTimeInterval")]
-        public string BrokerTimeInterval => $"{TimeFrame.Substring(1, 1).ToUpper()}{Interval}";
+        public string BrokerTimeInterval => $"{TimeFrame.Substring(0, 1).ToUpper()}{Interval}";
 
         public override string ToString()
         {
