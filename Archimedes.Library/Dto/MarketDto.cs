@@ -23,7 +23,7 @@ namespace Archimedes.Library.Message.Dto
         [JsonProperty(PropertyName = "lastUpdated")]
         public DateTime LastUpdated { get; set; }
 
-        [JsonProperty(PropertyName = "timeInterval")]
+        [JsonProperty(PropertyName = "timeFrameInterval")]
         public string TimeFrameInterval => $"{Interval}{TimeFrame}";
 
         [JsonProperty(PropertyName = "brokerTimeMinInterval")]
