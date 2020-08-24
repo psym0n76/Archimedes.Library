@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using RabbitMQ.Client;
@@ -9,7 +10,7 @@ namespace Archimedes.Library.RabbitMq
     public class CandleConsumer : ICandleConsumer
     {
 
-        public event CandleMessageHandler HandleMessage;
+        public event EventHandler<MessageHandlerEventArgs> HandleMessage;
 
         private readonly string _host;
         private readonly int _port;
@@ -53,7 +54,7 @@ namespace Archimedes.Library.RabbitMq
             }
         }
 
-        private void Consumer_Received(object sender, BasicDeliverEventArgs e)
+        public void Consumer_Received(object sender, BasicDeliverEventArgs e)
         {
             var body = e.Body.ToArray();
             var message = Encoding.UTF8.GetString(body);
