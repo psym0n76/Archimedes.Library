@@ -32,7 +32,7 @@ namespace Archimedes.Library.RabbitMq
 
             channel.QueueDeclare(queueName, true, false, false);
             channel.ExchangeDeclare(exchange: _exchange, type: ExchangeType.Direct);
-            channel.QueueBind(queueName, _exchange, "");
+            channel.QueueBind(queueName, _exchange, queueName);
 
             var body = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(message));
 
