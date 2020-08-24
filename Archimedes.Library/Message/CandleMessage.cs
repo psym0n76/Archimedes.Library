@@ -11,6 +11,8 @@ namespace Archimedes.Library.Message
         public string Market { get; set; }
         public int Interval { get; set; }
         public string TimeFrame { get; set; }
+
+        public string TimeFrameBroker { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 

@@ -44,17 +44,19 @@ namespace Archimedes.Library.Extensions
         {
             var delta = candle.EndDate - candle.StartDate;
 
-            //if (TimeFrame.Value == GranularityType.Minute.Value
-
             if (candle.TimeFrame == "Min")
             {
                 candle.Intervals = (int) delta.TotalMinutes / candle.Interval; 
             }
 
-            //if (TimeFrame.Value == GranularityType.Hour.Value)
             if (candle.TimeFrame == "H")
             {
                 candle.Intervals = (int) delta.TotalHours / candle.Interval; 
+            }
+
+            if (candle.TimeFrame == "D")
+            {
+                candle.Intervals = (int) delta.TotalDays / candle.Interval; 
             }
 
             return candle;
