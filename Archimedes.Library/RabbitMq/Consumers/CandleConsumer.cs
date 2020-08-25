@@ -26,7 +26,7 @@ namespace Archimedes.Library.RabbitMq
             _queue = queue;
         }
 
-        public void Subscribe()
+        public void Subscribe(CancellationToken cancellationToken)
         {
             var factory = new ConnectionFactory()
             {
@@ -48,7 +48,7 @@ namespace Archimedes.Library.RabbitMq
                 autoAck: true,
                 consumer: consumer);
 
-            while (true)
+            while (!cancellationToken.IsCancellationRequested)
             {
                 Thread.Sleep(5000);
             }
