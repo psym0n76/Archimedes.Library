@@ -15,7 +15,7 @@
         public int MaxIntervalCandles { get; set; }
         public string RabbitHutchConnection { get; set; }
         public string RabbitHost { get; set; }
-        public string RabbitPort { get; set; }
+        public int RabbitPort { get; set; }
         public string RabbitExchange { get; set; }
 
         
