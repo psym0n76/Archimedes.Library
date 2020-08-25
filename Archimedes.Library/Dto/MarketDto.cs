@@ -7,7 +7,7 @@ namespace Archimedes.Library.Message.Dto
     {
 
         [JsonProperty(PropertyName = "id")]
-        public string Id { get; set; }
+        public int Id { get; set; }
 
         [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
