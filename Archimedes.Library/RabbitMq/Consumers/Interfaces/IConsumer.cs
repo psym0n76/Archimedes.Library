@@ -1,8 +1,10 @@
-﻿namespace Archimedes.Library.RabbitMq
+﻿using System;
+
+namespace Archimedes.Library.RabbitMq
 {
     public interface IConsumer
     {
-        event MessageHandler HandleMessage;
+        event EventHandler<MessageHandlerEventArgs> HandleMessage;
         void Subscribe();
     }
 }

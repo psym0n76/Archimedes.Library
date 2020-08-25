@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System;
+using System.Reflection;
 using System.Text;
 using System.Threading;
 using RabbitMQ.Client;
@@ -9,7 +10,7 @@ namespace Archimedes.Library.RabbitMq
     public class Consumer : IConsumer
     {
 
-        public event MessageHandler HandleMessage;
+        public event EventHandler<MessageHandlerEventArgs> HandleMessage;
 
         private readonly string _host;
         private readonly int _port;
@@ -31,6 +32,7 @@ namespace Archimedes.Library.RabbitMq
                 HostName = _host, Port = _port,
                 ClientProvidedName = $"{Assembly.GetCallingAssembly().GetName().Name}.{_exchange}.{_queue}"
             };
+
             using var connection = factory.CreateConnection();
             using var channel = connection.CreateModel();
 
