@@ -15,14 +15,14 @@ namespace Archimedes.Library.RabbitMq
         private readonly string _host;
         private readonly int _port;
         private readonly string _exchange;
-        private readonly string _queue;
+        private readonly string _queueName;
 
-        public TradeConsumer(string host, int port, string exchange, string queue)
+        public TradeConsumer(string host, int port, string exchange, string queueName)
         {
             _host = host;
             _port = port;
             _exchange = exchange;
-            _queue = queue;
+            _queueName = queueName;
         }
 
         public void Subscribe()
@@ -30,20 +30,21 @@ namespace Archimedes.Library.RabbitMq
             var factory = new ConnectionFactory()
             {
                 HostName = _host, Port = _port,
-                ClientProvidedName = $"{Assembly.GetCallingAssembly().GetName().Name}.{_exchange}.{_queue}"
+                ClientProvidedName = $"{Assembly.GetCallingAssembly().GetName().Name}.{_exchange}.{_queueName}"
             };
             using var connection = factory.CreateConnection();
             using var channel = connection.CreateModel();
 
+            channel.QueueDeclare(_queueName, true, false, false);
             channel.ExchangeDeclare(_exchange, ExchangeType.Direct);
 
-            channel.QueueBind(_queue, _exchange, "");
+            channel.QueueBind(_queueName, _exchange, "");
 
             var consumer = new EventingBasicConsumer(channel);
 
             consumer.Received += Consumer_Received;
 
-            channel.BasicConsume(_queue,
+            channel.BasicConsume(_queueName,
                 autoAck: true,
                 consumer: consumer);
 
