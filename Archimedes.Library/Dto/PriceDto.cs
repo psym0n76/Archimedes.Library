@@ -13,7 +13,7 @@ namespace Archimedes.Library.Message.Dto
         public string  Market { get; set; }
 
         [JsonProperty(PropertyName = "marketId")]
-        public string  MarketId { get; set; }
+        public int  MarketId { get; set; }
 
         /// <summary>
         /// The market
