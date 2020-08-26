@@ -38,7 +38,7 @@ namespace Archimedes.Library.RabbitMq
             channel.QueueDeclare(_queueName, true, false, false);
             channel.ExchangeDeclare(_exchange, ExchangeType.Direct);
 
-            channel.QueueBind(_queueName, _exchange, "");
+            channel.QueueBind(_queueName, _exchange, _queueName);
 
             var consumer = new EventingBasicConsumer(channel);
 
