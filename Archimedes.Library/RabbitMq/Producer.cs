@@ -20,6 +20,7 @@ namespace Archimedes.Library.RabbitMq
 
         public void PublishMessage(T message, string queueName)
         {
+            RabbitHealthCheck.ValidateConnection(_host, _port);
 
             var factory = new ConnectionFactory()
             {

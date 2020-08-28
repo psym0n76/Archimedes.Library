@@ -27,6 +27,8 @@ namespace Archimedes.Library.RabbitMq
 
         public void Subscribe()
         {
+            RabbitHealthCheck.ValidateConnection(_host, _port);
+
             var factory = new ConnectionFactory()
             {
                 HostName = _host, Port = _port,
@@ -58,7 +60,7 @@ namespace Archimedes.Library.RabbitMq
         {
             var body = e.Body.ToArray();
             var message = Encoding.UTF8.GetString(body);
-            HandleMessage?.Invoke(sender,new MessageHandlerEventArgs(){Message = message});
+            HandleMessage?.Invoke(sender, new MessageHandlerEventArgs() {Message = message});
         }
     }
 }
