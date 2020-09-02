@@ -1,7 +1,8 @@
 ﻿namespace Archimedes.Library.Domain
 {
     public class Config
-    {
+    {   
+        public string UserInterfaceBaseUrl { get; set; }
         public string ApiRepositoryUrl { get; set; }
         public string ApplicationName { get; set; }
         public string AppPool { get; set; }

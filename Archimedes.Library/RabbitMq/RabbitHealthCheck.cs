@@ -10,7 +10,7 @@ namespace Archimedes.Library.RabbitMq
         {
             var retry = 0;
 
-            while (!ConnectionSuccessful(host, port) || retry == 25)
+            while (!ConnectionSuccessful(host, port) && retry < 10)
             {
                 Thread.Sleep(2000);
                 retry++;
@@ -19,7 +19,7 @@ namespace Archimedes.Library.RabbitMq
             if (retry == 10)
             {
                 throw new ApplicationException(
-                    $"Unable to connect to RabbitMQ Host:{host} Port:{port} - Max Retries hit 25");
+                    $"Unable to connect to RabbitMQ Host:{host} Port:{port} - Max Retries hit 10");
             }
         }
 
