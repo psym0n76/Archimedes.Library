@@ -8,6 +8,9 @@ namespace Archimedes.Library.Message.Dto
         [JsonProperty(PropertyName = "url")]
         public string Url  { get; set; }
 
+        [JsonProperty(PropertyName = "appName")]
+        public string AppName { get; set; }
+
         [JsonProperty(PropertyName = "version")]
         public string Version { get; set; }
 
