@@ -79,13 +79,13 @@ namespace Archimedes.Library.Message.Dto
         /// The price timestamp.
         /// </summary>
         [JsonProperty(PropertyName = "timeStamp")]
-        public DateTime Timestamp { get; set; }
+        public DateTime TimeStamp { get; set; }
 
         public override string ToString()
         {
             return 
                 $"\n {nameof(PriceDto)}" +
-                $"\n  {nameof(Timestamp)}: {Timestamp} {nameof(Market)}: {Market} {nameof(TickQty)}: {TickQty}" +
+                $"\n  {nameof(TimeStamp)}: {TimeStamp} {nameof(Market)}: {Market} {nameof(TickQty)}: {TickQty}" +
                 $"\n  {nameof(BidOpen)}: {BidOpen} {nameof(BidHigh)}: {BidHigh} {nameof(BidLow)}: {BidLow} {nameof(BidClose)}: {BidClose}" +
                 $"\n  {nameof(AskOpen)}: {AskOpen} {nameof(AskHigh)}: {AskHigh} {nameof(AskLow)}: {AskLow} {nameof(AskClose)}: {AskClose}";
         }

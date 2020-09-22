@@ -27,6 +27,9 @@ namespace Archimedes.Library.Message.Dto
         [JsonProperty(PropertyName = "lastUpdated")]
         public DateTime LastUpdated { get; set; }
 
+        [JsonProperty(PropertyName = "timeStamp")]
+        public DateTime TimeStamp { get; set; }
+
         [JsonProperty(PropertyName = "timeFrameInterval")]
         public string TimeFrameInterval => $"{Interval}{TimeFrame}";
 
