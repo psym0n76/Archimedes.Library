@@ -9,6 +9,7 @@ namespace Archimedes.Library.Message.Dto
         public bool Status { get; set; }
         public DateTime LastActive { get; set; }
         public string LastActiveVersion { get; set; }
+        public DateTime LastUpdated { get; set; }
 
         public override string ToString()
         {
