@@ -17,6 +17,9 @@ namespace Archimedes.Library.Message.Dto
         [JsonProperty(PropertyName = "status")]
         public bool Status { get; set; }
 
+        [JsonProperty(PropertyName = "statusMessage")]
+        public string StatusMessage { get; set; }
+
         [JsonProperty(PropertyName = "lastActive")]
         public DateTime LastActive { get; set; }
 
@@ -32,7 +35,7 @@ namespace Archimedes.Library.Message.Dto
                    $"{nameof(Url)}: {Url}" +
                    $"\n{nameof(Version)}: {Version}" +
                    $"\n{nameof(LastActiveVersion)}: {LastActiveVersion} : {nameof(LastActive)}: {LastActive}" +
-                   $"\n{nameof(Status)}: {Status}";
+                   $"\n{nameof(Status)}: {Status} : {nameof(StatusMessage)}: {StatusMessage}";
         }
     }
 }
