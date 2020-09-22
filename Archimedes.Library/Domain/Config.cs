@@ -4,6 +4,11 @@
     {   
         public string UserInterfaceBaseUrl { get; set; }
         public string ApiRepositoryUrl { get; set; }
+        public string RepositoryUrl { get; set; }
+        public string CandleUrl { get; set; }
+        public string BrokerUrl { get; set; }
+
+
         public string ApplicationName { get; set; }
         public string AppPool { get; set; }
         public string AppVersion { get; set; }
