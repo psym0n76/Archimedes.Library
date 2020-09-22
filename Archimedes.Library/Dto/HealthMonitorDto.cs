@@ -28,7 +28,8 @@ namespace Archimedes.Library.Message.Dto
 
         public override string ToString()
         {
-            return $"{nameof(Url)}: {Url}" +
+            return $"{nameof(AppName)}: {AppName}" +
+                   $"{nameof(Url)}: {Url}" +
                    $"\n{nameof(Version)}: {Version}" +
                    $"\n{nameof(LastActiveVersion)}: {LastActiveVersion} : {nameof(LastActive)}: {LastActive}" +
                    $"\n{nameof(Status)}: {Status}";
