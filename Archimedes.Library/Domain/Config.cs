@@ -8,6 +8,8 @@
         public string CandleUrl { get; set; }
         public string BrokerUrl { get; set; }
 
+        public string HealthUrl { get; set; }
+
 
         public string ApplicationName { get; set; }
         public string AppPool { get; set; }
@@ -41,7 +43,12 @@
                 $"\n{nameof(MaxIntervalCandles)}: {MaxIntervalCandles}" +
                 $"\n{nameof(RabbitHost)}: {RabbitHost}" +
                 $"\n{nameof(RabbitPort)}: {RabbitPort}" + 
-                $"\n{nameof(RabbitExchange)}: {RabbitExchange}";
+                $"\n{nameof(RabbitExchange)}: {RabbitExchange}"+
+                $"\n{nameof(RepositoryUrl)}: {RepositoryUrl}"+
+                $"\n{nameof(CandleUrl)}: {CandleUrl}"+
+                $"\n{nameof(BrokerUrl)}: {BrokerUrl}"+
+                $"\n{nameof(HealthUrl)}: {HealthUrl}"+
+                $"\n{nameof(UserInterfaceBaseUrl)}: {UserInterfaceBaseUrl}";
 
             return result;
         }
