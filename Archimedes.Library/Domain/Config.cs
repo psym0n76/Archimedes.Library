@@ -26,7 +26,6 @@
         public int RabbitPort { get; set; }
         public string RabbitExchange { get; set; }
 
-        
 
         public override string ToString()
         {
