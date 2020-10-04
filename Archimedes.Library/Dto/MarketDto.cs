@@ -18,6 +18,9 @@ namespace Archimedes.Library.Message.Dto
         [JsonProperty(PropertyName = "timeframe")]
         public string TimeFrame { get; set; }
 
+        [JsonProperty(PropertyName = "granularity")]
+        public string Granularity { get; set; }
+
         [JsonProperty(PropertyName = "active")]
         public bool Active { get; set; }
 
@@ -44,7 +47,7 @@ namespace Archimedes.Library.Message.Dto
             return $"\n {nameof(MarketDto)}" +
                    $"\n  {nameof(Name)}: {Name} {nameof(TimeFrameInterval)}: {TimeFrameInterval} {nameof(Active)}: {Active} " +
                    $"\n  {nameof(BrokerTimeMinInterval)}: {BrokerTimeMinInterval} {nameof(BrokerTimeInterval)}: {BrokerTimeInterval} {nameof(Active)}: {Active} " +
-                   $"\n  {nameof(MaxDate)}: {MaxDate} {nameof(LastUpdated)}: {LastUpdated}";
+                   $"\n  {nameof(MaxDate)}: {MaxDate} {nameof(Granularity)}: {Granularity} {nameof(LastUpdated)}: {LastUpdated}";
         }
     }
 }
