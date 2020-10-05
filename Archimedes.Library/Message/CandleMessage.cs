@@ -31,8 +31,8 @@ namespace Archimedes.Library.Message
         {
             return $"\n {nameof(CandleMessage)}" +
                    $"\n  {nameof(Market)}: {Market}  {nameof(MarketId)}: {MarketId} {nameof(Interval)}: {Interval} " +
-                   $"\n  {nameof(TimeFrame)}: {TimeFrame} "+
-                   $"\n  {nameof(StartDate)}: {StartDate} {nameof(EndDate)}: {EndDate} requests)";
+                   $"\n  {nameof(TimeFrame)}: {TimeFrame} " +
+                   $"\n  {nameof(StartDate)}: {StartDate} {nameof(EndDate)}: {EndDate}";
         }
     }
 }

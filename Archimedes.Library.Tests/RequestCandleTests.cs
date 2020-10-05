@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Runtime.Serialization;
 using Archimedes.Library.Extensions;
 using Archimedes.Library.Message;
 using NUnit.Framework;
@@ -53,7 +54,7 @@ namespace Archimedes.Library.Tests
         }
 
 
-        [TestCase("2020-04-20T10:00:00", "2020-04-20T12:00:00", "2020-04-20T10:00:00", "2020-04-20T12:00:00")]
+        [TestCase("2020-04-20T10:00:00", "2020-04-20T12:00:00", "2020-04-20T10:05:00", "2020-04-20T12:00:00")]
         public void Should_create_a_collection_of_start_and_end_Date(DateTime startDate, DateTime endDate,
             DateTime expectedStartDate, DateTime expectedEndDate)
         {
@@ -79,7 +80,7 @@ namespace Archimedes.Library.Tests
         [Test]
         public void Should_create_a_collection_of_start_and_end_Dates_first()
         {
-            var startDate = new DateTime(2020,04,20,10,00,00);
+            var startDate = new DateTime(2020,04,20,10,05,00);
             var endDate = new DateTime(2020,04,20,10,55,00);
 
             var subject = new CandleMessage()
@@ -97,7 +98,8 @@ namespace Archimedes.Library.Tests
 
             Assert.That(result.Count, Is.EqualTo(2));
 
-            Assert.That(result[0].StartDate, Is.EqualTo(startDate));
+            //Assert.That(result[0].StartDate, Is.EqualTo(startDate));
+            Assert.That(result[0].StartDate, Is.EqualTo(new DateTime(2020,04,20,10,05,00)));
             Assert.That(result[0].EndDate, Is.EqualTo(new DateTime(2020,04,20,10,50,00)));
         }
 
@@ -121,7 +123,8 @@ namespace Archimedes.Library.Tests
 
             Assert.That(result.Count, Is.EqualTo(2));
 
-            Assert.That(result[1].StartDate, Is.EqualTo(new DateTime(2020,04,20,10,50,00)));
+            //Assert.That(result[1].StartDate, Is.EqualTo(new DateTime(2020,04,20,10,50,00)));
+            Assert.That(result[1].StartDate, Is.EqualTo(new DateTime(2020,04,20,10,55,00)));
             Assert.That(result[1].EndDate, Is.EqualTo(new DateTime(2020,04,20,10,55,00)));
         }
 
@@ -146,7 +149,7 @@ namespace Archimedes.Library.Tests
 
             Assert.That(result.Count, Is.EqualTo(8));
 
-            Assert.That(result[1].StartDate, Is.EqualTo(new DateTime(2020,07,04,11,20,00)));
+            Assert.That(result[1].StartDate, Is.EqualTo(new DateTime(2020,07,04,11,21,00)));
             Assert.That(result[7].EndDate, Is.EqualTo(new DateTime(2020,07,27,21,30,00)));
             //Assert.That(subject.DateRangesCounter,Is.EqualTo(8));
             //Assert.That(subject.DateRangesCounter,Is.Not.EqualTo(7));

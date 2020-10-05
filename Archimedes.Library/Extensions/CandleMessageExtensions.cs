@@ -26,7 +26,8 @@ namespace Archimedes.Library.Extensions
 
                 var range = new DateRange()
                 {
-                    StartDate = intFromDate,
+                    // adding an extra interval to prevent duplicate entries
+                    StartDate = intFromDate.AddMinutes(candle.Interval),
                     EndDate = intToDate
                 };
 
