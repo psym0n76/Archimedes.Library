@@ -99,8 +99,8 @@ namespace Archimedes.Library.Tests
             Assert.That(result.Count, Is.EqualTo(2));
 
             //Assert.That(result[0].StartDate, Is.EqualTo(startDate));
-            Assert.That(result[0].StartDate, Is.EqualTo(new DateTime(2020,04,20,10,05,00)));
-            Assert.That(result[0].EndDate, Is.EqualTo(new DateTime(2020,04,20,10,50,00)));
+            Assert.That(result[0].StartDate, Is.EqualTo(new DateTime(2020,04,20,10,10,00)));
+            Assert.That(result[0].EndDate, Is.EqualTo(new DateTime(2020,04,20,10,55,00)));
         }
 
         [Test]
