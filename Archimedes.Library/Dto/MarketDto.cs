@@ -30,6 +30,9 @@ namespace Archimedes.Library.Message.Dto
         [JsonProperty(PropertyName = "minDate")]
         public DateTime MinDate { get; set; }
 
+        [JsonProperty(PropertyName = "quantity")]
+        public DateTime Quantity { get; set; }
+
         [JsonProperty(PropertyName = "lastUpdated")]
         public DateTime LastUpdated { get; set; }
 
