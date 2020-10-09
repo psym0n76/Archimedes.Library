@@ -5,6 +5,9 @@ namespace Archimedes.Library.Message.Dto
 {
     public class CandleMetricDto
     {
+        [JsonProperty(PropertyName = "marketId")]
+        public int MarketId { get; set; }
+
         [JsonProperty(PropertyName = "maxDate")]
         public DateTime MaxDate { get; set; }
 
