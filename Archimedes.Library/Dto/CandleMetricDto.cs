@@ -16,5 +16,11 @@ namespace Archimedes.Library.Message.Dto
 
         [JsonProperty(PropertyName = "quantity")]
         public int Quantity { get; set; }
+
+        public override string ToString()
+        {
+            return
+                $"{nameof(MarketId)}: {MarketId} {nameof(MaxDate)}: {MaxDate}  {nameof(MinDate)}: {MinDate} {nameof(Quantity)}: {Quantity}";
+        }
     }
 }
