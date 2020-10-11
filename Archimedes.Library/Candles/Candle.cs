@@ -9,11 +9,11 @@ namespace Archimedes.Library.Candles
         public High High { get; }
         public Low Low { get; }
         public Close Close { get; }
-        public Market Market { get; }
-        public TimeFrame TimeFrame { get; }
+        public string Market { get; }
+        public string TimeFrame { get; }
         public DateTime TimeStamp { get; }
 
-        public Candle(Open open, High high, Low low, Close close, Market market, TimeFrame timeFrame, DateTime timeStamp)
+        public Candle(Open open, High high, Low low, Close close, string market, string timeFrame, DateTime timeStamp)
         {
             Open = open;
             High = high;
@@ -29,7 +29,7 @@ namespace Archimedes.Library.Candles
             return
                 $"\n{nameof(TimeStamp)}: {TimeStamp}" +
                 $" {nameof(Market)}: {Market}" +
-                $" {nameof(TimeFrame)}: {TimeFrame.GetDescription()}" +
+                $" {nameof(TimeFrame)}: {TimeFrame}" +
                 $"\n{nameof(Open)}: {Open}" +
                 $" {nameof(High)}: {High}" +
                 $" {nameof(Low)}: {Low}" +
