@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Archimedes.Library.Enums;
 
 namespace Archimedes.Library.Candles
@@ -12,6 +13,7 @@ namespace Archimedes.Library.Candles
         public string Market { get; }
         public string TimeFrame { get; }
         public DateTime TimeStamp { get; }
+        public List<Candle> HistoryCandles { get; set; }
 
         public Candle(Open open, High high, Low low, Close close, string market, string timeFrame, DateTime timeStamp)
         {
