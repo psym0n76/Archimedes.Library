@@ -7,8 +7,8 @@
         public string RepositoryUrl { get; set; }
         public string CandleUrl { get; set; }
         public string BrokerUrl { get; set; }
-
         public string HealthUrl { get; set; }
+        public string StrategyUrl { get; set; }
 
 
         public string ApplicationName { get; set; }
@@ -47,7 +47,8 @@
                 $"\n{nameof(CandleUrl)}: {CandleUrl}"+
                 $"\n{nameof(BrokerUrl)}: {BrokerUrl}"+
                 $"\n{nameof(HealthUrl)}: {HealthUrl}"+
-                $"\n{nameof(UserInterfaceBaseUrl)}: {UserInterfaceBaseUrl}";
+                $"\n{nameof(UserInterfaceBaseUrl)}: {UserInterfaceBaseUrl}"+
+                $"\n{nameof(StrategyUrl)}: {StrategyUrl}";
 
             return result;
         }
