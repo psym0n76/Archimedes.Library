@@ -81,6 +81,9 @@ namespace Archimedes.Library.Message.Dto
         [JsonProperty(PropertyName = "timeStamp")]
         public DateTime TimeStamp { get; set; }
 
+        [JsonProperty(PropertyName = "lastUpdated")]
+        public DateTime LastUpdated { get; set; }
+
         public override string ToString()
         {
             return 
