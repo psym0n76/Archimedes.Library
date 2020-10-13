@@ -17,7 +17,7 @@ namespace Archimedes.Library.Message.Dto
         public override string ToString()
         {
             return $"\n {nameof(TradeDto)}" +
-                   $"\n  {nameof(Market)}:{Market} {nameof(Direction)}:{Direction} {nameof(Timestamp)}:{Timestamp}";
+                   $"\n  {nameof(Market)}:{Market} {nameof(Direction)}:{Direction} {nameof(Timestamp)}:{Timestamp}\n";
         }
     }
 }

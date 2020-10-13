@@ -53,7 +53,7 @@ namespace Archimedes.Library.Message.Dto
             return $"\n {nameof(MarketDto)}" +
                    $"\n  {nameof(Name)}: {Name} {nameof(TimeFrameInterval)}: {TimeFrameInterval} {nameof(Active)}: {Active} " +
                    $"\n  {nameof(BrokerTimeMinInterval)}: {BrokerTimeMinInterval} {nameof(BrokerTimeInterval)}: {BrokerTimeInterval} {nameof(Active)}: {Active} " +
-                   $"\n  {nameof(MinDate)}: {MinDate} {nameof(MaxDate)}: {MaxDate} {nameof(Granularity)}: {Granularity} {nameof(LastUpdated)}: {LastUpdated}";
+                   $"\n  {nameof(MinDate)}: {MinDate} {nameof(MaxDate)}: {MaxDate} {nameof(Granularity)}: {Granularity} {nameof(LastUpdated)}: {LastUpdated}\n";
         }
     }
 }

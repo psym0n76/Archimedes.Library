@@ -90,7 +90,7 @@ namespace Archimedes.Library.Message.Dto
                 $"\n {nameof(PriceDto)}" +
                 $"\n  {nameof(TimeStamp)}: {TimeStamp} {nameof(Market)}: {Market}  {nameof(MarketId)}: {MarketId} {nameof(Granularity)}: {Granularity} {nameof(TickQty)}: {TickQty}" +
                 $"\n  {nameof(BidOpen)}: {BidOpen} {nameof(BidHigh)}: {BidHigh} {nameof(BidLow)}: {BidLow} {nameof(BidClose)}: {BidClose}" +
-                $"\n  {nameof(AskOpen)}: {AskOpen} {nameof(AskHigh)}: {AskHigh} {nameof(AskLow)}: {AskLow} {nameof(AskClose)}: {AskClose}";
+                $"\n  {nameof(AskOpen)}: {AskOpen} {nameof(AskHigh)}: {AskHigh} {nameof(AskLow)}: {AskLow} {nameof(AskClose)}: {AskClose}\n";
         }
     }
 }
