@@ -27,11 +27,20 @@ namespace Archimedes.Library.Message
         public bool Success { get; set; }
         public List<string> Logs { get; set; }
 
+        public DateTime ElapsedTime { get; set; }
+
         public override string ToString()
         {
             return $"\n\n {nameof(CandleMessage)}" +
                    $"\n  {nameof(Market)}: {Market} {nameof(MarketId)}: {MarketId} {nameof(Interval)}: {Interval} {nameof(TimeFrame)}: {TimeFrame}" +
-                   $"\n  {nameof(StartDate)}: {StartDate} {nameof(EndDate)}: {EndDate}\n";
+                   $"\n  {nameof(StartDate)}: {StartDate} {nameof(EndDate)}: {EndDate} " +
+                   $"\n  {nameof(ElapsedTime)}: { GetElapsed()} \n";
+        }
+
+        private string GetElapsed()
+        {
+            var span = (DateTime.Now - ElapsedTime);
+            return $" Elapsed Time: {span.Minutes} minutes, {span.Seconds} seconds";
         }
     }
 }
