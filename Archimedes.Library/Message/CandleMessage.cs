@@ -34,18 +34,12 @@ namespace Archimedes.Library.Message
             return $"\n\n {nameof(CandleMessage)}" +
                    $"\n  {nameof(Market)}: {Market} {nameof(MarketId)}: {MarketId} {nameof(Interval)}: {Interval} {nameof(TimeFrame)}: {TimeFrame}" +
                    $"\n  {nameof(StartDate)}: {StartDate} {nameof(EndDate)}: {EndDate} " +
-                   $"\n  {nameof(ElapsedTime)}: { GetElapsed()} Candle Counter: { GetElapsed()} \n";
+                   $"\n  {nameof(ElapsedTime)}: { GetElapsed()} Candle Counter: { GetCandleCount()} \n";
         }
-
 
         private int GetCandleCount()
         {
-            if (DateRanges != null)
-            {
-                return DateRanges.Count;
-            }
-
-            return 0;
+            return DateRanges?.Count ?? 0;
         }
 
         private string GetElapsed()
