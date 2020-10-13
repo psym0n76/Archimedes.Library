@@ -50,7 +50,7 @@ namespace Archimedes.Library.Message.Dto
 
         public override string ToString()
         {
-            return $"\n {nameof(MarketDto)}" +
+            return $"\n\n {nameof(MarketDto)}" +
                    $"\n  {nameof(Name)}: {Name} {nameof(TimeFrameInterval)}: {TimeFrameInterval} {nameof(Active)}: {Active} " +
                    $"\n  {nameof(BrokerTimeMinInterval)}: {BrokerTimeMinInterval} {nameof(BrokerTimeInterval)}: {BrokerTimeInterval} {nameof(Active)}: {Active} " +
                    $"\n  {nameof(MinDate)}: {MinDate} {nameof(MaxDate)}: {MaxDate} {nameof(Granularity)}: {Granularity} {nameof(LastUpdated)}: {LastUpdated}\n";

@@ -21,7 +21,7 @@ namespace Archimedes.Library.Message
 
         public override string ToString()
         {
-            return $"\n {nameof(TradeMessage)}" +
+            return $"\n\n {nameof(TradeMessage)}" +
                    $"\n  {nameof(Market)}: {Market} {nameof(Text)}: {Text}\n";
         }
     }
