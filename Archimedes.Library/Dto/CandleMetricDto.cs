@@ -20,7 +20,8 @@ namespace Archimedes.Library.Message.Dto
         public override string ToString()
         {
             return
-                $"\n{nameof(MarketId)}: {MarketId} {nameof(MaxDate)}: {MaxDate}  {nameof(MinDate)}: {MinDate} {nameof(Quantity)}: {Quantity}";
+                $"\n\n {nameof(CandleMetricDto)}" +
+                $"\n  {nameof(MarketId)}: {MarketId} {nameof(MaxDate)}: {MaxDate}  {nameof(MinDate)}: {MinDate} {nameof(Quantity)}: {Quantity}\n";
         }
     }
 }
