@@ -92,5 +92,10 @@ namespace Archimedes.Library.Message.Dto
                 $"\n  {nameof(BidOpen)}: {BidOpen} {nameof(BidHigh)}: {BidHigh} {nameof(BidLow)}: {BidLow} {nameof(BidClose)}: {BidClose}" +
                 $"\n  {nameof(AskOpen)}: {AskOpen} {nameof(AskHigh)}: {AskHigh} {nameof(AskLow)}: {AskLow} {nameof(AskClose)}: {AskClose}\n";
         }
+
+
+
+
+
     }
 }
