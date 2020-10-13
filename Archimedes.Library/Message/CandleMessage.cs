@@ -34,7 +34,8 @@ namespace Archimedes.Library.Message
             return $"\n\n {nameof(CandleMessage)}" +
                    $"\n  {nameof(Market)}: {Market} {nameof(MarketId)}: {MarketId} {nameof(Interval)}: {Interval} {nameof(TimeFrame)}: {TimeFrame}" +
                    $"\n  {nameof(StartDate)}: {StartDate} {nameof(EndDate)}: {EndDate} " +
-                   $"\n  {nameof(ElapsedTime)}: { GetElapsed()} Candle Counter: { GetCandleCount()} \n";
+                   $"\n  Candle Counter: { GetCandleCount()}" +
+                   $"\n  {nameof(ElapsedTime)}: { GetElapsed()} \n";
         }
 
         private int GetCandleCount()
@@ -45,7 +46,7 @@ namespace Archimedes.Library.Message
         private string GetElapsed()
         {
             var span = (DateTime.Now - ElapsedTime);
-            return $" Elapsed Time: {span.Minutes} minutes, {span.Seconds} seconds";
+            return $"Minutes: {span.Minutes} Seconds: {span.Seconds}.{span.Milliseconds}";
         }
     }
 }
