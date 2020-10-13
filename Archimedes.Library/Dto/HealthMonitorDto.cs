@@ -31,11 +31,9 @@ namespace Archimedes.Library.Message.Dto
 
         public override string ToString()
         {
-            return $"\n\n{nameof(AppName)}: {AppName}" +
-                   $"{nameof(Url)}: {Url}" +
-                   $"\n{nameof(Version)}: {Version}" +
-                   $"\n{nameof(LastActiveVersion)}: {LastActiveVersion} : {nameof(LastActive)}: {LastActive}" +
-                   $"\n{nameof(Status)}: {Status} : {nameof(StatusMessage)}: {StatusMessage}\n";
+            return $"\n\n {nameof(AppName)}: {AppName} {nameof(Url)}: {Url}" +
+                   $"\n  {nameof(Version)}: {Version} {nameof(LastActiveVersion)}: {LastActiveVersion} : {nameof(LastActive)}: {LastActive}" +
+                   $"\n  {nameof(Status)}: {Status} : {nameof(StatusMessage)}: {StatusMessage}\n";
         }
     }
 }
