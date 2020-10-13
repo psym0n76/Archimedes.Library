@@ -18,16 +18,16 @@ namespace Archimedes.Library.Extensions
             do
             {
                 splitDateRange = false;
-                if (intToDate >= intFromDate.AddMinutes(candle.MaxIntervals * candle.Interval))
+                if (intToDate >= intFromDate.AddMinutes(candle.MaxIntervals * candle.Interval.ToMinutes(candle.TimeFrame)))
                 {
-                    intToDate = intFromDate.AddMinutes(candle.MaxIntervals * candle.Interval);
+                    intToDate = intFromDate.AddMinutes(candle.MaxIntervals * candle.Interval.ToMinutes(candle.TimeFrame));
                     splitDateRange = true;
                 }
 
                 var range = new DateRange()
                 {
                     // adding an extra interval to prevent duplicate entries
-                    StartDate = intFromDate.AddMinutes(candle.Interval),
+                    StartDate = intFromDate.AddMinutes(candle.Interval.ToMinutes(candle.TimeFrame)),
                     EndDate = intToDate
                 };
 
@@ -47,17 +47,17 @@ namespace Archimedes.Library.Extensions
 
             if (candle.TimeFrame == "Min")
             {
-                candle.Intervals = (int) delta.TotalMinutes / candle.Interval; 
+                candle.Intervals = (int) delta.TotalMinutes / candle.Interval.ToMinutes(candle.TimeFrame); 
             }
 
             if (candle.TimeFrame == "H")
             {
-                candle.Intervals = (int) delta.TotalHours / candle.Interval; 
+                candle.Intervals = (int) delta.TotalHours / candle.Interval.ToMinutes(candle.TimeFrame); 
             }
 
             if (candle.TimeFrame == "D")
             {
-                candle.Intervals = (int) delta.TotalDays / candle.Interval; 
+                candle.Intervals = (int) delta.TotalDays / candle.Interval.ToMinutes(candle.TimeFrame); 
             }
 
             return candle;
