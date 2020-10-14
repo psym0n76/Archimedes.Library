@@ -21,7 +21,7 @@ namespace Archimedes.Library.Message.Dto
         {
             return
                 $"\n\n {nameof(CandleMetricDto)}" +
-                $"\n  {nameof(MarketId)}: {MarketId} {nameof(MaxDate)}: {MaxDate}  {nameof(MinDate)}: {MinDate} {nameof(Quantity)}: {Quantity}\n";
+                $"\n  {nameof(MarketId)}: {MarketId} {nameof(MinDate)}: {MinDate} {nameof(MaxDate)}: {MaxDate}  {nameof(Quantity)}: {Quantity}\n";
         }
     }
 }
