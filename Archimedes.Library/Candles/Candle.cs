@@ -38,6 +38,15 @@ namespace Archimedes.Library.Candles
                 $" {nameof(Close)}: {Close}";
         }
 
+        IEnumerable<Candle> UnwrapCandle(Candle p)
+        {
+            var list = new List<Candle> {p};
+            if (p != null)
+                list.AddRange(UnwrapCandle(p));
+
+            return list;
+        }
+
 
         public int CompareTo(Candle c)
         {
