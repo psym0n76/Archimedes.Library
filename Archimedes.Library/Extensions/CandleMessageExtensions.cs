@@ -52,12 +52,12 @@ namespace Archimedes.Library.Extensions
 
             if (candle.TimeFrame == "H")
             {
-                candle.Intervals = (int) delta.TotalHours / candle.Interval.ToMinutes(candle.TimeFrame); 
+                candle.Intervals = (int) delta.TotalMinutes / candle.Interval.ToMinutes(candle.TimeFrame); 
             }
 
             if (candle.TimeFrame == "D")
             {
-                candle.Intervals = (int) delta.TotalDays / candle.Interval.ToMinutes(candle.TimeFrame); 
+                candle.Intervals = (int) delta.TotalMinutes / candle.Interval.ToMinutes(candle.TimeFrame); 
             }
 
             return candle;
