@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using Archimedes.Library.Enums;
 
 namespace Archimedes.Library.Candles
 {
@@ -46,7 +45,6 @@ namespace Archimedes.Library.Candles
 
             return list;
         }
-
 
         public int CompareTo(Candle c)
         {
