@@ -47,7 +47,7 @@ namespace Archimedes.Library.Candles
                 $" {nameof(High)}: {High}" +
                 $" {nameof(Low)}: {Low}" +
                 $" {nameof(Close)}: {Close}" +
-                $" Elapsed Time: {GetElapsed()}"
+                $" Elapsed Time: {GetElapsed()}";
         }
 
         IEnumerable<Candle> UnwrapCandle(Candle p)
