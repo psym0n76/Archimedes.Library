@@ -15,6 +15,14 @@ namespace Archimedes.Library.Candles
         public List<Candle> PastCandles { get; set; }
         public List<Candle> FutureCandles { get; set; }
 
+        public DateTime ElapsedTime { get; set; }
+
+        public string GetElapsed()
+        {
+            var span = (DateTime.Now - ElapsedTime);
+            return $"Minutes: {span.Minutes} Seconds: {span.Seconds}.{span.Milliseconds}";
+        }
+
         public Candle(Open open, High high, Low low, Close close, string market, string timeFrame, DateTime timeStamp)
         {
             Open = open;
@@ -24,6 +32,7 @@ namespace Archimedes.Library.Candles
             Market = market;
             TimeFrame = timeFrame;
             TimeStamp = timeStamp;
+            ElapsedTime = DateTime.Now;
         }
 
         public override string ToString()
@@ -35,7 +44,8 @@ namespace Archimedes.Library.Candles
                 $"\n{nameof(Open)}: {Open}" +
                 $" {nameof(High)}: {High}" +
                 $" {nameof(Low)}: {Low}" +
-                $" {nameof(Close)}: {Close}";
+                $" {nameof(Close)}: {Close}" +
+                $" Elapsed Time: {GetElapsed()}"
         }
 
         IEnumerable<Candle> UnwrapCandle(Candle p)
