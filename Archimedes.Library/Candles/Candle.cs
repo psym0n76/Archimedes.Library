@@ -33,6 +33,8 @@ namespace Archimedes.Library.Candles
             TimeFrame = timeFrame;
             TimeStamp = timeStamp;
             ElapsedTime = DateTime.Now;
+            PastCandles = new List<Candle>();
+            FutureCandles = new List<Candle>();
         }
 
         public override string ToString()
