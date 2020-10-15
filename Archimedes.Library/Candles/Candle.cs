@@ -12,7 +12,8 @@ namespace Archimedes.Library.Candles
         public string Market { get; }
         public string TimeFrame { get; }
         public DateTime TimeStamp { get; }
-        public List<Candle> HistoryCandles { get; set; }
+        public List<Candle> PastCandles { get; set; }
+        public List<Candle> FutureCandles { get; set; }
 
         public Candle(Open open, High high, Low low, Close close, string market, string timeFrame, DateTime timeStamp)
         {
