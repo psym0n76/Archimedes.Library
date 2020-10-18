@@ -15,6 +15,10 @@ namespace Archimedes.Library.Candles
         public List<Candle> PastCandles { get; set; }
         public List<Candle> FutureCandles { get; set; }
 
+        public string Strategy { get; set; }
+
+        public string TradeType { get; set; }
+
         public Dictionary<int, Candle> PastCandlesDict { get; set; }
 
         public Dictionary<int, Candle> FutureCandlesDict { get; set; }
