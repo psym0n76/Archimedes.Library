@@ -9,13 +9,22 @@ namespace Archimedes.Library.Message.Dto
         public int Id { get; set; }
 
         [JsonProperty(PropertyName = "price")]
-        public double Price { get; set; }
+        public double BidPrice { get; set; }
 
         [JsonProperty(PropertyName = "priceRange")]
-        public double PriceRange { get; set; }
+        public double BidPriceRange { get; set; }
+
+        [JsonProperty(PropertyName = "price")]
+        public double AskPrice { get; set; }
+
+        [JsonProperty(PropertyName = "priceRange")]
+        public double AskPriceRange { get; set; }
 
         [JsonProperty(PropertyName = "tradeType")]
         public string TradeType { get; set; }
+
+        [JsonProperty(PropertyName = "strategy")]
+        public string Strategy { get; set; }
 
         [JsonProperty(PropertyName = "active")]
         public string Active { get; set; }
