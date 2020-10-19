@@ -46,15 +46,12 @@ namespace Archimedes.Library.Candles
         public override string ToString()
         {
             return
-                $"\n{nameof(TimeStamp)}: {TimeStamp}" +
-                $" {nameof(Market)}: {Market}" +
-                $" {nameof(TimeFrame)}: {TimeFrame}" +
-                $"\n{nameof(Open)}: {Open}" +
-                $" {nameof(High)}: {High}" +
-                $" {nameof(Low)}: {Low}" +
-                $" {nameof(Close)}: {Close}" +
-                $" Elapsed Time: {GetElapsed()}";
+                $"\n\n {nameof(Candle)}" +
+                $"\n  {nameof(Market)}: {Market} + {nameof(TimeFrame)}: {TimeFrame}" +
+                $"\n  {nameof(Open.Bid)}: {Open.Bid} {nameof(High.Bid)}: {High.Bid} {nameof(Low.Bid)}: {Low.Bid} {nameof(Close.Bid)}: {Close.Bid}" +
+                $"\n  Elapsed Time: {GetElapsed()}";
         }
+
 
         IEnumerable<Candle> UnwrapCandle(Candle p)
         {

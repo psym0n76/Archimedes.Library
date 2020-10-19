@@ -46,9 +46,6 @@ namespace Archimedes.Library.Message.Dto
 
 
 
-
-
-
         [JsonProperty(PropertyName = "lastUpdated")]
         public DateTime LastUpdated {get; set;}
 
