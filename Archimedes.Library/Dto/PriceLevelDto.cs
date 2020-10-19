@@ -8,16 +8,16 @@ namespace Archimedes.Library.Message.Dto
         [JsonProperty(PropertyName = "id")]
         public int Id { get; set; }
 
-        [JsonProperty(PropertyName = "price")]
+        [JsonProperty(PropertyName = "bidPrice")]
         public double BidPrice { get; set; }
 
-        [JsonProperty(PropertyName = "priceRange")]
+        [JsonProperty(PropertyName = "bidPriceRange")]
         public double BidPriceRange { get; set; }
 
-        [JsonProperty(PropertyName = "price")]
+        [JsonProperty(PropertyName = "askPrice")]
         public double AskPrice { get; set; }
 
-        [JsonProperty(PropertyName = "priceRange")]
+        [JsonProperty(PropertyName = "askPriceRange")]
         public double AskPriceRange { get; set; }
 
         [JsonProperty(PropertyName = "tradeType")]
