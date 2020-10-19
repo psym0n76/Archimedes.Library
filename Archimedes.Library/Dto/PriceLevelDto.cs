@@ -23,6 +23,9 @@ namespace Archimedes.Library.Message.Dto
         [JsonProperty(PropertyName = "tradeType")]
         public string TradeType { get; set; }
 
+        [JsonProperty(PropertyName = "candleType")]
+        public string CandleType { get; set; }
+
         [JsonProperty(PropertyName = "strategy")]
         public string Strategy { get; set; }
 
