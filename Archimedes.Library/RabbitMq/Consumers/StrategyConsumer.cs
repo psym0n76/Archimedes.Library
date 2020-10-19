@@ -25,7 +25,7 @@ namespace Archimedes.Library.RabbitMq
             _queueName = queueName;
         }
 
-        public void Subscribe()
+        public void Subscribe(CancellationToken cancellationToken)
         {
             RabbitHealthCheck.ValidateConnection(_host, _port);
 
