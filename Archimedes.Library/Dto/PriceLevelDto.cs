@@ -43,5 +43,13 @@ namespace Archimedes.Library.Message.Dto
 
         [JsonProperty(PropertyName = "lastUpdated")]
         public DateTime LastUpdated {get; set;}
+
+        public override string ToString()
+        {
+            return
+                $"\n\n {nameof(PriceLevelDto)}" +
+                $"\n  {nameof(BidPrice)}: {BidPrice} {nameof(BidPriceRange)}: {BidPriceRange} {nameof(TradeType)}: {TradeType} {nameof(CandleType)}: {CandleType}" +
+                $"\n  {nameof(Market)}: {Market} {nameof(Granularity)}: {Granularity} {nameof(TimeStamp)}: {TimeStamp} {nameof(Strategy)}: {Strategy}";
+        }
     }
 }
