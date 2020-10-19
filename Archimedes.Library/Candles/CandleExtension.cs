@@ -23,7 +23,7 @@ namespace Archimedes.Library.Candles
 
         public static Price Top(this Candle c)
         {
-            if (c.Color() == Colour.Green)
+            if (c.Close.Bid > c.Open.Bid)
             {
                 return c.Close;
             }
@@ -33,12 +33,12 @@ namespace Archimedes.Library.Candles
 
         public static Price Bottom(this Candle c)
         {
-            if (c.Color() == Colour.Red)
+            if (c.Close.Bid > c.Open.Bid)
             {
-                return c.Close;
+                return c.Open;
             }
 
-            return c.Open;
+            return c.Close;
         }
 
         public static CandleType Type(this Candle c)

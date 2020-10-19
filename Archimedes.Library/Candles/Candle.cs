@@ -47,7 +47,7 @@ namespace Archimedes.Library.Candles
         {
             return
                 $"\n\n {nameof(Candle)}" +
-                $"\n  {nameof(Market)}: {Market} + {nameof(TimeFrame)}: {TimeFrame}" +
+                $"\n  {nameof(TimeStamp)}: {TimeStamp} {nameof(Market)}: {Market} {nameof(TimeFrame)}: {TimeFrame}" +
                 $"\n  {nameof(Open.Bid)}: {Open.Bid} {nameof(High.Bid)}: {High.Bid} {nameof(Low.Bid)}: {Low.Bid} {nameof(Close.Bid)}: {Close.Bid}" +
                 $"\n  Elapsed Time: {GetElapsed()}";
         }
