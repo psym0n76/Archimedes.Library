@@ -11,7 +11,7 @@ namespace Archimedes.Library.File
             try
             {
                 var resource = Assembly.GetExecutingAssembly()
-                    .GetManifestResourceStream($"Specials.Oxi.MessageTypes.{fileName}.json");
+                    .GetManifestResourceStream(fileName);
 
                 if (resource==null)
                 {
@@ -19,12 +19,10 @@ namespace Archimedes.Library.File
                     return string.Empty;
                 }
 
-                using (var reader = new StreamReader(resource))
-                {
-                    var result = reader.ReadToEnd();
+                using var reader = new StreamReader(resource);
+                var result = reader.ReadToEnd();
 
-                    return result;
-                }
+                return result;
             }
             catch (Exception e)
             {

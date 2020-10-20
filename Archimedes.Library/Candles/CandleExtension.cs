@@ -1,4 +1,7 @@
 ﻿
+using System;
+using System.Reflection;
+using System.Text.RegularExpressions;
 using Archimedes.Library.Enums;
 
 namespace Archimedes.Library.Candles
@@ -59,6 +62,14 @@ namespace Archimedes.Library.Candles
             }
 
             return CandleType.Null;
+        }
+
+        public static decimal BodyFillRate(this Candle c)
+        {
+            var bidHighLowRange = c.High.Bid - c.Low.Bid;
+            var bidOpenCloseRange = c.Top().Bid - c.Bottom().Bid;
+
+            return Math.Round(bidOpenCloseRange / bidHighLowRange, 2);
         }
     }
 }

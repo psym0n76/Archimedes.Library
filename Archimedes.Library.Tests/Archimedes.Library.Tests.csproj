@@ -7,6 +7,14 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="GBPUSD_15Min_202010072200_202010082200.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="GBPUSD_15Min_202010072200_202010082200.json" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="nunit" Version="3.12.0" />
     <PackageReference Include="NUnit3TestAdapter" Version="3.17.0" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="16.7.0" />
