@@ -37,7 +37,7 @@ namespace Archimedes.Library.Message.Dto
         public override string ToString()
         {
             return $"\n\n {nameof(StrategyDto)}" +
-                   $"\n  {nameof(Name)}: {Name} {nameof(Market)}: {Market} {nameof(Granularity)}: {Granularity} " +
+                   $"\n  {nameof(Id)}: {Id} {nameof(Name)}: {Name} {nameof(Market)}: {Market} {nameof(Granularity)}: {Granularity} " +
                    $"\n  {nameof(Active)}: {Active} {nameof(StartDate)}: {StartDate} {nameof(EndDate)}: {EndDate} {nameof(Count)}: {Count} {nameof(LastUpdated)}: {LastUpdated}\n";
         }
     }
