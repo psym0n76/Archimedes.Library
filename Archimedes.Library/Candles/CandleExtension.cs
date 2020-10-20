@@ -81,6 +81,3 @@ namespace Archimedes.Library.Candles
         }
     }
 }
-
-
-]
