@@ -1,7 +1,4 @@
-﻿
-using System;
-using System.Reflection;
-using System.Text.RegularExpressions;
+﻿using System;
 using Archimedes.Library.Enums;
 
 namespace Archimedes.Library.Candles
