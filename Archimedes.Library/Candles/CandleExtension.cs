@@ -67,9 +67,23 @@ namespace Archimedes.Library.Candles
         public static decimal BodyFillRate(this Candle c)
         {
             var bidHighLowRange = c.High.Bid - c.Low.Bid;
+
+            if (bidHighLowRange == 0)
+            {
+                return 0m;
+            }
+
             var bidOpenCloseRange = c.Top().Bid - c.Bottom().Bid;
+
+            if (bidOpenCloseRange == 0)
+            {
+                return 0m;
+            }
 
             return Math.Round(bidOpenCloseRange / bidHighLowRange, 2);
         }
     }
 }
+
+
+]
