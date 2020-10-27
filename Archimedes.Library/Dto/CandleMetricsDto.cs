@@ -3,7 +3,7 @@ using System;
 
 namespace Archimedes.Library.Message.Dto
 {
-    public class CandleMetrics
+    public class CandleMetricsDto
     {
         [JsonProperty(PropertyName = "maxDate")]
         public DateTime MaxDate { get; set; }
