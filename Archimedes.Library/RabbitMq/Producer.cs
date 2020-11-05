@@ -42,5 +42,28 @@ namespace Archimedes.Library.RabbitMq
                 basicProperties: null,
                 body: body);
         }
+
+        public void PublishFanoutMessage(T message)
+        {
+            RabbitHealthCheck.ValidateConnection(_host, _port);
+
+            var factory = new ConnectionFactory()
+            {
+                HostName = _host, Port = _port,
+                ClientProvidedName = $"{Assembly.GetCallingAssembly().GetName().Name}.{_exchange}"
+            };
+
+            using var connection = factory.CreateConnection();
+            using var channel = connection.CreateModel();
+
+            channel.ExchangeDeclare(exchange: _exchange, type: ExchangeType.Fanout);
+
+            var body = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(message));
+
+            channel.BasicPublish(exchange: _exchange,
+                routingKey: "",
+                basicProperties: null,
+                body: body);
+        }
     }
 }
