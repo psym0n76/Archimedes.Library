@@ -9,6 +9,7 @@
         public string BrokerUrl { get; set; }
         public string HealthUrl { get; set; }
         public string StrategyUrl { get; set; }
+        public string TradeUrl { get; set; }
 
 
         public string ApplicationName { get; set; }
@@ -47,6 +48,7 @@
                 $"\n{nameof(CandleUrl)}: {CandleUrl}"+
                 $"\n{nameof(BrokerUrl)}: {BrokerUrl}"+
                 $"\n{nameof(HealthUrl)}: {HealthUrl}"+
+                $"\n{nameof(TradeUrl)}: {TradeUrl}"+
                 $"\n{nameof(UserInterfaceBaseUrl)}: {UserInterfaceBaseUrl}"+
                 $"\n{nameof(StrategyUrl)}: {StrategyUrl}";
 
