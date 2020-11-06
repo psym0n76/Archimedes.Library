@@ -34,16 +34,16 @@ namespace Archimedes.Library.RabbitMq
             using var connection = factory.CreateConnection();
             using var channel = connection.CreateModel();
 
-            //channel.QueueDeclare(_queueName, true, false, false);
+            var queueName = channel.QueueDeclare().QueueName;
             channel.ExchangeDeclare(_exchange, ExchangeType.Fanout);
-
-            //channel.QueueBind(_queueName, _exchange, _queueName);
+                
+            channel.QueueBind(queueName, _exchange, "");
 
             var consumer = new EventingBasicConsumer(channel);
 
             consumer.Received += Consumer_Received;
 
-            channel.BasicConsume("",
+            channel.BasicConsume(queueName,
                 autoAck: true,
                 consumer: consumer);
 
