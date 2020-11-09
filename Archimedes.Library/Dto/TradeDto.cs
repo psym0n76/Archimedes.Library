@@ -16,14 +16,17 @@ namespace Archimedes.Library.Message.Dto
         public string Strategy { get; set; }
 
         [JsonProperty(PropertyName = "success")]
-        public string Success { get; set; }
+        public bool Success { get; set; }
 
 
-        [JsonProperty(PropertyName = "openPrice")]
-        public decimal OpenPrice { get; set; }
+        [JsonProperty(PropertyName = "entryPrice")]
+        public decimal EntryPrice { get; set; }
 
         [JsonProperty(PropertyName = "closePrice")]
         public decimal ClosePrice { get; set; }
+
+        [JsonProperty(PropertyName = "targetPrice")]
+        public decimal TargetPrice { get; set; }
 
 
         [JsonProperty(PropertyName = "timestamp")]
@@ -33,7 +36,7 @@ namespace Archimedes.Library.Message.Dto
         {
             return $"\n {nameof(TradeDto)}" +
                    $"\n  {nameof(Market)}:{Market} {nameof(BuySell)}:{BuySell} {nameof(Strategy)}:{Strategy} " +
-                   $"\n  {nameof(OpenPrice)}:{OpenPrice} {nameof(ClosePrice)}:{ClosePrice} {nameof(Success)}:{Success}  {nameof(Timestamp)}:{Timestamp}\n";
+                   $"\n  {nameof(EntryPrice)}:{EntryPrice} {nameof(ClosePrice)}:{ClosePrice} {nameof(TargetPrice)}:{TargetPrice} {nameof(Success)}:{Success}  {nameof(Timestamp)}:{Timestamp}\n";
         }
     }
 }
