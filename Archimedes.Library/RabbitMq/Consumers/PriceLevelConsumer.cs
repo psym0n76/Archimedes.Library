@@ -7,19 +7,22 @@ using RabbitMQ.Client.Events;
 
 namespace Archimedes.Library.RabbitMq
 {
-    public class PriceFanoutConsumer : IPriceFanoutConsumer
+    public class PriceLevelConsumer : IPriceLevelConsumer
     {
+
         public event EventHandler<MessageHandlerEventArgs> HandleMessage;
 
         private readonly string _host;
         private readonly int _port;
         private readonly string _exchange;
+        private readonly string _queueName;
 
-        public PriceFanoutConsumer(string host, int port, string exchange)
+        public PriceLevelConsumer(string host, int port, string exchange, string queueName)
         {
             _host = host;
             _port = port;
             _exchange = exchange;
+            _queueName = queueName;
         }
 
         public void Subscribe()
@@ -29,21 +32,21 @@ namespace Archimedes.Library.RabbitMq
             var factory = new ConnectionFactory()
             {
                 HostName = _host, Port = _port,
-                ClientProvidedName = $"{Assembly.GetCallingAssembly().GetName().Name}.{_exchange}"
+                ClientProvidedName = $"{Assembly.GetCallingAssembly().GetName().Name}.{_exchange}.{_queueName}"
             };
             using var connection = factory.CreateConnection();
             using var channel = connection.CreateModel();
 
-            var queueName = channel.QueueDeclare().QueueName;
-            channel.ExchangeDeclare(_exchange, ExchangeType.Fanout);
-                
-            channel.QueueBind(queueName, _exchange, "");
+            channel.QueueDeclare(_queueName, true, false, false);
+            channel.ExchangeDeclare(_exchange, ExchangeType.Direct);
+
+            channel.QueueBind(_queueName, _exchange, _queueName);
 
             var consumer = new EventingBasicConsumer(channel);
 
             consumer.Received += Consumer_Received;
 
-            channel.BasicConsume(queueName,
+            channel.BasicConsume(_queueName,
                 autoAck: true,
                 consumer: consumer);
 
