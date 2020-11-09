@@ -31,16 +31,16 @@ namespace Archimedes.Library.Message.Dto
 
 
         [JsonProperty(PropertyName = "bidPrice")]
-        public double BidPrice { get; set; }
+        public decimal BidPrice { get; set; }
 
         [JsonProperty(PropertyName = "bidPriceRange")]
-        public double BidPriceRange { get; set; }
+        public decimal BidPriceRange { get; set; }
 
         [JsonProperty(PropertyName = "askPrice")]
-        public double AskPrice { get; set; }
+        public decimal AskPrice { get; set; }
 
         [JsonProperty(PropertyName = "askPriceRange")]
-        public double AskPriceRange { get; set; }
+        public decimal AskPriceRange { get; set; }
 
 
 
