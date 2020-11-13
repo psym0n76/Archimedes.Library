@@ -5,6 +5,8 @@ namespace Archimedes.Library.Message.Dto
 {
     public class PriceLevelDto
     {
+        [JsonProperty(PropertyName = "id")]
+        public string Id { get; set; }
 
         [JsonProperty(PropertyName = "market")]
         public string Market { get; set; }
