@@ -18,7 +18,7 @@ namespace Archimedes.Library.Message.Dto
         public string Active { get; set; }
 
         [JsonProperty(PropertyName = "tradeType")]
-        public string TradeType { get; set; }
+        public string BuySell { get; set; }
 
         [JsonProperty(PropertyName = "candleType")]
         public string CandleType { get; set; }
@@ -55,7 +55,7 @@ namespace Archimedes.Library.Message.Dto
         {
             return
                 $"\n\n {nameof(PriceLevelDto)}" +
-                $"\n  {nameof(BidPrice)}: {BidPrice} {nameof(BidPriceRange)}: {BidPriceRange} {nameof(TradeType)}: {TradeType} {nameof(CandleType)}: {CandleType}" +
+                $"\n  {nameof(BidPrice)}: {BidPrice} {nameof(BidPriceRange)}: {BidPriceRange} {nameof(BuySell)}: {BuySell} {nameof(CandleType)}: {CandleType}" +
                 $"\n  {nameof(Market)}: {Market} {nameof(Granularity)}: {Granularity} {nameof(TimeStamp)}: {TimeStamp} {nameof(Strategy)}: {Strategy}";
         }
     }
