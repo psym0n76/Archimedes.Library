@@ -2,9 +2,9 @@
 using System.Diagnostics;
 using System.Text;
 
-namespace Archimedes.Library.Message
+namespace Archimedes.Library.Logger
 {
-    public class CustomLogger
+    public class TimedLogger
     {
         private readonly StringBuilder _logger;
         private readonly Stopwatch _timer;
@@ -13,7 +13,7 @@ namespace Archimedes.Library.Message
 
         //todo add a list to collect different logs
 
-        public CustomLogger(string message)
+        public TimedLogger(string message)
         {
             _timer = new Stopwatch();
             _timer.Start();
