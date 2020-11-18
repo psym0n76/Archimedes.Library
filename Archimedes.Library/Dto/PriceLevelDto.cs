@@ -17,7 +17,7 @@ namespace Archimedes.Library.Message.Dto
         [JsonProperty(PropertyName = "active")]
         public string Active { get; set; }
 
-        [JsonProperty(PropertyName = "tradeType")]
+        [JsonProperty(PropertyName = "buySell")]
         public string BuySell { get; set; }
 
         [JsonProperty(PropertyName = "candleType")]
