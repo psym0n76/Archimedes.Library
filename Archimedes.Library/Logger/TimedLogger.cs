@@ -26,7 +26,7 @@ namespace Archimedes.Library.Logger
         {
             var dateMessage = $"{DateTime.Now} {_title} Duration: {_timer.ElapsedMilliseconds}ms";
             //Debug.WriteLine(dateMessage);
-            _logger.Append(dateMessage);
+            _logger.AppendLine(dateMessage);
         }
 
         public void UpdateLog(string message)
