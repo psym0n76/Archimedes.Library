@@ -30,6 +30,14 @@ namespace Archimedes.Library.Message.Dto
         public string Strategy { get; set; }
 
 
+        [JsonProperty(PropertyName = "levelsBroken")]
+        public int LevelsBroken { get; set; }
+
+        [JsonProperty(PropertyName = "lastLevelBrokenDate")]
+        public DateTime LastLevelBrokenDate { get; set; }
+
+        [JsonProperty(PropertyName = "BookedTrades")]
+        public int BookedTrades { get; set; }
 
 
         [JsonProperty(PropertyName = "bidPrice")]
