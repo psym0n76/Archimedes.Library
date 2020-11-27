@@ -5,6 +5,6 @@ namespace Archimedes.Library.Candles
 {
     public interface ICandleLoader
     {
-        List<Candle> Load(string market, string granularity, int interval, List<CandleDto> candlesByGranularityMarket);
+        List<Candle> Load(string market, string granularity, int granularityInterval, List<CandleDto> candlesByGranularityMarket);
     }
 }

@@ -9,7 +9,7 @@ namespace Archimedes.Library.Candles
 {
     public class CandleLoader : ICandleLoader
     {
-        public List<Candle> Load(string market, string granularity, int interval, List<CandleDto> candlesByGranularityMarket)
+        public List<Candle> Load(string market, string granularity, int granularityInterval, List<CandleDto> candlesByGranularityMarket)
         {
             var candles = new ConcurrentBag<Candle>();
             var elapsedTime = new Stopwatch();
@@ -17,25 +17,25 @@ namespace Archimedes.Library.Candles
             elapsedTime.Start();
 
             Parallel.ForEach(candlesByGranularityMarket,
-                currentCandle => { Process(interval, currentCandle, candlesByGranularityMarket, candles, 15); });
+                currentCandle => { Process(granularityInterval, currentCandle, candlesByGranularityMarket, candles); });
 
             // convert ConcurrentBag to a List to force ordering
             result.AddRange(candles.OrderBy(a => a.TimeStamp));
             return result;
         }
 
-        private static void Process(int interval, CandleDto currentCandle, List<CandleDto> candlesByGranularityMarket, ConcurrentBag<Candle> candles, int granularityNumber)
+        private static void Process(int granularityInterval, CandleDto currentCandle, List<CandleDto> candlesByGranularityMarket, ConcurrentBag<Candle> candles)
         {
             var candle = LoadCandle(currentCandle);
 
             var taskFutureCandles = Task.Run(() =>
             {
-                candle.FutureCandles.AddRange(GetCandles(candlesByGranularityMarket, currentCandle, interval, granularityNumber));
+                candle.FutureCandles.AddRange(GetCandles(candlesByGranularityMarket, currentCandle, granularityInterval, granularityInterval));
             });
 
             var taskPastCandles = Task.Run(() =>
             {
-                candle.PastCandles.AddRange(GetCandles(candlesByGranularityMarket, currentCandle, -interval, granularityNumber)
+                candle.PastCandles.AddRange(GetCandles(candlesByGranularityMarket, currentCandle, -granularityInterval, granularityInterval)
                     .OrderByDescending(a => a.TimeStamp));
             });
 
@@ -56,21 +56,21 @@ namespace Archimedes.Library.Candles
         }
 
         private static IEnumerable<Candle> GetCandles(IEnumerable<CandleDto> candleHistory, CandleDto currentCandle,
-            int interval, int granularityNumber)
+            int granularityInterval, int granularityNumber)
         {
             List<CandleDto> historyCandles;
 
-            if (interval > 0)
+            if (granularityInterval > 0)
             {
                 //forward in time
                 historyCandles = candleHistory.Where(a =>
                     a.FromDate > currentCandle.FromDate &&
-                    a.FromDate <= currentCandle.FromDate.AddMinutes(interval * granularityNumber)).ToList();
+                    a.FromDate <= currentCandle.FromDate.AddMinutes(granularityInterval * granularityNumber)).ToList();
             }
             else
             {
                 historyCandles = candleHistory.Where(a =>
-                    a.FromDate > currentCandle.FromDate.AddMinutes(interval * granularityNumber) &&
+                    a.FromDate > currentCandle.FromDate.AddMinutes(granularityInterval * granularityNumber) &&
                     a.FromDate < currentCandle.FromDate).ToList();
             }
 
