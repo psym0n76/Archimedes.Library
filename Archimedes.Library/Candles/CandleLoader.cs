@@ -3,17 +3,20 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using Archimedes.Library.Extensions;
 using Archimedes.Library.Message.Dto;
 
 namespace Archimedes.Library.Candles
 {
     public class CandleLoader : ICandleLoader
     {
-        public List<Candle> Load(string market, string granularity, int granularityInterval, List<CandleDto> candlesByGranularityMarket)
+        public List<Candle> Load(List<CandleDto> candlesByGranularityMarket)
         {
             var candles = new ConcurrentBag<Candle>();
             var elapsedTime = new Stopwatch();
             var result = new List<Candle>();
+            var granularityInterval =  candlesByGranularityMarket.Take(1).Single().Granularity.ExtractTimeInterval();
+
             elapsedTime.Start();
 
             Parallel.ForEach(candlesByGranularityMarket,
@@ -24,9 +27,9 @@ namespace Archimedes.Library.Candles
             return result;
         }
 
-        private static void Process(int granularityInterval, CandleDto currentCandle, List<CandleDto> candlesByGranularityMarket, ConcurrentBag<Candle> candles)
+        private  void Process(int granularityInterval, CandleDto currentCandle, List<CandleDto> candlesByGranularityMarket, ConcurrentBag<Candle> candles)
         {
-            var candle = LoadCandle(currentCandle);
+            var candle = InstantiateCandle(currentCandle);
 
             var taskFutureCandles = Task.Run(() =>
             {
@@ -44,7 +47,7 @@ namespace Archimedes.Library.Candles
             candles.Add(candle);
         }
 
-        private static Candle LoadCandle(CandleDto dto)
+        public Candle InstantiateCandle(CandleDto dto)
         {
             var candle = new Candle(
                 new Open(dto.BidOpen, dto.AskOpen),

@@ -24,7 +24,7 @@ namespace Archimedes.Library.Tests
         {
             var subject = GetSubjectUnderTest();
 
-            var result = subject.Load("GBP/USD", "15Min", 15, _candles);
+            var result = subject.Load( _candles);
 
             Assert.AreEqual(new DateTime(2020, 10, 07, 22, 00, 00), result.Take(1).Select(a => a.TimeStamp).Single());
         }
@@ -35,7 +35,7 @@ namespace Archimedes.Library.Tests
         {
             var subject = GetSubjectUnderTest();
 
-            var result = subject.Load("GBP/USD", "15Min", 15, _candles);
+            var result = subject.Load(_candles);
 
             Assert.AreEqual(97, result.Count);
         }
@@ -50,7 +50,7 @@ namespace Archimedes.Library.Tests
 
             var stopWatch = new Stopwatch();
             stopWatch.Start();
-            var result = subject.Load("GBP/USD", "15Min", 15, _candles);
+            var result = subject.Load( _candles);
 
             Assert.AreEqual(97, result.Count);
 
@@ -72,7 +72,7 @@ namespace Archimedes.Library.Tests
 
             for (var i = 1; i < 100; i++)
             {
-                var result = subject.Load("GBP/USD", "15Min", 15, _candles);
+                var result = subject.Load( _candles);
                 counter = result.Count;
             }
 
@@ -86,7 +86,7 @@ namespace Archimedes.Library.Tests
         public void Should_Add_Fifteen_Candles_To_PastHistory()
         {
             var subject = GetSubjectUnderTest();
-            var result = subject.Load("GBP/USD", "15Min", 15, _candles);
+            var result = subject.Load( _candles);
 
             var historyCountPast = result
                 .SelectMany(a => a.PastCandles).Count(a => a.TimeStamp == new DateTime(2020, 10, 08, 01, 45, 00));
@@ -99,7 +99,7 @@ namespace Archimedes.Library.Tests
         public void Should_Not_Add_Current_Candle_To_PastHistory()
         {
             var subject = GetSubjectUnderTest();
-            var candles = subject.Load("GBP/USD", "15Min", 15, _candles);
+            var candles = subject.Load( _candles);
 
             const string currentFromDate = "2020-10-08T01:45:00";
 
@@ -117,7 +117,7 @@ namespace Archimedes.Library.Tests
         public void Should_Load_Candles_In_Ascending_Order()
         {
             var subject = GetSubjectUnderTest();
-            var candles = subject.Load("GBP/USD", "15Min", 15, _candles);
+            var candles = subject.Load( _candles);
 
             var firstCandle = candles.Take(1).Select(a => a.TimeStamp).First();
             var lastCandle = candles.TakeLast(1).Select(a => a.TimeStamp).First();
@@ -129,7 +129,7 @@ namespace Archimedes.Library.Tests
         public void Should_Add_PastCandles_With_Max_And_Min_Candles_Matching_Result()
         {
             var subject = GetSubjectUnderTest();
-            var result = subject.Load("GBP/USD", "15Min", 15, _candles);
+            var result = subject.Load( _candles);
 
             var history = result.Where(a => a.TimeStamp == new DateTime(2020, 10, 08, 01, 45, 00)).ToList();
 
@@ -144,7 +144,7 @@ namespace Archimedes.Library.Tests
         public void Should_Load_PastCandles_In_DescendingOrder()
         {
             var subject = GetSubjectUnderTest();
-            var result = subject.Load("GBP/USD", "15Min", 15, _candles);
+            var result = subject.Load( _candles);
 
             var history = result.Where(a => a.TimeStamp == new DateTime(2020, 10, 08, 01, 45, 00)).ToList();
 
@@ -159,7 +159,7 @@ namespace Archimedes.Library.Tests
         public void Should_Load_FutureCandles_In_AscendingOrder()
         {
             var subject = GetSubjectUnderTest();
-            var result = subject.Load("GBP/USD", "15Min", 15, _candles);
+            var result = subject.Load( _candles);
 
             var history = result.Where(a => a.TimeStamp == new DateTime(2020, 10, 08, 01, 45, 00)).ToList();
 
@@ -174,7 +174,7 @@ namespace Archimedes.Library.Tests
         public void Should_Add_FutureCandles_With_Max_And_Min_Candles_Matching_Result()
         {
             var subject = GetSubjectUnderTest();
-            var result = subject.Load("GBP/USD", "15Min", 15, _candles);
+            var result = subject.Load( _candles);
 
             var history = result.Where(a => a.TimeStamp == new DateTime(2020, 10, 08, 01, 45, 00)).ToList();
 
