@@ -10,20 +10,20 @@ namespace Archimedes.Library.Candles
 {
     public class CandleLoader : ICandleLoader
     {
-        public List<Candle> Load(List<CandleDto> candlesByGranularityMarket)
+        public List<Candle> Load(List<CandleDto> candles)
         {
-            var candles = new ConcurrentBag<Candle>();
+            var concurrentBag = new ConcurrentBag<Candle>();
             var elapsedTime = new Stopwatch();
             var result = new List<Candle>();
-            var granularityInterval =  candlesByGranularityMarket.Take(1).Single().Granularity.ExtractTimeInterval();
+            var granularityInterval =  candles.Take(1).Single().Granularity.ExtractTimeInterval();
 
             elapsedTime.Start();
 
-            Parallel.ForEach(candlesByGranularityMarket,
-                currentCandle => { Process(granularityInterval, currentCandle, candlesByGranularityMarket, candles); });
+            Parallel.ForEach(candles,
+                currentCandle => { Process(granularityInterval, currentCandle, candles, concurrentBag); });
 
             // convert ConcurrentBag to a List to force ordering
-            result.AddRange(candles.OrderBy(a => a.TimeStamp));
+            result.AddRange(concurrentBag.OrderBy(a => a.TimeStamp));
             return result;
         }
 
