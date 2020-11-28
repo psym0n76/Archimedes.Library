@@ -48,12 +48,13 @@ namespace Archimedes.Library.Candles
                 return CandleType.Doji;
             }
 
-            if (c.Open.Bid == c.High.Bid && c.Close.Bid == c.Low.Bid)
+            if (c.Close.Bid < c.PastCandlesDict[1].Low.Bid)
             {
+                //bearish red engulf
                 return CandleType.Engulfing;
             }
 
-            if (c.Open.Bid == c.Low.Bid && c.Close.Bid == c.High.Bid)
+            if (c.Close.Bid > c.PastCandlesDict[1].High.Bid)
             {
                 return CandleType.Engulfing;
             }
