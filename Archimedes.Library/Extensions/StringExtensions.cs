@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Archimedes.Library.Enums;
 using static System.Char;
 
 namespace Archimedes.Library.Extensions
@@ -17,6 +18,11 @@ namespace Archimedes.Library.Extensions
             var numbers = value.Where(IsNumber).Aggregate(string.Empty, (current, c) => current + c);
 
             return int.Parse(numbers);
+        }
+
+        public static Colour GetColor(this string buySell)
+        {
+            return buySell == "buy" ? Colour.Green : Colour.Red;
         }
     }
 }
