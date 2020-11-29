@@ -20,7 +20,7 @@ namespace Archimedes.Library.Extensions
             return int.Parse(numbers);
         }
 
-        public static Colour GetColor(this string buySell)
+        public static Colour Color(this string buySell)
         {
             return buySell == "buy" ? Colour.Green : Colour.Red;
         }
