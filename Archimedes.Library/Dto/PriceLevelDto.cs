@@ -15,7 +15,7 @@ namespace Archimedes.Library.Message.Dto
         public string Granularity { get; set; }
 
         [JsonProperty(PropertyName = "active")]
-        public string Active { get; set; }
+        public bool Active { get; set; }
 
         [JsonProperty(PropertyName = "buySell")]
         public string BuySell { get; set; }
