@@ -41,6 +41,28 @@ namespace Archimedes.Library.Candles
             return c.Close;
         }
 
+
+        public static decimal Fibonacci382(this Candle candle)
+        {
+            var result = 0m;
+
+            if (candle.Color()==Colour.Green)
+            {
+                var range = (candle.High.Ask - candle.Low.Ask) * 0.382m;
+
+                result =  candle.High.Ask - range;
+            }
+
+            if (candle.Color() == Colour.Red)
+            {
+                var range = (candle.High.Bid - candle.Low.Bid) * 0.382m;
+
+                result= candle.Low.Bid + range;
+            }
+
+            return result;
+        }
+
         public static CandleType Type(this Candle c)
         {
             if (c.Open.Bid == c.Close.Bid)

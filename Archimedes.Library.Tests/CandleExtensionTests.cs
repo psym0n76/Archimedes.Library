@@ -171,7 +171,21 @@ namespace Archimedes.Library.Tests
 
 
 
+        [Test]
+        public void Should_Return_Fibonacci382BuyPrice()
+        {
+            var candle = GetGreenEngulfCandle();
+            var result = candle.Fibonacci382();
+            Assert.AreEqual(1.292009m,result);
+        }
 
+        [Test]
+        public void Should_Return_Fibonacci382SellPrice()
+        {
+            var candle = GetRedEngulfCandle();
+            var result = candle.Fibonacci382();
+            Assert.AreEqual(1.290982m, result);
+        }
 
 
 
