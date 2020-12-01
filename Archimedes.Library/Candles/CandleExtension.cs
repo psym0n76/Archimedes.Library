@@ -70,13 +70,13 @@ namespace Archimedes.Library.Candles
                 return CandleType.Doji;
             }
 
-            if (c.Close.Bid < c.PastCandlesDict[1].Low.Bid)
+            if (c.Close.Bid < c.PastCandlesDict[1].Low.Bid && c.PastCandlesDict[1].Color() == Colour.Green)
             {
                 //bearish red engulf
                 return CandleType.Engulfing;
             }
 
-            if (c.Close.Bid > c.PastCandlesDict[1].High.Bid)
+            if (c.Close.Bid > c.PastCandlesDict[1].High.Bid && c.PastCandlesDict[1].Color() == Colour.Red)
             {
                 return CandleType.Engulfing;
             }

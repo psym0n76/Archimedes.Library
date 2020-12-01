@@ -133,25 +133,6 @@ namespace Archimedes.Library.Tests
             Assert.AreNotEqual(subject.Close.Bid,result);
         }
 
-        [Test]
-        public void Should_NotReturn_EngulfingCandle()
-        {
-            var subject = GetRedNearlyFullEngulfCandle();
-            var result = subject.Type();
-            Assert.AreNotEqual(CandleType.Engulfing,result);
-
-        }
-
-        [Test]
-        public void Should_NotReturn_DojiCandle()
-        {
-            var subject = GetRedNearlyFullEngulfCandle();
-            var result = subject.Type();
-            Assert.AreNotEqual(CandleType.Doji,result);
-
-        }
-
-
 
         [Test]
         public void Should_Return_BodyFillRate_From_GreenCandle()
@@ -214,6 +195,64 @@ namespace Archimedes.Library.Tests
 
             return redEngulfCandle;
         }
+
+
+        private Candle GetFullGreenEngulfCandle()
+        {
+            var engulfedCandle = new Candle(
+                new Open(1.292m, 1.292m),
+                new High(1.2921m, 1.2921m),
+                new Low(1.289m, 1.289m),
+                new Close(1.29m, 1.29m),
+                "GBP/USD", "15Min", new DateTime(2020, 10, 07, 23, 00, 00));
+
+            var engulfingCandle = new Candle(
+                new Open(1.29m, 1.29m),
+                new High(1.2935m, 1.2935m),
+                new Low(1.29m, 1.29m),
+                new Close(1.2935m, 1.2935m),
+                "GBP/USD", "15Min", new DateTime(2020, 10, 07, 23, 00, 00));
+
+            engulfingCandle.PastCandlesDict[1] = engulfedCandle;
+
+            return engulfingCandle;
+        }
+
+        private Candle GetFullRedEngulfCandle()
+        {
+            var engulfedCandle = new Candle(
+                new Open(1.29m, 1.29m),
+                new High(1.2935m, 1.2935m),
+                new Low(1.2908m, 1.2908m),
+                new Close(1.2935m, 1.2935m),
+                "GBP/USD", "15Min", new DateTime(2020, 10, 07, 23, 00, 00));
+
+            var engulfingCandle = new Candle(
+                new Open(1.2935m, 1.2935m),
+                new High(1.2935m, 1.2935m),
+                new Low(1.288m, 1.288m),
+                new Close(1.288m, 1.288m),
+                "GBP/USD", "15Min", new DateTime(2020, 10, 07, 23, 00, 00));
+
+            engulfingCandle.PastCandlesDict[1] = engulfedCandle;
+
+            return engulfingCandle;
+        }
+
+        [Test]
+        public void Should_Label_Candle_As_GreenEngulf()
+        {
+            var subject = GetFullGreenEngulfCandle();
+            Assert.AreEqual(CandleType.Engulfing, subject.Type());
+        }
+
+        [Test]
+        public void Should_Label_Candle_As_RedEngulf()
+        {
+            var subject = GetFullRedEngulfCandle();
+            Assert.AreEqual(CandleType.Engulfing, subject.Type());
+        }
+
 
         private Candle GetGreenEngulfCandle()
         {
