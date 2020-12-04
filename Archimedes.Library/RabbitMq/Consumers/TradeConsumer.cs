@@ -25,7 +25,7 @@ namespace Archimedes.Library.RabbitMq
             _queueName = queueName;
         }
 
-        public void Subscribe()
+        public void Subscribe(CancellationToken cancellationToken)
         {
             RabbitHealthCheck.ValidateConnection(_host, _port);
 
@@ -50,7 +50,7 @@ namespace Archimedes.Library.RabbitMq
                 autoAck: true,
                 consumer: consumer);
 
-            while (true)
+            while (!cancellationToken.IsCancellationRequested)
             {
                 Thread.Sleep(5000);
             }

@@ -50,7 +50,7 @@ namespace Archimedes.Library.RabbitMq
                 autoAck: true,
                 consumer: consumer);
 
-            while (true)
+            while (!cancellationToken.IsCancellationRequested)
             {
                 Thread.Sleep(5000);
             }

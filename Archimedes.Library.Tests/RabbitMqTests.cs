@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Threading;
 using Archimedes.Library.Message;
 using Archimedes.Library.RabbitMq;
 using NUnit.Framework;
@@ -16,7 +17,7 @@ namespace Archimedes.Library.Tests
             var subject = GetSubjectUnderTest1();
 
             subject.HandleMessage += Subject_HandleMessage1;
-            subject.Subscribe();
+            subject.Subscribe(new CancellationToken());
 
         }
 
