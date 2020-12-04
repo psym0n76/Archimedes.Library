@@ -84,6 +84,10 @@ namespace Archimedes.Library.Candles
                     a.FromDate < currentCandle.FromDate).ToList();
             }
 
+            if (!historyCandles.Any())
+            {
+                return new List<Candle>();
+            }
 
             return historyCandles.Select(hist =>
                 new Candle(
