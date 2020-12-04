@@ -1,4 +1,5 @@
-﻿using System.Collections.Concurrent;
+﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -12,6 +13,12 @@ namespace Archimedes.Library.Candles
     {
         public List<Candle> Load(List<CandleDto> candles)
         {
+
+            if (candles == null)
+            {
+                throw new ArgumentNullException(paramName: nameof(candles), "Candles are empty");
+            }
+
             var concurrentBag = new ConcurrentBag<Candle>();
             var elapsedTime = new Stopwatch();
             var result = new List<Candle>();
