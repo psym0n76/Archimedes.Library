@@ -6,7 +6,7 @@ namespace Archimedes.Library.RabbitMq
 {
     public interface ICandleConsumer
     {
-        event EventHandler<MessageHandlerEventArgs> HandleMessage;
+        event EventHandler<CandleMessageHandlerEventArgs> HandleMessage;
         void Subscribe(CancellationToken cancellationToken);
         void Consumer_Received(object sender, BasicDeliverEventArgs e);
     }
