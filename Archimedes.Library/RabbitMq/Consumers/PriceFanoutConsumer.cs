@@ -2,6 +2,8 @@
 using System.Reflection;
 using System.Text;
 using System.Threading;
+using Archimedes.Library.Message.Dto;
+using Newtonsoft.Json;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 
@@ -9,7 +11,7 @@ namespace Archimedes.Library.RabbitMq
 {
     public class PriceFanoutConsumer : IPriceFanoutConsumer
     {
-        public event EventHandler<MessageHandlerEventArgs> HandleMessage;
+        public event EventHandler<PriceMessageHandlerEventArgs> HandleMessage;
 
         private readonly string _host;
         private readonly int _port;
@@ -52,13 +54,15 @@ namespace Archimedes.Library.RabbitMq
             {
                 Thread.Sleep(5000);
             }
+
         }
 
         public void Consumer_Received(object sender, BasicDeliverEventArgs e)
         {
             var body = e.Body.ToArray();
             var message = Encoding.UTF8.GetString(body);
-            HandleMessage?.Invoke(sender, new MessageHandlerEventArgs() {Message = message});
+            var price = JsonConvert.DeserializeObject<PriceDto>(message);
+            HandleMessage?.Invoke(sender, new PriceMessageHandlerEventArgs() { Message = message, Price = price });
         }
     }
 }

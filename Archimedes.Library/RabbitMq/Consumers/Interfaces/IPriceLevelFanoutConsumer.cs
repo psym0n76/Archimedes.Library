@@ -5,7 +5,7 @@ namespace Archimedes.Library.RabbitMq
 {
     public interface IPriceLevelFanoutConsumer
     {
-        event EventHandler<MessageHandlerEventArgs> HandleMessage;
+        event EventHandler<PriceLevelMessageHandlerEventArgs> HandleMessage;
         void Subscribe();
 
         void Consumer_Received(object sender, BasicDeliverEventArgs e);

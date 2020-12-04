@@ -5,7 +5,7 @@ namespace Archimedes.Library.RabbitMq
 {
     public interface IPriceConsumer
     {
-        event EventHandler<MessageHandlerEventArgs> HandleMessage;
+        event EventHandler<PriceMessageHandlerEventArgs> HandleMessage;
         void Subscribe();
         void Consumer_Received(object sender, BasicDeliverEventArgs e);
     }

@@ -4,7 +4,7 @@ namespace Archimedes.Library.RabbitMq
 {
     public interface IPriceLevelConsumer
     {
-        event EventHandler<MessageHandlerEventArgs> HandleMessage;
+        event EventHandler<PriceLevelMessageHandlerEventArgs> HandleMessage;
         void Subscribe();
     }
 }

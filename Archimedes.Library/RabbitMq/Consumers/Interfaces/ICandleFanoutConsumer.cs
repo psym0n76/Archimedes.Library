@@ -5,7 +5,7 @@ namespace Archimedes.Library.RabbitMq
 {
     public interface ICandleFanoutConsumer
     {
-        event EventHandler<MessageHandlerEventArgs> HandleMessage;
+        event EventHandler<CandleMessageHandlerEventArgs> HandleMessage;
         void Subscribe();
 
         void Consumer_Received(object sender, BasicDeliverEventArgs e);
