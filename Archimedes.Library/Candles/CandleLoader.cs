@@ -22,7 +22,14 @@ namespace Archimedes.Library.Candles
             var concurrentBag = new ConcurrentBag<Candle>();
             var elapsedTime = new Stopwatch();
             var result = new List<Candle>();
+
             var granularityInterval =  candles.Take(1).Single().Granularity.ExtractTimeInterval();
+
+            if (granularityInterval == 0)
+            {
+                throw new ArgumentNullException(paramName: nameof(candles), "Granularity is missing");
+            }
+
 
             elapsedTime.Start();
 

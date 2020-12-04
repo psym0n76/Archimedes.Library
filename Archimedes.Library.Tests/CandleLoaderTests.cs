@@ -12,11 +12,13 @@ namespace Archimedes.Library.Tests
     {
 
         private List<CandleDto> _candles = new List<CandleDto>();
+        private List<CandleDto> _oneCandles = new List<CandleDto>();
 
         [SetUp]
         public void SetUp()
         {
             LoadMockCandles();
+            LoadOneCandle();
         }
 
         [Test]
@@ -38,6 +40,16 @@ namespace Archimedes.Library.Tests
             var result = subject.Load(_candles);
 
             Assert.AreEqual(97, result.Count);
+        }
+
+        [Test]
+        public void Should_LoadOneCandle_WithNoError()
+        {
+            var subject = GetSubjectUnderTest();
+
+            var result = subject.Load(_oneCandles);
+
+            Assert.AreEqual(1, result.Count);
         }
 
         [Test]
@@ -189,6 +201,21 @@ namespace Archimedes.Library.Tests
         {
             var data = new FileReader();
             _candles = data.Reader<CandleDto>("GBPUSD_15Min_202010072200_202010082200");
+        }
+
+        private void LoadOneCandle()
+        {
+            _oneCandles = new List<CandleDto>()
+            {
+                new CandleDto()
+                {
+                    BidOpen = 1.2m,
+                    TimeStamp = new DateTime(2020,10,10),
+                    Granularity = "5min",
+                    FromDate = new DateTime(2020,10,10),
+                    ToDate = new DateTime(2020,10,11)
+                }
+            };
         }
 
 
