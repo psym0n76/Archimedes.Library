@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Runtime.CompilerServices;
 using Archimedes.Library.Extensions;
 using NUnit.Framework;
 
@@ -15,6 +14,16 @@ namespace Archimedes.Library.Tests
 
             test.BrokerDate();
 
+        }
+
+
+        [Test]
+        public void Should_ReturnNumberFromString()
+        {
+            var subject = "15Min";
+            var result = subject.ExtractTimeInterval();
+
+            Assert.AreEqual(15,result);
         }
     }
 }
