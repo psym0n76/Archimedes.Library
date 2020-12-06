@@ -11,8 +11,8 @@ namespace Archimedes.Library.Candles
             var prices = new List<PriceDto>();
             var random = new Random();
 
-            var bidHigh = (int) candle.BidHigh * multiplier;
-            var bidLow = (int) candle.BidLow * multiplier;
+            var bidHigh = (int) (candle.BidHigh * multiplier);
+            var bidLow = (int) (candle.BidLow * multiplier);
 
             for (var i = 1; i <= quantity; i++)
             {
@@ -28,7 +28,13 @@ namespace Archimedes.Library.Candles
                     break;
                 }
 
-                decimal randomPrice = random.Next(bidHigh, bidLow);
+                if (bidLow > bidHigh)
+                {
+                    bidLow = bidHigh;
+                    bidHigh = bidLow;
+                }
+
+                decimal randomPrice = random.Next(bidLow, bidHigh);
 
                 prices.Add(new PriceDto() {Ask = randomPrice / multiplier, Bid = randomPrice / multiplier});
             }
