@@ -17,6 +17,8 @@ namespace Archimedes.Library.Logger
         }
 
         public string ElapsedTimeText => $"{ElapsedTimeSeconds} sec(s)";
+        public int Id { get; set; }
+        public Guid LogId { get; set; }
 
         public override string ToString()
         {

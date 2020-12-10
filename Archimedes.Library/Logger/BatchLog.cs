@@ -11,12 +11,17 @@ namespace Archimedes.Library.Logger
     {
         private readonly Stopwatch _timer = new Stopwatch();
         private readonly ConcurrentBag<Log> _logs = new ConcurrentBag<Log>();
+        private int _counter = 0;
+        private Guid _logId;
 
         public void Start()
         {
             _timer.Start();
+            _logId = new Guid();
             _logs.Add(new Log()
             {
+                Id = _counter,
+                LogId = _logId,
                 Description = "Start Logging",
                 ElapsedTimeSeconds = 0,
                 TimeStamp = DateTime.Now
@@ -27,12 +32,16 @@ namespace Archimedes.Library.Logger
         {
             _logs.Add(new Log()
             {
+                Id = _counter,
                 Description = "End Logging",
                 ElapsedTimeSeconds = _timer.ElapsedMilliseconds,
                 TimeStamp = DateTime.Now
             });
 
+            _counter++;
+
             _timer.Stop();
+            _timer.Reset();
         }
 
         public void Update(string message)
@@ -57,6 +66,7 @@ namespace Archimedes.Library.Logger
                 stringBuilder.AppendLine(log.ToString());
             }
 
+            _counter++;
             return stringBuilder.ToString();
         }
     }
