@@ -39,7 +39,7 @@ namespace Archimedes.Library.RabbitMq
             using var connection = factory.CreateConnection();
             using var channel = connection.CreateModel();
 
-            channel.QueueDeclare(_queueName, true, false, false);
+            channel.QueueDeclare(_queueName, false, false, false);
             channel.ExchangeDeclare(_exchange, ExchangeType.Direct);
 
             channel.QueueBind(_queueName, _exchange, _queueName);

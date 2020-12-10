@@ -43,7 +43,7 @@ namespace Archimedes.Library.Logger
             });
         }
 
-        public string PrintLog()
+        public string Print()
         {
             Stop();
 

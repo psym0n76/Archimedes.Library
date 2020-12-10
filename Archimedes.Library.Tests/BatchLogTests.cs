@@ -16,7 +16,7 @@ namespace Archimedes.Library.Tests
             logger.Update("update 2");
             logger.Update("update 3");
 
-            var result = logger.PrintLog();
+            var result = logger.Print();
 
             Assert.NotNull(result);
 
