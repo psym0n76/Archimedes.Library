@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace Archimedes.Library.Logger
     public class BatchLog
     {
         private readonly Stopwatch _timer = new Stopwatch();
-        private readonly List<Log> _logs = new List<Log>();
+        private readonly ConcurrentBag<Log> _logs = new ConcurrentBag<Log>();
 
         public void Start()
         {
