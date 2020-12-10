@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Text;
 
 namespace Archimedes.Library.Logger
@@ -48,8 +49,9 @@ namespace Archimedes.Library.Logger
             Stop();
 
             var stringBuilder= new StringBuilder();
+            var orderLog = _logs.OrderBy(a => a.TimeStamp);
 
-            foreach (var log in _logs)
+            foreach (var log in orderLog)
             {
                 stringBuilder.AppendLine(log.ToString());
             }
