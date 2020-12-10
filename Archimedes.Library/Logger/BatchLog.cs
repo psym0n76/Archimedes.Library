@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
@@ -33,6 +32,7 @@ namespace Archimedes.Library.Logger
             _logs.Add(new Log()
             {
                 Id = _counter,
+                LogId = _logId,
                 Description = "End Logging",
                 ElapsedTimeSeconds = _timer.ElapsedMilliseconds,
                 TimeStamp = DateTime.Now
@@ -48,6 +48,8 @@ namespace Archimedes.Library.Logger
         {
             _logs.Add(new Log()
             {
+                Id = _counter,
+                LogId = _logId,
                 Description = message,
                 ElapsedTimeSeconds = _timer.ElapsedMilliseconds,
                 TimeStamp = DateTime.Now
