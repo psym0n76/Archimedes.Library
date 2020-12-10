@@ -17,7 +17,7 @@ namespace Archimedes.Library.Logger
             _logs.Add(new Log()
             {
                 Description = "Start Logging",
-                ElapsedTimeMilliseconds = 0,
+                ElapsedTimeSeconds = 0,
                 TimeStamp = DateTime.Now
             });
         }
@@ -27,7 +27,7 @@ namespace Archimedes.Library.Logger
             _logs.Add(new Log()
             {
                 Description = "End Logging",
-                ElapsedTimeMilliseconds = _timer.ElapsedMilliseconds,
+                ElapsedTimeSeconds = _timer.ElapsedMilliseconds,
                 TimeStamp = DateTime.Now
             });
 
@@ -39,7 +39,7 @@ namespace Archimedes.Library.Logger
             _logs.Add(new Log()
             {
                 Description = message,
-                ElapsedTimeMilliseconds = _timer.ElapsedMilliseconds,
+                ElapsedTimeSeconds = _timer.ElapsedMilliseconds,
                 TimeStamp = DateTime.Now
             });
         }

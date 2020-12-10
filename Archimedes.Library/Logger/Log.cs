@@ -21,7 +21,7 @@ namespace Archimedes.Library.Logger
         public override string ToString()
         {
             return
-                $"{TimeStamp} Elapsed: {ElapsedTimeText.PadRight(10, ' ')} {nameof(Description)}: {Description}";
+                $"{TimeStamp} Elapsed: {ElapsedTimeText.PadRight(13, ' ')} {nameof(Description)}: {Description}";
         }
     }
 }
