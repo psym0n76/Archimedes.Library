@@ -59,7 +59,7 @@ namespace Archimedes.Library.Logger
             Stop();
 
             var stringBuilder= new StringBuilder();
-            var orderLog = _logs.OrderBy(a => a.TimeStamp);
+            var orderLog = _logs.OrderBy(a => a.Id);
 
             foreach (var log in orderLog)
             {
