@@ -38,8 +38,6 @@ namespace Archimedes.Library.Logger
                 TimeStamp = DateTime.Now
             });
 
-            _counter++;
-
             _timer.Stop();
             _timer.Reset();
         }
@@ -48,7 +46,7 @@ namespace Archimedes.Library.Logger
         {
             _logs.Add(new Log()
             {
-                Id = _counter,
+                Id = _counter++,
                 LogId = _logId,
                 Description = message,
                 ElapsedTimeSeconds = _timer.ElapsedMilliseconds,
