@@ -13,13 +13,13 @@ namespace Archimedes.Library.Logger
 
         public decimal TotalElapsedTimeSeconds
         {
-            get => Math.Round(decimal.Parse(_totalElapsed.ToString(CultureInfo.InvariantCulture)) / 1000, 4);
+            get => Math.Round(decimal.Parse(_totalElapsed.ToString(CultureInfo.InvariantCulture)) / 1000, 3);
             set => _totalElapsed = value;
         }
 
         public decimal ElapsedTimeSeconds
         {
-            get => Math.Round(decimal.Parse(_elapsed.ToString(CultureInfo.InvariantCulture)) / 1000, 4);
+            get => Math.Round(decimal.Parse(_elapsed.ToString(CultureInfo.InvariantCulture)) / 1000, 3);
             set => _elapsed = value;
         }
 
@@ -32,7 +32,7 @@ namespace Archimedes.Library.Logger
         public override string ToString()
         {
             return
-                $"{TimeStamp:yyyy-MM-dd hh:mm:ss.ffff}  LogId: {LogId.Substring(0, 8)} Id: {Id} Elapsed: {ElapsedTimeText.PadRight(8, ' ')} TotalElapsed: {TotalElapsedTimeText.PadRight(8, ' ')}{nameof(Description)}: {Description}";
+                $"{TimeStamp:yyyy-MM-dd hh:mm:ss.ffff}  LogId: {LogId.Substring(0, 8)} Id: {Id} Elapsed: {ElapsedTimeText.PadRight(8, ' ')}TotalElapsed: {TotalElapsedTimeText.PadRight(8, ' ')}{nameof(Description)}: {Description}";
         }
     }
 }
