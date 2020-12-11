@@ -8,28 +8,34 @@ namespace Archimedes.Library.Logger
 {
     public class BatchLog
     {
+        private static readonly object _lockingObject = new object();
+
         private readonly ConcurrentDictionary<string, List<Log>> _dictLogs =
             new ConcurrentDictionary<string, List<Log>>();
 
         public string Start()
         {
-            var logId = Guid.NewGuid();
-            var logs = new List<Log>
+            lock (_lockingObject)
             {
-                new Log()
+                var logId = Guid.NewGuid();
+                var logs = new List<Log>
                 {
-                    Id = 1,
-                    LogId = logId.ToString(),
-                    Description = "Start Logging",
-                    ElapsedTimeSeconds = 0,
-                    TotalElapsedTimeSeconds = 0,
-                    TimeStamp = DateTime.Now
-                }
-            };
+                    new Log()
+                    {
+                        Id = 1,
+                        LogId = logId.ToString(),
+                        Description = "Start Logging",
+                        ElapsedTimeSeconds = 0,
+                        TotalElapsedTimeSeconds = 0,
+                        TimeStamp = DateTime.Now
+                    }
+                };
 
-            _dictLogs[logId.ToString()] = logs;
+                _dictLogs[logId.ToString()] = logs;
 
-            return logId.ToString();
+                return logId.ToString();
+            }
+
         }
 
         private void Stop(string id)
