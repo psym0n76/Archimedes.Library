@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Concurrent;
-using System.Diagnostics;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -8,65 +8,76 @@ namespace Archimedes.Library.Logger
 {
     public class BatchLog
     {
-        private readonly Stopwatch _timer = new Stopwatch();
-        private readonly ConcurrentBag<Log> _logs = new ConcurrentBag<Log>();
-        private int _counter = 0;
-        private Guid _logId;
+        private readonly ConcurrentDictionary<string, List<Log>> _dictLogs =
+            new ConcurrentDictionary<string, List<Log>>();
 
-        public void Start()
+        public string Start()
         {
-            _timer.Start();
-            _logId = new Guid();
-            _logs.Add(new Log()
+            var logId = Guid.NewGuid();
+            var logs = new List<Log>();
+
+            var log = new Log()
             {
-                Id = _counter,
-                LogId = _logId,
+                Id = 1,
+                LogId = logId.ToString(),
                 Description = "Start Logging",
                 ElapsedTimeSeconds = 0,
+                TotalElapsedTimeSeconds = 0,
                 TimeStamp = DateTime.Now
-            });
+            };
+
+            logs.Add(log);
+            _dictLogs[logId.ToString()] = logs;
+
+            return logId.ToString();
         }
 
-        private void Stop()
+        private void Stop(string id)
         {
-            _logs.Add(new Log()
-            {
-                Id = _counter,
-                LogId = _logId,
-                Description = "End Logging",
-                ElapsedTimeSeconds = _timer.ElapsedMilliseconds,
-                TimeStamp = DateTime.Now
-            });
-
-            _timer.Stop();
-            _timer.Reset();
+            Update(id, "End Logging");
         }
 
-        public void Update(string message)
+        public void Update(string id, string message)
         {
-            _logs.Add(new Log()
+            var logs = _dictLogs[id];
+            var counter = logs.Count + 1;
+
+            var start = logs[0].TimeStamp;
+            var previous = logs[counter - 1 -1].TimeStamp;
+            var today = DateTime.Now;
+
+            var totalElapsed = (today - start).Milliseconds;
+            var elapsed = (today - previous).Milliseconds;
+
+            logs.Add(new Log()
             {
-                Id = _counter++,
-                LogId = _logId,
+                Id = counter,
+                LogId = id,
                 Description = message,
-                ElapsedTimeSeconds = _timer.ElapsedMilliseconds,
-                TimeStamp = DateTime.Now
+                ElapsedTimeSeconds = elapsed,
+                TotalElapsedTimeSeconds = totalElapsed,
+                TimeStamp = today
             });
+
+            var orderedLogs =  logs.OrderBy(a => a.Id).ToList();
+
+            _dictLogs[id] = orderedLogs;
         }
 
-        public string Print()
+        public string Print(string id)
         {
-            Stop();
+            Stop(id);
 
-            var stringBuilder= new StringBuilder();
-            var orderLog = _logs.OrderBy(a => a.Id);
+            var logs = _dictLogs[id];
+
+            var stringBuilder = new StringBuilder();
+            var orderLog = logs.OrderBy(a => a.Id);
 
             foreach (var log in orderLog)
             {
                 stringBuilder.AppendLine(log.ToString());
             }
 
-            _counter++;
             return stringBuilder.ToString();
         }
     }

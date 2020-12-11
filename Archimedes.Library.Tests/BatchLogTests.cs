@@ -1,4 +1,5 @@
-﻿using Archimedes.Library.Logger;
+﻿using System.Threading;
+using Archimedes.Library.Logger;
 using NUnit.Framework;
 
 namespace Archimedes.Library.Tests
@@ -11,12 +12,25 @@ namespace Archimedes.Library.Tests
         {
             var logger = new BatchLog();
 
-            logger.Start();
-            logger.Update("update 1");
-            logger.Update("update 2");
-            logger.Update("update 3");
+            var id = logger.Start();
+            Thread.Sleep(1230);
 
-            var result = logger.Print();
+            logger.Update(id,"update 1");
+            Thread.Sleep(1020);
+
+            logger.Update(id,"update 2");
+            Thread.Sleep(1300);
+
+            logger.Update(id,"update 3");
+            Thread.Sleep(1001);
+
+            logger.Update(id, "update 4");
+            Thread.Sleep(1007);
+
+            logger.Update(id, "update 5");
+            Thread.Sleep(1078);
+
+            var result = logger.Print(id);
 
             Assert.NotNull(result);
 
