@@ -27,7 +27,7 @@ namespace Archimedes.Library.Tests
             logger.Update(id, "update 4");
             Thread.Sleep(1007);
 
-            logger.Update(id, "update 5");
+            logger.Update(id, "update 5ddddddddddddd");
             Thread.Sleep(1078);
 
             var result = logger.Print(id);

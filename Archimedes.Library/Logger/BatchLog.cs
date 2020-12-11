@@ -71,6 +71,8 @@ namespace Archimedes.Library.Logger
             var stringBuilder = new StringBuilder();
             var orderLog = logs.OrderBy(a => a.Id);
 
+            stringBuilder.AppendLine();
+
             foreach (var log in orderLog)
             {
                 stringBuilder.AppendLine(log.ToString());
