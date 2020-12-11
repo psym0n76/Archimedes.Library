@@ -14,19 +14,19 @@ namespace Archimedes.Library.Logger
         public string Start()
         {
             var logId = Guid.NewGuid();
-            var logs = new List<Log>();
-
-            var log = new Log()
+            var logs = new List<Log>
             {
-                Id = 1,
-                LogId = logId.ToString(),
-                Description = "Start Logging",
-                ElapsedTimeSeconds = 0,
-                TotalElapsedTimeSeconds = 0,
-                TimeStamp = DateTime.Now
+                new Log()
+                {
+                    Id = 1,
+                    LogId = logId.ToString(),
+                    Description = "Start Logging",
+                    ElapsedTimeSeconds = 0,
+                    TotalElapsedTimeSeconds = 0,
+                    TimeStamp = DateTime.Now
+                }
             };
 
-            logs.Add(log);
             _dictLogs[logId.ToString()] = logs;
 
             return logId.ToString();
@@ -43,7 +43,7 @@ namespace Archimedes.Library.Logger
             var counter = logs.Count + 1;
 
             var start = logs[0].TimeStamp;
-            var previous = logs[counter - 1 -1].TimeStamp;
+            var previous = logs[counter - 1 - 1].TimeStamp;
             var today = DateTime.Now;
 
             var totalElapsed = (today - start).Milliseconds;
@@ -59,9 +59,7 @@ namespace Archimedes.Library.Logger
                 TimeStamp = today
             });
 
-            var orderedLogs =  logs.OrderBy(a => a.Id).ToList();
-
-            _dictLogs[id] = orderedLogs;
+            _dictLogs[id] = logs.OrderBy(a => a.Id).ToList();
         }
 
         public string Print(string id)
