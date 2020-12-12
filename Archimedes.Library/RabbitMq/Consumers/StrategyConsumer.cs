@@ -42,12 +42,24 @@ namespace Archimedes.Library.RabbitMq
 
             channel.QueueBind(_queueName, _exchange, _queueName);
 
+
             var consumer = new EventingBasicConsumer(channel);
 
-            consumer.Received += Consumer_Received;
+            consumer.Received += (sender, e) =>
+            {
+                var body = e.Body.ToArray();
+                var message = Encoding.UTF8.GetString(body);
+                HandleMessage?.Invoke(sender, new MessageHandlerEventArgs() {Message = message});
+
+                channel.BasicAck(e.DeliveryTag,false);
+            };
+
+            //consumer.Received += Consumer_Received;
+
+            //consumer.HandleBasicConsumeOk();
 
             channel.BasicConsume(_queueName,
-                autoAck: true,
+                autoAck: false,
                 consumer: consumer);
 
             while (!cancellationToken.IsCancellationRequested)
@@ -61,6 +73,7 @@ namespace Archimedes.Library.RabbitMq
             var body = e.Body.ToArray();
             var message = Encoding.UTF8.GetString(body);
             HandleMessage?.Invoke(sender, new MessageHandlerEventArgs() {Message = message});
+
         }
     }
 }
