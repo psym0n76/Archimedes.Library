@@ -43,10 +43,20 @@ namespace Archimedes.Library.RabbitMq
 
             var consumer = new EventingBasicConsumer(channel);
 
-            consumer.Received += Consumer_Received;
+           // consumer.Received += Consumer_Received;
+
+            consumer.Received += (sender, e) =>
+            {
+                var body = e.Body.ToArray();
+                var message = Encoding.UTF8.GetString(body);
+                var price = JsonConvert.DeserializeObject<PriceDto>(message);
+                HandleMessage?.Invoke(sender, new PriceMessageHandlerEventArgs() { Message = message, Price = price });
+
+                channel.BasicAck(e.DeliveryTag, false);
+            };
 
             channel.BasicConsume(queueName,
-                autoAck: true,
+                autoAck: false,
                 consumer: consumer);
 
             while (!cancellationToken.IsCancellationRequested)
@@ -56,12 +66,12 @@ namespace Archimedes.Library.RabbitMq
 
         }
 
-        public void Consumer_Received(object sender, BasicDeliverEventArgs e)
-        {
-            var body = e.Body.ToArray();
-            var message = Encoding.UTF8.GetString(body);
-            var price = JsonConvert.DeserializeObject<PriceDto>(message);
-            HandleMessage?.Invoke(sender, new PriceMessageHandlerEventArgs() { Message = message, Price = price });
-        }
+        //public void Consumer_Received(object sender, BasicDeliverEventArgs e)
+        //{
+        //    var body = e.Body.ToArray();
+        //    var message = Encoding.UTF8.GetString(body);
+        //    var price = JsonConvert.DeserializeObject<PriceDto>(message);
+        //    HandleMessage?.Invoke(sender, new PriceMessageHandlerEventArgs() { Message = message, Price = price });
+        //}
     }
 }

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Threading;
-using RabbitMQ.Client.Events;
 
 namespace Archimedes.Library.RabbitMq
 {
@@ -8,6 +7,5 @@ namespace Archimedes.Library.RabbitMq
     {
         event EventHandler<CandleMessageHandlerEventArgs> HandleMessage;
         void Subscribe(CancellationToken cancellationToken);
-        void Consumer_Received(object sender, BasicDeliverEventArgs e);
     }
 }
