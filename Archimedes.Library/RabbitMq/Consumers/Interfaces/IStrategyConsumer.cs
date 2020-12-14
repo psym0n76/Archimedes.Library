@@ -7,6 +7,5 @@ namespace Archimedes.Library.RabbitMq
     {
         event EventHandler<MessageHandlerEventArgs> HandleMessage;
         void Subscribe(CancellationToken cancellationToken, int delay);
-        //void Consumer_Received(object sender, BasicDeliverEventArgs e);
     }
 }

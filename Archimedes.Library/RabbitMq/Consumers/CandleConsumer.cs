@@ -11,14 +11,12 @@ namespace Archimedes.Library.RabbitMq
 {
     public class CandleConsumer : ICandleConsumer
     {
-
         public event EventHandler<CandleMessageHandlerEventArgs> HandleMessage;
 
         private readonly string _host;
         private readonly int _port;
         private readonly string _exchange;
         private readonly string _queueName;
-
 
         public CandleConsumer(string host, int port, string exchange, string queueName)
         {
@@ -28,7 +26,7 @@ namespace Archimedes.Library.RabbitMq
             _queueName = queueName;
         }
 
-        public void Subscribe(CancellationToken cancellationToken)
+        public void Subscribe(CancellationToken cancellationToken, int delay)
         {
             RabbitHealthCheck.ValidateConnection(_host, _port);
 
@@ -47,8 +45,6 @@ namespace Archimedes.Library.RabbitMq
 
             var consumer = new EventingBasicConsumer(channel);
 
-            //consumer.Received += Consumer_Received;
-
             consumer.Received += (sender, e) =>
             {
                 var body = e.Body.ToArray();
@@ -56,6 +52,7 @@ namespace Archimedes.Library.RabbitMq
                 var candleDto = JsonConvert.DeserializeObject<CandleDto>(message);
                 HandleMessage?.Invoke(sender, new CandleMessageHandlerEventArgs() { Message = message, Candle = candleDto });
 
+                Thread.Sleep(delay);
                 channel.BasicAck(e.DeliveryTag, false);
             };
 
@@ -69,14 +66,5 @@ namespace Archimedes.Library.RabbitMq
                 Thread.Sleep(5000);
             }
         }
-
-        //public void Consumer_Received(object sender, BasicDeliverEventArgs e)
-        //{
-        //    var body = e.Body.ToArray();
-        //    var message = Encoding.UTF8.GetString(body);
-        //    var candleDto = JsonConvert.DeserializeObject<CandleDto>(message);
-
-        //    HandleMessage?.Invoke(sender, new CandleMessageHandlerEventArgs() {Message = message, Candle = candleDto});
-        //}
     }
 }

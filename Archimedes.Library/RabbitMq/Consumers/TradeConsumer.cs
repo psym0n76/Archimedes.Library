@@ -44,8 +44,6 @@ namespace Archimedes.Library.RabbitMq
 
             var consumer = new EventingBasicConsumer(channel);
 
-            //consumer.Received += Consumer_Received;
-
             consumer.Received += (sender, e) =>
             {
                 var body = e.Body.ToArray();
@@ -64,12 +62,5 @@ namespace Archimedes.Library.RabbitMq
                 Thread.Sleep(5000);
             }
         }
-
-        //public void Consumer_Received(object sender, BasicDeliverEventArgs e)
-        //{
-        //    var body = e.Body.ToArray();
-        //    var message = Encoding.UTF8.GetString(body);
-        //    HandleMessage?.Invoke(sender, new MessageHandlerEventArgs() {Message = message});
-        //}
     }
 }

@@ -56,9 +56,6 @@ namespace Archimedes.Library.RabbitMq
                 channel.BasicAck(e.DeliveryTag, false);
             };
 
-
-            //consumer.Received += Consumer_Received;
-
             channel.BasicConsume(_queueName,
                 autoAck: false,
                 consumer: consumer);
@@ -68,13 +65,5 @@ namespace Archimedes.Library.RabbitMq
                 Thread.Sleep(5000);
             }
         }
-
-        //public void Consumer_Received(object sender, BasicDeliverEventArgs e)
-        //{
-        //    var body = e.Body.ToArray();
-        //    var message = Encoding.UTF8.GetString(body);
-        //    var price = JsonConvert.DeserializeObject<PriceDto>(message);
-        //    HandleMessage?.Invoke(sender, new PriceMessageHandlerEventArgs() {Message = message, Price = price});
-        //}
     }
 }

@@ -51,8 +51,6 @@ namespace Archimedes.Library.RabbitMq
                 var message = Encoding.UTF8.GetString(body);
                 HandleMessage?.Invoke(sender, new MessageHandlerEventArgs() {Message = message});
                 
-                // add a small pause
-
                 Thread.Sleep(delay);
                 channel.BasicAck(e.DeliveryTag,false);
             };
@@ -66,6 +64,5 @@ namespace Archimedes.Library.RabbitMq
                 Thread.Sleep(5000);
             }
         }
-
     }
 }
