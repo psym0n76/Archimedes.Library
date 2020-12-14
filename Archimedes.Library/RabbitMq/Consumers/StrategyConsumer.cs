@@ -53,6 +53,7 @@ namespace Archimedes.Library.RabbitMq
                 
                 // add a small pause
 
+                Thread.Sleep(1000);
 
 
 
