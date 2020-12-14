@@ -8,14 +8,15 @@ namespace Archimedes.Library.Logger
 {
     public class BatchLog
     {
-        private static readonly object _lockingObject = new object();
+        private static readonly object LockingObject = new object();
+        private static readonly object LockingObject2 = new object();
 
         private readonly ConcurrentDictionary<string, List<Log>> _dictLogs =
             new ConcurrentDictionary<string, List<Log>>();
 
         public string Start()
         {
-            lock (_lockingObject)
+            lock (LockingObject)
             {
                 var logId = Guid.NewGuid();
                 var logs = new List<Log>
@@ -45,27 +46,31 @@ namespace Archimedes.Library.Logger
 
         public void Update(string id, string message)
         {
-            var logs = _dictLogs[id];
-            var counter = logs.Count + 1;
-
-            var start = logs[0].TimeStamp;
-            var previous = logs[counter - 1 - 1].TimeStamp;
-            var today = DateTime.Now;
-
-            var totalElapsed = (today - start).Milliseconds;
-            var elapsed = (today - previous).Milliseconds;
-
-            logs.Add(new Log()
+            lock (LockingObject2)
             {
-                Id = counter,
-                LogId = id,
-                Description = message,
-                ElapsedTimeSeconds = elapsed,
-                TotalElapsedTimeSeconds = totalElapsed,
-                TimeStamp = today
-            });
+                var logs = _dictLogs[id];
+                var counter = logs.Count + 1;
 
-            _dictLogs[id] = logs.OrderBy(a => a.Id).ToList();
+                var start = logs[0].TimeStamp;
+                var previous = logs[counter - 1 - 1].TimeStamp;
+                var today = DateTime.Now;
+
+                var totalElapsed = (today - start).Milliseconds;
+                var elapsed = (today - previous).Milliseconds;
+
+                logs.Add(new Log()
+                {
+                    Id = counter,
+                    LogId = id,
+                    Description = message,
+                    ElapsedTimeSeconds = elapsed,
+                    TotalElapsedTimeSeconds = totalElapsed,
+                    TimeStamp = today
+                });
+
+                //_dictLogs[id] = logs.OrderBy(a => a.Id).ToList();
+                _dictLogs[id] = logs;
+            }
         }
 
         public string Print(string id)

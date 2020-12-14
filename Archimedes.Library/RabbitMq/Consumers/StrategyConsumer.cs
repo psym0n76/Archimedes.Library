@@ -50,6 +50,11 @@ namespace Archimedes.Library.RabbitMq
                 var body = e.Body.ToArray();
                 var message = Encoding.UTF8.GetString(body);
                 HandleMessage?.Invoke(sender, new MessageHandlerEventArgs() {Message = message});
+                
+                // add a small pause
+
+
+
 
                 channel.BasicAck(e.DeliveryTag,false);
             };
