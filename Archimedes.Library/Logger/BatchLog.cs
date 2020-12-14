@@ -73,8 +73,13 @@ namespace Archimedes.Library.Logger
            // }
         }
 
-        public string Print(string id)
+        public string Print(string id, string message = "")
         {
+            if (!string.IsNullOrEmpty(message))
+            {
+                Update(id, message);
+            }
+            
             Stop(id);
 
             var logs = _dictLogs[id];
