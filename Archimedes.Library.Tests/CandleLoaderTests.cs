@@ -203,6 +203,7 @@ namespace Archimedes.Library.Tests
             _candles = data.Reader<CandleDto>("GBPUSD_15Min_202010072200_202010082200");
         }
 
+
         private void LoadOneCandle()
         {
             _oneCandles = new List<CandleDto>()

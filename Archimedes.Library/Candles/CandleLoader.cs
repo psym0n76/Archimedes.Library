@@ -23,13 +23,12 @@ namespace Archimedes.Library.Candles
             var elapsedTime = new Stopwatch();
             var result = new List<Candle>();
 
-            var granularityInterval =  candles.Take(1).Single().Granularity.ExtractTimeInterval();
+            var granularityInterval =  candles[0].Granularity.ExtractTimeInterval();
 
             if (granularityInterval == 0)
             {
                 throw new ArgumentNullException(paramName: nameof(candles), "Granularity is missing");
             }
-
 
             elapsedTime.Start();
 
@@ -47,12 +46,12 @@ namespace Archimedes.Library.Candles
 
             var taskFutureCandles = Task.Run(() =>
             {
-                candle.FutureCandles.AddRange(GetCandles(candlesByGranularityMarket, currentCandle, granularityInterval, granularityInterval));
+                candle.FutureCandles.AddRange(GetCandles(candlesByGranularityMarket, currentCandle, granularityInterval, 15));
             });
 
             var taskPastCandles = Task.Run(() =>
             {
-                candle.PastCandles.AddRange(GetCandles(candlesByGranularityMarket, currentCandle, -granularityInterval, granularityInterval)
+                candle.PastCandles.AddRange(GetCandles(candlesByGranularityMarket, currentCandle, -granularityInterval, 15)
                     .OrderByDescending(a => a.TimeStamp));
             });
 

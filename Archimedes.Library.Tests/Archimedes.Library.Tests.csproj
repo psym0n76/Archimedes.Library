@@ -8,10 +8,12 @@
 
   <ItemGroup>
     <None Remove="GBPUSD_15Min_202010072200_202010082200.json" />
+    <None Remove="GBPUSD_5Min_202012012200_202012022200.json" />
   </ItemGroup>
 
   <ItemGroup>
     <EmbeddedResource Include="GBPUSD_15Min_202010072200_202010082200.json" />
+    <EmbeddedResource Include="GBPUSD_5Min_202012012200_202012022200.json" />
   </ItemGroup>
 
   <ItemGroup>
