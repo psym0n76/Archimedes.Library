@@ -46,8 +46,8 @@ namespace Archimedes.Library.Logger
 
         public void Update(string id, string message)
         {
-            lock (LockingObject2)
-            {
+            //lock (LockingObject2)
+           // {
                 var logs = _dictLogs[id];
                 var counter = logs.Count + 1;
 
@@ -70,7 +70,7 @@ namespace Archimedes.Library.Logger
 
                 //_dictLogs[id] = logs.OrderBy(a => a.Id).ToList();
                 _dictLogs[id] = logs;
-            }
+           // }
         }
 
         public string Print(string id)
