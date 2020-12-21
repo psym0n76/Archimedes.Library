@@ -15,10 +15,6 @@ namespace Archimedes.Library.Candles
         public List<Candle> PastCandles { get; set; }
         public List<Candle> FutureCandles { get; set; }
 
-        public Dictionary<int, Candle> PastCandlesDict { get; set; }
-
-        public Dictionary<int, Candle> FutureCandlesDict { get; set; }
-
         public DateTime ElapsedTime { get; set; }
 
         public string GetElapsed()
@@ -38,9 +34,7 @@ namespace Archimedes.Library.Candles
             TimeStamp = timeStamp;
             ElapsedTime = DateTime.Now;
             PastCandles = new List<Candle>();
-            PastCandlesDict = new Dictionary<int, Candle>();
             FutureCandles = new List<Candle>();
-            FutureCandlesDict = new Dictionary<int, Candle>();
         }
 
         public override string ToString()

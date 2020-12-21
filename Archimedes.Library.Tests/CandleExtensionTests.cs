@@ -213,7 +213,7 @@ namespace Archimedes.Library.Tests
                 new Close(1.2935m, 1.2935m),
                 "GBP/USD", "15Min", new DateTime(2020, 10, 07, 23, 00, 00));
 
-            engulfingCandle.PastCandlesDict[1] = engulfedCandle;
+            engulfingCandle.PastCandles.Add(engulfedCandle);
 
             return engulfingCandle;
         }
@@ -234,7 +234,7 @@ namespace Archimedes.Library.Tests
                 new Close(1.288m, 1.288m),
                 "GBP/USD", "15Min", new DateTime(2020, 10, 07, 23, 00, 00));
 
-            engulfingCandle.PastCandlesDict[1] = engulfedCandle;
+            engulfingCandle.PastCandles.Add(engulfedCandle);
 
             return engulfingCandle;
         }
