@@ -7,7 +7,7 @@ namespace Archimedes.Library.Message
     {
         public string Market { get; set; }
 
-        public List<PriceDto> Prices { get; set; }
+        public PriceDto Price { get; set; }
 
         public override string ToString()
         {
