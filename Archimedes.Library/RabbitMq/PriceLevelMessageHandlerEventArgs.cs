@@ -6,8 +6,7 @@ namespace Archimedes.Library.RabbitMq
 {
     public class PriceLevelMessageHandlerEventArgs : EventArgs
     {
-        //public string Message { get; set; }
         public List<PriceLevelDto> PriceLevels { get; set; }
-
+        public string Message { get; set; }
     }
 }
