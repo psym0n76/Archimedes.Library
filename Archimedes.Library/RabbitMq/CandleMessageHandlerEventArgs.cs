@@ -1,11 +1,13 @@
 ﻿using System;
+using System.Collections.Generic;
+using Archimedes.Library.Message;
 using Archimedes.Library.Message.Dto;
 
 namespace Archimedes.Library.RabbitMq
 {
     public class CandleMessageHandlerEventArgs : EventArgs
     {
-        public string Message { get; set; }
-        public CandleDto Candle { get; set; }
+        public CandleMessage Message { get; set; }
+        public List<CandleDto> Candles { get; set; }
     }
 }

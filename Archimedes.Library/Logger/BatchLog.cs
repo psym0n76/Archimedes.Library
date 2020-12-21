@@ -9,7 +9,6 @@ namespace Archimedes.Library.Logger
     public class BatchLog
     {
         private static readonly object LockingObject = new object();
-        private static readonly object LockingObject2 = new object();
 
         private readonly ConcurrentDictionary<string, List<Log>> _dictLogs =
             new ConcurrentDictionary<string, List<Log>>();
@@ -46,31 +45,28 @@ namespace Archimedes.Library.Logger
 
         public void Update(string id, string message)
         {
-            //lock (LockingObject2)
-           // {
-                var logs = _dictLogs[id];
-                var counter = logs.Count + 1;
 
-                var start = logs[0].TimeStamp;
-                var previous = logs[counter - 1 - 1].TimeStamp;
-                var today = DateTime.Now;
+            var logs = _dictLogs[id];
+            var counter = logs.Count + 1;
 
-                var totalElapsed = (today - start).Milliseconds;
-                var elapsed = (today - previous).Milliseconds;
+            var start = logs[0].TimeStamp;
+            var previous = logs[counter - 1 - 1].TimeStamp;
+            var today = DateTime.Now;
 
-                logs.Add(new Log()
-                {
-                    Id = counter,
-                    LogId = id,
-                    Description = message,
-                    ElapsedTimeSeconds = elapsed,
-                    TotalElapsedTimeSeconds = totalElapsed,
-                    TimeStamp = today
-                });
+            var totalElapsed = (today - start).Milliseconds;
+            var elapsed = (today - previous).Milliseconds;
 
-                //_dictLogs[id] = logs.OrderBy(a => a.Id).ToList();
-                _dictLogs[id] = logs;
-           // }
+            logs.Add(new Log()
+            {
+                Id = counter,
+                LogId = id,
+                Description = message,
+                ElapsedTimeSeconds = elapsed,
+                TotalElapsedTimeSeconds = totalElapsed,
+                TimeStamp = today
+            });
+
+            _dictLogs[id] = logs;
         }
 
         public string Print(string id, string message = "")

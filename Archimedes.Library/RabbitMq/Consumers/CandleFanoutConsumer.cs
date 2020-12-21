@@ -2,6 +2,7 @@
 using System.Reflection;
 using System.Text;
 using System.Threading;
+using Archimedes.Library.Message;
 using Archimedes.Library.Message.Dto;
 using Newtonsoft.Json;
 using RabbitMQ.Client;
@@ -49,8 +50,9 @@ namespace Archimedes.Library.RabbitMq
             {
                 var body = e.Body.ToArray();
                 var message = Encoding.UTF8.GetString(body);
-                var candleDto = JsonConvert.DeserializeObject<CandleDto>(message);
-                HandleMessage?.Invoke(sender, new CandleMessageHandlerEventArgs() { Message = message, Candle = candleDto });
+                var candleMessage = JsonConvert.DeserializeObject<CandleMessage>(message);
+                HandleMessage?.Invoke(sender,
+                    new CandleMessageHandlerEventArgs() {Message = candleMessage, Candles = candleMessage.Candles});
 
                 channel.BasicAck(e.DeliveryTag, false);
             };
