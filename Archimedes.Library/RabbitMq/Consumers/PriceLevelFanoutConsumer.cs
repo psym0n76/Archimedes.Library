@@ -53,7 +53,7 @@ namespace Archimedes.Library.RabbitMq
                 var message = Encoding.UTF8.GetString(body);
                 var price = JsonConvert.DeserializeObject<PriceLevelMessage>(message);
                 HandleMessage?.Invoke(sender,
-                    new PriceLevelMessageHandlerEventArgs() {Message = message, PriceLevels = price.PriceLevels});
+                    new PriceLevelMessageHandlerEventArgs() {Message = price, PriceLevels = price.PriceLevels});
 
                 channel.BasicAck(e.DeliveryTag, false);
             };
