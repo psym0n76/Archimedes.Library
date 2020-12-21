@@ -7,12 +7,14 @@ namespace Archimedes.Library.Message
     {
         public string Strategy { get; set; }
         public string Market { get; set; }
+
+        public string Granularity { get; set; }
         public List<PriceLevelDto> PriceLevels { get; set; }
 
         public override string ToString()
         {
             return $"\n\n {nameof(PriceLevelMessage)}" +
-                   $"\n  {nameof(Market)}: {Market} {nameof(Strategy)}: {Strategy}" +
+                   $"\n  {nameof(Market)}: {Market} {nameof(Strategy)}: {Strategy} {nameof(Granularity)}: {Granularity} " +
                    $"\n  PriceLevel Counter: { GetPriceLevelCount()} \n";
         }
 
