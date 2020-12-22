@@ -29,6 +29,8 @@ namespace Archimedes.Library.Message
 
         public DateTime ElapsedTime { get; set; }
 
+        public string QueueName => $"Archimedes_Candle_{Market.Replace("/", "")}.{Interval}{TimeFrame}";
+
         public override string ToString()
         {
             return $"\n\n {nameof(CandleMessage)}" +
