@@ -66,12 +66,12 @@ namespace Archimedes.Library.Candles
 
         public static CandleType Type(this Candle c)
         {
-            if (c.PastCandles == null)
+            if (c.PastCandles == null || c.PastCandles.Count == 0)
             {
                 throw new ArgumentNullException( nameof(CandleType),"Past candles collection is empty");
             }
 
-            if (c.FutureCandles == null)
+            if (c.FutureCandles == null || c.FutureCandles.Count == 0)
             {
                 throw new ArgumentNullException(nameof(CandleType), "Future candles collection is empty");
             }
