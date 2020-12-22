@@ -72,7 +72,7 @@ namespace Archimedes.Library.Candles
         }
 
         private static IEnumerable<Candle> GetCandles(IEnumerable<CandleDto> candleHistory, CandleDto currentCandle,
-            int granularityInterval, int granularityNumber)
+            int granularityInterval, int candleCount)
         {
             List<CandleDto> historyCandles;
 
@@ -81,12 +81,12 @@ namespace Archimedes.Library.Candles
                 //forward in time
                 historyCandles = candleHistory.Where(a =>
                     a.FromDate > currentCandle.FromDate &&
-                    a.FromDate <= currentCandle.FromDate.AddMinutes(granularityInterval * granularityNumber)).ToList();
+                    a.FromDate <= currentCandle.FromDate.AddMinutes(granularityInterval * candleCount)).ToList();
             }
             else
             {
                 historyCandles = candleHistory.Where(a =>
-                    a.FromDate > currentCandle.FromDate.AddMinutes(granularityInterval * granularityNumber) &&
+                    a.FromDate > currentCandle.FromDate.AddMinutes(granularityInterval * candleCount) &&
                     a.FromDate < currentCandle.FromDate).ToList();
             }
 

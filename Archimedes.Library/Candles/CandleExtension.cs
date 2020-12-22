@@ -71,16 +71,10 @@ namespace Archimedes.Library.Candles
                 throw new ArgumentNullException( nameof(CandleType),"Past candles collection is empty");
             }
 
-            if (c.FutureCandles == null || c.FutureCandles.Count == 0)
-            {
-                throw new ArgumentNullException(nameof(CandleType), "Future candles collection is empty");
-            }
-
             if (c.Open.Bid == c.Close.Bid)
             {
                 return CandleType.Doji;
             }
-
 
             if (c.Close.Bid < c.PastCandles[0].Low.Bid && c.PastCandles[0].Color() == Colour.Green)
             {
