@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Resources;
 using Archimedes.Library.Enums;
 
 namespace Archimedes.Library.Candles
@@ -65,10 +66,21 @@ namespace Archimedes.Library.Candles
 
         public static CandleType Type(this Candle c)
         {
+            if (c.PastCandles == null)
+            {
+                throw new ArgumentNullException( nameof(CandleType),"Past candles collection is empty");
+            }
+
+            if (c.FutureCandles == null)
+            {
+                throw new ArgumentNullException(nameof(CandleType), "Future candles collection is empty");
+            }
+
             if (c.Open.Bid == c.Close.Bid)
             {
                 return CandleType.Doji;
             }
+
 
             if (c.Close.Bid < c.PastCandles[0].Low.Bid && c.PastCandles[0].Color() == Colour.Green)
             {
