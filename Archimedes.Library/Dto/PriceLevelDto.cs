@@ -17,6 +17,9 @@ namespace Archimedes.Library.Message.Dto
         [JsonProperty(PropertyName = "active")]
         public bool Active { get; set; }
 
+        [JsonProperty(PropertyName = "outsideOfRange")]
+        public bool OutsideOfRange { get; set; }
+
         [JsonProperty(PropertyName = "buySell")]
         public string BuySell { get; set; }
 
