@@ -23,6 +23,9 @@ namespace Archimedes.Library.Message.Dto
         [JsonProperty(PropertyName = "levelBroken")]
         public bool LevelBroken { get; set; }
 
+        [JsonProperty(PropertyName = "trade")]
+        public bool Trade { get; set; }
+
         [JsonProperty(PropertyName = "buySell")]
         public string BuySell { get; set; }
 
