@@ -220,9 +220,9 @@ namespace Archimedes.Library.Tests
         }
 
 
-        private static ICandleLoader GetSubjectUnderTest()
+        private static ICandleHistoryLoader GetSubjectUnderTest()
         {
-            return new CandleLoader();
+            return new CandleHistoryLoader();
         }
     }
 }

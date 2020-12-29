@@ -3,7 +3,7 @@ using Archimedes.Library.Message.Dto;
 
 namespace Archimedes.Library.Candles
 {
-    public interface ICandleLoader
+    public interface ICandleHistoryLoader
     {
         List<Candle> Load(List<CandleDto> candles);
     }

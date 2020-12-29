@@ -9,7 +9,7 @@ using Archimedes.Library.Message.Dto;
 
 namespace Archimedes.Library.Candles
 {
-    public class CandleLoader : ICandleLoader
+    public class CandleHistoryLoader : ICandleHistoryLoader
     {
         public List<Candle> Load(List<CandleDto> candles)
         {
@@ -23,7 +23,7 @@ namespace Archimedes.Library.Candles
             var elapsedTime = new Stopwatch();
             var result = new List<Candle>();
 
-            var granularityInterval =  candles[0].Granularity.ExtractTimeInterval();
+            var granularityInterval = candles[0].Granularity.ExtractTimeInterval();
 
             if (granularityInterval == 0)
             {
@@ -40,19 +40,22 @@ namespace Archimedes.Library.Candles
             return result;
         }
 
-        private  void Process(int granularityInterval, CandleDto currentCandle, List<CandleDto> candlesByGranularityMarket, ConcurrentBag<Candle> candles)
+        private void Process(int granularityInterval, CandleDto currentCandle,
+            List<CandleDto> candlesByGranularityMarket, ConcurrentBag<Candle> candles)
         {
             var candle = InstantiateCandle(currentCandle);
 
             var taskFutureCandles = Task.Run(() =>
             {
-                candle.FutureCandles.AddRange(GetCandles(candlesByGranularityMarket, currentCandle, granularityInterval, 15));
+                candle.FutureCandles.AddRange(GetCandles(candlesByGranularityMarket, currentCandle,
+                    granularityInterval, 15));
             });
 
             var taskPastCandles = Task.Run(() =>
             {
-                candle.PastCandles.AddRange(GetCandles(candlesByGranularityMarket, currentCandle, -granularityInterval, 15)
-                    .OrderByDescending(a => a.TimeStamp));
+                candle.PastCandles.AddRange(
+                    GetCandles(candlesByGranularityMarket, currentCandle, -granularityInterval, 15)
+                        .OrderByDescending(a => a.TimeStamp));
             });
 
             Task.WaitAll(taskPastCandles, taskFutureCandles);
@@ -81,7 +84,10 @@ namespace Archimedes.Library.Candles
                 //forward in time
                 historyCandles = candleHistory.Where(a =>
                     a.FromDate > currentCandle.FromDate &&
-                    a.FromDate <= currentCandle.FromDate.AddMinutes(granularityInterval * candleCount)).ToList();
+                    a.FromDate <= currentCandle.FromDate.AddMinutes(granularityInterval * candleCount
+
+
+                    )).ToList();
             }
             else
             {
