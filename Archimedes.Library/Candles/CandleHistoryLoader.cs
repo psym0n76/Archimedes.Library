@@ -14,7 +14,7 @@ namespace Archimedes.Library.Candles
         public List<Candle> Load(List<CandleDto> candles)
         {
 
-            if (candles == null)
+            if (candles.Count==0)
             {
                 throw new ArgumentNullException(paramName: nameof(candles), "Candles are empty");
             }
