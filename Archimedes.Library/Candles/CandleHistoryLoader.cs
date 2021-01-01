@@ -16,7 +16,7 @@ namespace Archimedes.Library.Candles
 
             if (candles.Count==0)
             {
-                throw new ArgumentNullException(paramName: nameof(candles), "Candles are empty");
+                throw new ArgumentNullException(paramName: nameof(candles), "Attempting to Load Candles but the Candle collection is empty");
             }
 
             var concurrentBag = new ConcurrentBag<Candle>();
@@ -27,7 +27,7 @@ namespace Archimedes.Library.Candles
 
             if (granularityInterval == 0)
             {
-                throw new ArgumentNullException(paramName: nameof(candles), "Granularity is missing");
+                throw new ArgumentNullException(paramName: nameof(candles), $"Attempting to Load Candles but Granularity is missing {candles[0].Granularity}");
             }
 
             elapsedTime.Start();
