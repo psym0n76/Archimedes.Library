@@ -32,12 +32,20 @@ namespace Archimedes.Library.Candles
 
             elapsedTime.Start();
 
-            Parallel.ForEach(candles,
-                currentCandle => { Process(granularityInterval, currentCandle, candles, concurrentBag); });
 
-            // convert ConcurrentBag to a List to force ordering
-            result.AddRange(concurrentBag.OrderBy(a => a.TimeStamp));
-            return result;
+            try
+            {
+                Parallel.ForEach(candles,
+                    currentCandle => { Process(granularityInterval, currentCandle, candles, concurrentBag); });
+
+                // convert ConcurrentBag to a List to force ordering
+                result.AddRange(concurrentBag.OrderBy(a => a.TimeStamp));
+                return result;
+            }
+            catch (Exception e)
+            {
+                throw new ArgumentNullException(paramName: nameof(candles), $"Attempting to Load Candles but unknown error {e.Message} {e.StackTrace}");
+            }
         }
 
         private void Process(int granularityInterval, CandleDto currentCandle,
