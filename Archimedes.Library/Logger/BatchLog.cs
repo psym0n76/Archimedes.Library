@@ -38,6 +38,32 @@ namespace Archimedes.Library.Logger
 
         }
 
+
+        public string Start(string threadId)
+        {
+            lock (LockingObject)
+            {
+                var logId = $"{threadId}{Guid.NewGuid()}";
+                var logs = new List<Log>
+                {
+                    new Log()
+                    {
+                        Id = 1,
+                        LogId = logId,
+                        Description = "Start Logging",
+                        ElapsedTimeSeconds = 0,
+                        TotalElapsedTimeSeconds = 0,
+                        TimeStamp = DateTime.Now
+                    }
+                };
+
+                _dictLogs[threadId] = logs;
+                return logId;
+            }
+        }
+
+
+
         private void Stop(string id)
         {
             Update(id, "End Logging");
@@ -45,28 +71,30 @@ namespace Archimedes.Library.Logger
 
         public void Update(string id, string message)
         {
-
-            var logs = _dictLogs[id];
-            var counter = logs.Count + 1;
-
-            var start = logs[0].TimeStamp;
-            var previous = logs[counter - 1 - 1].TimeStamp;
-            var today = DateTime.Now;
-
-            var totalElapsed = (today - start).Milliseconds;
-            var elapsed = (today - previous).Milliseconds;
-
-            logs.Add(new Log()
+            lock (LockingObject)
             {
-                Id = counter,
-                LogId = id,
-                Description = message,
-                ElapsedTimeSeconds = elapsed,
-                TotalElapsedTimeSeconds = totalElapsed,
-                TimeStamp = today
-            });
+                var logs = _dictLogs[id];
+                var counter = logs.Count + 1;
 
-            _dictLogs[id] = logs;
+                var start = logs[0].TimeStamp;
+                var previous = logs[counter - 1 - 1].TimeStamp;
+                var today = DateTime.Now;
+
+                var totalElapsed = (today - start).Milliseconds;
+                var elapsed = (today - previous).Milliseconds;
+
+                logs.Add(new Log()
+                {
+                    Id = counter,
+                    LogId = id,
+                    Description = message,
+                    ElapsedTimeSeconds = elapsed,
+                    TotalElapsedTimeSeconds = totalElapsed,
+                    TimeStamp = today
+                });
+
+                _dictLogs[id] = logs;
+            }
         }
 
         public string Print(string id, string message = "")
@@ -75,22 +103,25 @@ namespace Archimedes.Library.Logger
             {
                 Update(id, message);
             }
-            
+
             Stop(id);
 
-            var logs = _dictLogs[id];
-
-            var stringBuilder = new StringBuilder();
-            var orderLog = logs.OrderBy(a => a.Id);
-
-            stringBuilder.AppendLine();
-
-            foreach (var log in orderLog)
+            lock (LockingObject)
             {
-                stringBuilder.AppendLine(log.ToString());
-            }
+                var logs = _dictLogs[id];
 
-            return stringBuilder.ToString();
+                var stringBuilder = new StringBuilder();
+                var orderLog = logs.OrderBy(a => a.Id);
+
+                stringBuilder.AppendLine();
+
+                foreach (var log in orderLog)
+                {
+                    stringBuilder.AppendLine(log.ToString());
+                }
+
+                return stringBuilder.ToString();
+            }
         }
     }
 }
