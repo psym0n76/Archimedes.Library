@@ -59,7 +59,7 @@ namespace Archimedes.Library.RabbitMq
             };
 
             channel.BasicConsume(queueName,
-                autoAck: true,
+                autoAck: false,
                 consumer: consumer);
 
             while (!cancellationToken.IsCancellationRequested)
