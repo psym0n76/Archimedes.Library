@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading;
 using Archimedes.Library.Message.Dto;
 using Archimedes.Library.Price;
@@ -18,13 +19,13 @@ namespace Archimedes.Library.Tests
             var prices = AddPriceToList(1.5m, 1.6m);
 
             subject.Add(prices);
-            var price = subject.GetHighLowsLocked();
-            
+            var price = subject.GetHighLows();
 
-            Assert.AreEqual(1.6m, price.BidLow);
+
+            Assert.AreEqual(1.6m, price["BidLow"].Bid);
         }
 
-        
+
         [Test]
         public void Should_ReturnLowestBidPrice_FromFivePrices_FromConcurrentQueueOfSix()
         {
@@ -32,9 +33,9 @@ namespace Archimedes.Library.Tests
 
             AddSixPricesToQueue(subject);
 
-            var price = subject.GetHighLowsLocked();
+            var price = subject.GetHighLows();
 
-            Assert.AreEqual(1.2m, price.BidLow);
+            Assert.AreEqual(1.2m, price["BidLow"].Bid);
         }
 
         [Test]
@@ -44,9 +45,9 @@ namespace Archimedes.Library.Tests
 
             AddSixPricesToQueue(subject);
 
-            var price = subject.GetHighLowsLocked();
+            var price = subject.GetHighLows();
 
-            Assert.AreEqual(1.1m, price.BidLow);
+            Assert.AreEqual(1.1m, price["BidLow"].Bid);
         }
 
         [Test]
@@ -56,9 +57,9 @@ namespace Archimedes.Library.Tests
 
             AddSixPricesToQueue(subject);
 
-            var price = subject.GetHighLowsLocked();
+            var price = subject.GetHighLows();
 
-            Assert.AreEqual(1.3m, price.AskLow);
+            Assert.AreEqual(1.3m, price["AskLow"].Ask);
         }
 
         [Test]
@@ -68,9 +69,9 @@ namespace Archimedes.Library.Tests
 
             AddSixPricesToQueue(subject);
 
-            var price = subject.GetHighLowsLocked();
+            var price = subject.GetHighLows();
 
-            Assert.AreEqual(1.3m, price.AskLow);
+            Assert.AreEqual(1.3m, price["AskLow"].Ask);
         }
 
 
@@ -79,11 +80,11 @@ namespace Archimedes.Library.Tests
         {
             var subject = GetSubjectUnderTest(5);
 
-            subject.Add(AddPriceToList(1.5m,1.6m));
+            subject.Add(AddPriceToList(1.5m, 1.6m));
 
-            var price = subject.GetHighLowsLocked();
+            var price = subject.GetHighLows();
 
-            Assert.AreEqual(1.5m, price.AskLow);
+            Assert.AreEqual(1.5m, price["AskLow"].Ask);
         }
 
         [Test]
@@ -93,9 +94,9 @@ namespace Archimedes.Library.Tests
 
             subject.Add(AddPriceToList(1.5m, 1.6m));
 
-            var price = subject.GetHighLowsLocked();
+            var price = subject.GetHighLows();
 
-            Assert.AreEqual(1.6m, price.BidLow);
+            Assert.AreEqual(1.6m, price["BidLow"].Bid);
         }
 
 
@@ -116,9 +117,9 @@ namespace Archimedes.Library.Tests
             var prices = AddPriceToList(1.5m, 1.6m);
 
             subject.Add(prices);
-            var price = subject.GetHighLowsLocked();
+            var price = subject.GetHighLows();
 
-            Assert.AreEqual(1.6m, price.BidHigh);
+            Assert.AreEqual(1.6m, price["BidHigh"].Bid);
 
         }
 
@@ -129,9 +130,9 @@ namespace Archimedes.Library.Tests
 
             AddSixPricesToQueue(subject);
 
-            var price = subject.GetHighLowsLocked();
+            var price = subject.GetHighLows();
 
-            Assert.AreEqual(1.6m, price.BidHigh);
+            Assert.AreEqual(1.6m, price["BidHigh"].Bid);
         }
 
         [Test]
@@ -141,9 +142,9 @@ namespace Archimedes.Library.Tests
 
             AddSixPricesToQueue(subject);
 
-            var price = subject.GetHighLowsLocked();
+            var price = subject.GetHighLows();
 
-            Assert.AreEqual(1.6m, price.BidHigh);
+            Assert.AreEqual(1.6m, price["BidHigh"].Bid);
         }
 
         [Test]
@@ -153,9 +154,9 @@ namespace Archimedes.Library.Tests
 
             AddSixPricesToQueue(subject);
 
-            var price = subject.GetHighLowsLocked();
+            var price = subject.GetHighLows();
 
-            Assert.AreEqual(1.7m, price.AskHigh);
+            Assert.AreEqual(1.7m, price["AskHigh"].Ask);
         }
 
         [Test]
@@ -165,9 +166,9 @@ namespace Archimedes.Library.Tests
 
             AddSixPricesToQueue(subject);
 
-            var price = subject.GetHighLowsLocked();
+            var price = subject.GetHighLows();
 
-            Assert.AreEqual(1.7m, price.AskHigh);
+            Assert.AreEqual(1.7m, price["AskHigh"].Ask);
         }
 
 
@@ -178,9 +179,9 @@ namespace Archimedes.Library.Tests
 
             subject.Add(AddPriceToList(1.5m, 1.6m));
 
-            var price = subject.GetHighLowsLocked();
+            var price = subject.GetHighLows();
 
-            Assert.AreEqual(1.5m, price.AskHigh);
+            Assert.AreEqual(1.5m, price["AskHigh"].Ask);
         }
 
         [Test]
@@ -190,39 +191,39 @@ namespace Archimedes.Library.Tests
 
             subject.Add(AddPriceToList(1.5m, 1.6m));
 
-            var price = subject.GetHighLowsLocked();
+            var price = subject.GetHighLows();
 
-            Assert.AreEqual(1.6m, price.BidHigh);
+            Assert.AreEqual(1.6m, price["BidHigh"].Bid);
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        private static void AddSixPricesToQueue(IPriceAggregator subject)
+        [Test]
+        public void Should_ReturnOrderList_FromSixPrices_FromConcurrentQueueOfSix()
         {
-            subject.Add(AddPriceToList(1.5m, 1.6m));
-            subject.Add(AddPriceToList(1.4m, 1.5m));
-            subject.Add(AddPriceToList(1.5m, 1.4m));
-            subject.Add(AddPriceToList(1.7m, 1.3m));
-            subject.Add(AddPriceToList(1.3m, 1.2m));
-            subject.Add(AddPriceToList(1.3m, 1.1m)); //last entry
+            var subject = GetSubjectUnderTest(6);
+
+            AddSixPricesToQueue(subject,100);
+
+            var price = subject.GetHighLows();
+
+            var first = price.First();
+            var last = price.Last();
+            
+            Assert.IsTrue(first.Value.TimeStamp < last.Value.TimeStamp);
         }
 
-        private static List<PriceDto> AddPriceToList(decimal ask, decimal bid ,bool b = true)
+
+        private static void AddSixPricesToQueue(IPriceAggregator subject, int delay = 0)
+        {
+            subject.Add(AddPriceToList(1.5m, 1.6m, delay));
+            subject.Add(AddPriceToList(1.4m, 1.5m, delay));
+            subject.Add(AddPriceToList(1.5m, 1.4m, delay));
+            subject.Add(AddPriceToList(1.7m, 1.3m, delay));
+            subject.Add(AddPriceToList(1.3m, 1.2m, delay));
+            subject.Add(AddPriceToList(1.3m, 1.1m, delay)); //last entry
+        }
+
+        private static List<PriceDto> AddPriceToList(decimal ask, decimal bid, int delay = 0)
         {
             var prices = new List<PriceDto>()
             {
@@ -234,11 +235,7 @@ namespace Archimedes.Library.Tests
                 }
             };
 
-            if (b)
-            {
-                Thread.Sleep(100);
-            }
-            
+            Thread.Sleep(delay);
             return prices;
         }
 

@@ -1,5 +1,6 @@
 ﻿using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Linq;
 using Archimedes.Library.Message.Dto;
 
 namespace Archimedes.Library.Price
@@ -15,7 +16,6 @@ namespace Archimedes.Library.Price
         {
             _aggregatorCount = aggregatorCount;
         }
-
 
         public void Add(List<PriceDto> prices)
         {
@@ -36,62 +36,69 @@ namespace Archimedes.Library.Price
             return _aggregatorCounter == _aggregatorCount;
         }
 
-        public HighLowPrices GetHighLowsLocked()
+        public Dictionary<string, PriceDto> GetHighLows()
         {
             lock (LockingObject)
             {
-                return GetHighLows();
+                var ordered = GetHighLow().OrderBy(z => z.Value.TimeStamp)
+                    .ToDictionary(x => x.Key, x => x.Value);
+                return ordered;
             }
         }
 
-        private HighLowPrices GetHighLows()
+        private Dictionary<string, PriceDto> GetHighLow()
         {
-            var highLowPrices = new HighLowPrices();
+            var dict = new Dictionary<string, PriceDto>();
+
+            var bidHigh = new PriceDto();
+            var bidLow = new PriceDto();
+            var askHigh = new PriceDto();
+            var askLow = new PriceDto();
 
             if (_pricesQueue.TryPeek(out var current))
             {
-                highLowPrices.BidLow = current.Bid;
-                highLowPrices.BidHigh = current.Bid;
-                highLowPrices.AskLow = current.Ask;
-                highLowPrices.AskHigh = current.Ask;
+                bidHigh.Bid = current.Bid;
+                bidLow.Bid = current.Bid;
+                askHigh.Ask = current.Ask;
+                askLow.Ask = current.Ask;
             }
 
             else
             {
-                return new HighLowPrices();
+                return new Dictionary<string, PriceDto>();
             }
 
             for (var i = 1; i <= _aggregatorCount; i++)
             {
                 if (!_pricesQueue.TryDequeue(out var price)) continue;
 
-                if (price.Bid >= highLowPrices.BidHigh)
+                if (price.Bid >= bidHigh.Bid)
                 {
-                    highLowPrices.BidHigh = price.Bid;
-                    highLowPrices.BidHighTimestamp = price.TimeStamp;
+                    bidHigh = price;
+                    dict["BidHigh"] = bidHigh;
                 }
 
-                if (price.Ask >= highLowPrices.AskHigh)
+                if (price.Ask >= askHigh.Ask)
                 {
-                    highLowPrices.AskHigh = price.Ask;
-                    highLowPrices.AskHighTimestamp = price.TimeStamp;
+                    askHigh = price;
+                    dict["AskHigh"] = askHigh;
                 }
 
-                if (price.Bid <= highLowPrices.BidLow)
+                if (price.Bid <= bidLow.Bid)
                 {
-                    highLowPrices.BidLow = price.Bid;
-                    highLowPrices.BidLowTimestamp = price.TimeStamp;
+                    bidLow = price;
+                    dict["BidLow"] = bidLow;
                 }
 
-                if (price.Ask <= highLowPrices.AskLow)
+                if (price.Ask <= askLow.Ask)
                 {
-                    highLowPrices.AskLow = price.Ask;
-                    highLowPrices.AskLowTimestamp = price.TimeStamp;
+                    askLow = price;
+                    dict["AskLow"] = askLow;
                 }
             }
 
             ResetAggregator();
-            return highLowPrices;
+            return dict;
         }
     }
 }

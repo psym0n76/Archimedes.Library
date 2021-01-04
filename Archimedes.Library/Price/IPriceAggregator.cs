@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using Archimedes.Library.Message.Dto;
 
 namespace Archimedes.Library.Price
@@ -10,6 +11,6 @@ namespace Archimedes.Library.Price
 
         bool SendPrice();
 
-        HighLowPrices GetHighLowsLocked();
+        Dictionary<string, PriceDto> GetHighLows();
     }
 }
