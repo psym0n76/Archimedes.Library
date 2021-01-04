@@ -36,6 +36,11 @@ namespace Archimedes.Library.Price
             return _aggregatorCounter == _aggregatorCount;
         }
 
+        public int AggregatorCount()
+        {
+            return _aggregatorCount;
+        }
+
         public Dictionary<string, PriceDto> GetHighLows()
         {
             lock (LockingObject)

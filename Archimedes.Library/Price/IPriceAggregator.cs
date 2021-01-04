@@ -11,6 +11,8 @@ namespace Archimedes.Library.Price
 
         bool SendPrice();
 
+        int AggregatorCount();
+
         Dictionary<string, PriceDto> GetHighLows();
     }
 }
