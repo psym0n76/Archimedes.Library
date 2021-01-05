@@ -127,13 +127,13 @@ namespace Archimedes.Library.Price
                 if (!_pricesQueue.TryDequeue(out var price)) continue;
 
 
-                if (price.Ask >= hlPrice.Ask)
+                if (price.Ask <= hlPrice.Ask)
                 {
                     hlPrice.Ask = price.Ask;
                     hlPrice.TimeStamp = price.TimeStamp;
                 }
 
-                if (price.Bid <= hlPrice.Bid)
+                if (price.Bid >= hlPrice.Bid)
                 {
                     hlPrice.Bid = price.Bid;
                     hlPrice.TimeStamp = price.TimeStamp;
