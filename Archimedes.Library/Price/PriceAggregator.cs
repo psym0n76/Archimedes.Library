@@ -105,5 +105,42 @@ namespace Archimedes.Library.Price
             ResetAggregator();
             return dict;
         }
+
+
+        public PriceDto GetLowBidAndAskHigh()
+        {
+            var hlPrice = new PriceDto();
+
+            if (_pricesQueue.TryPeek(out var current))
+            {
+                hlPrice.Bid = current.Bid;
+                hlPrice.Ask = current.Ask;
+            }
+
+            else
+            {
+                return new PriceDto();
+            }
+
+            for (var i = 1; i <= _aggregatorCount; i++)
+            {
+                if (!_pricesQueue.TryDequeue(out var price)) continue;
+
+
+                if (price.Ask >= hlPrice.Ask)
+                {
+                    hlPrice.Ask = price.Ask;
+                }
+
+                if (price.Bid <= hlPrice.Bid)
+                {
+                    hlPrice.Bid = price.Bid;
+                }
+            }
+
+            ResetAggregator();
+            return hlPrice;
+        }
+
     }
 }

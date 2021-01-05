@@ -14,5 +14,7 @@ namespace Archimedes.Library.Price
         int AggregatorCount();
 
         Dictionary<string, PriceDto> GetHighLows();
+
+        PriceDto GetLowBidAndAskHigh();
     }
 }
