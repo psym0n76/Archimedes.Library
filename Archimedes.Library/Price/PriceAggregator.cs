@@ -130,11 +130,13 @@ namespace Archimedes.Library.Price
                 if (price.Ask >= hlPrice.Ask)
                 {
                     hlPrice.Ask = price.Ask;
+                    hlPrice.TimeStamp = price.TimeStamp;
                 }
 
                 if (price.Bid <= hlPrice.Bid)
                 {
                     hlPrice.Bid = price.Bid;
+                    hlPrice.TimeStamp = price.TimeStamp;
                 }
             }
 
