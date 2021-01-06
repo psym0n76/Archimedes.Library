@@ -6,6 +6,9 @@ namespace Archimedes.Library.Message.Dto
     public class TradeDto
     {
 
+        [JsonProperty(PropertyName = "id")]
+        public string Id { get; set; }
+
         [JsonProperty(PropertyName = "buySell")]
         public string BuySell { get; set; }
 
@@ -21,6 +24,12 @@ namespace Archimedes.Library.Message.Dto
         [JsonProperty(PropertyName = "priceLevelTimestamp")]
         public DateTime PriceLevelTimestamp { get; set; }
 
+        [JsonProperty(PropertyName = "riskReward")]
+        public double RiskReward { get; set; }
+
+        
+        
+        
 
         [JsonProperty(PropertyName = "entryPrice")]
         public decimal EntryPrice { get; set; }
@@ -30,6 +39,11 @@ namespace Archimedes.Library.Message.Dto
 
         [JsonProperty(PropertyName = "targetPrice")]
         public decimal TargetPrice { get; set; }
+
+        [JsonProperty(PropertyName = "price")]
+        public decimal Price { get; set; }
+
+
 
 
         [JsonProperty(PropertyName = "timestamp")]
