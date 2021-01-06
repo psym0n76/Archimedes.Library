@@ -47,6 +47,12 @@ namespace Archimedes.Library.Message.Dto
         public string Strategy { get; set; }
 
 
+        [JsonProperty(PropertyName = "levelExpired")]
+        public bool LevelExpired { get; set; }
+
+        [JsonProperty(PropertyName = "levelExpiredDate")]
+        public DateTime LevelExpiredDate { get; set; }
+
         [JsonProperty(PropertyName = "levelsBroken")]
         public int LevelsBroken { get; set; }
 
