@@ -20,8 +20,16 @@ namespace Archimedes.Library.Message.Dto
         [JsonProperty(PropertyName = "outsideOfRange")]
         public bool OutsideOfRange { get; set; }
 
+        [JsonProperty(PropertyName = "outsideOfRangeDate")]
+        public DateTime OutsideOfRangeDate { get; set; }
+
         [JsonProperty(PropertyName = "levelBroken")]
         public bool LevelBroken { get; set; }
+
+
+        [JsonProperty(PropertyName = "candlesElapsedLevelBroken")]
+        public int CandlesElapsedLevelBroken { get; set; }
+
 
         [JsonProperty(PropertyName = "trade")]
         public bool Trade { get; set; }
@@ -43,10 +51,12 @@ namespace Archimedes.Library.Message.Dto
         public int LevelsBroken { get; set; }
 
         [JsonProperty(PropertyName = "lastLevelBrokenDate")]
-        public DateTime LastLevelBrokenDate { get; set; }
+        public DateTime LevelBrokenDate { get; set; }
 
-        [JsonProperty(PropertyName = "BookedTrades")]
-        public int BookedTrades { get; set; }
+        [JsonProperty(PropertyName = "Trades")]
+        public int Trades { get; set; }
+
+
 
 
         [JsonProperty(PropertyName = "bidPrice")]

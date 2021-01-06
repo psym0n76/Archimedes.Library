@@ -18,6 +18,9 @@ namespace Archimedes.Library.Message.Dto
         [JsonProperty(PropertyName = "success")]
         public bool Success { get; set; }
 
+        [JsonProperty(PropertyName = "priceLevelTimestamp")]
+        public DateTime PriceLevelTimestamp { get; set; }
+
 
         [JsonProperty(PropertyName = "entryPrice")]
         public decimal EntryPrice { get; set; }
