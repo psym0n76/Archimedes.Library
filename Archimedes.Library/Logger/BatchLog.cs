@@ -97,12 +97,18 @@ namespace Archimedes.Library.Logger
             }
         }
 
-        public string Print(string id, string message = "")
+        public string Print(string id, string message = "", Exception e = null)
         {
+            if (e != null)
+            {
+                message = $"{message} \n\nErrorMessage: {e.Message} \n\nStackTrace: {e.StackTrace}";
+            }
+
             if (!string.IsNullOrEmpty(message))
             {
                 Update(id, message);
             }
+
 
             Stop(id);
 
