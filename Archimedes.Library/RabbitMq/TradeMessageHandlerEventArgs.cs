@@ -5,6 +5,6 @@ namespace Archimedes.Library.RabbitMq
 {
     public class TradeMessageHandlerEventArgs : EventArgs
     {
-        public Transaction Transaction { get; set; }
+        public TradeTransaction Transaction { get; set; }
     }
 }

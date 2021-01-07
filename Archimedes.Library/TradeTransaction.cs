@@ -5,11 +5,11 @@ using Archimedes.Library.Message.Dto;
 
 namespace Archimedes.Library
 {
-    public class Transaction
+    public class TradeTransaction
     {
         private readonly TradeParameters _tradeParameters;
 
-        public Transaction(TradeParameters tradeParameters)
+        public TradeTransaction(TradeParameters tradeParameters)
         {
             _tradeParameters = tradeParameters;
         }
