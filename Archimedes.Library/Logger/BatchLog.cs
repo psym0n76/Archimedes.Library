@@ -109,7 +109,6 @@ namespace Archimedes.Library.Logger
                 Update(id, message);
             }
 
-
             Stop(id);
 
             lock (LockingObject)
