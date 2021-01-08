@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using Archimedes.Library.Domain;
 using Archimedes.Library.Message.Dto;
 
@@ -38,6 +39,11 @@ namespace Archimedes.Library.Message
                    $"\n  Candle Counter: { GetCandleCount()} in {GetRequestCount()} request(s) {nameof(ElapsedTime)}: { GetElapsed()} \n";
         }
 
+        public bool LastCandleMessage()
+        {
+            return DateRanges.Max(a => a.EndDate) == EndDate;
+        }
+        
         private int GetCandleCount()
         {
             return Candles?.Count ?? 0;
