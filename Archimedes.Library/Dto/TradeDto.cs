@@ -49,6 +49,9 @@ namespace Archimedes.Library.Message.Dto
         [JsonProperty(PropertyName = "timestamp")]
         public DateTime Timestamp { get; set; }
 
+        [JsonProperty(PropertyName = "lastUpdated")]
+        public DateTime LastUpdated { get; set; }
+
         public override string ToString()
         {
             return $"\n {nameof(TradeDto)}" +

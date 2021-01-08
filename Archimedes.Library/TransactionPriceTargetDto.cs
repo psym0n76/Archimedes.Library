@@ -1,8 +1,9 @@
 ﻿
 
 using System;
+using Archimedes.Library.Message.Dto;
 
-namespace Archimedes.Library.Message.Dto
+namespace Archimedes.Library
 {
     public class TransactionPriceTargetDto
     {
