@@ -12,6 +12,9 @@ namespace Archimedes.Library.Message.Dto
         [JsonProperty(PropertyName = "name")]
         public string Name { get; set; }
 
+        [JsonProperty(PropertyName = "externalMarketId")]
+        public int ExternalMarketId { get; set; }
+
         [JsonProperty(PropertyName = "interval")]
         public int Interval { get; set; }
 
