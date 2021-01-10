@@ -11,6 +11,8 @@ namespace Archimedes.Library.Message
 
         public string Market { get; set; }
         public int MarketId { get; set; }
+        public int ExternalMarketId { get; set; }
+        
         public int Interval { get; set; }
         public string TimeFrame { get; set; }
 
