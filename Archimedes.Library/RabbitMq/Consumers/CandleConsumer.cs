@@ -53,6 +53,8 @@ namespace Archimedes.Library.RabbitMq
                 var candleMessage = JsonConvert.DeserializeObject<CandleMessage>(message);
                 HandleMessage?.Invoke(sender,
                     new CandleMessageHandlerEventArgs() { Message = candleMessage, Candles = candleMessage.Candles });
+                
+                channel.BasicAck(e.DeliveryTag, false);
             };
 
 
