@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 
@@ -80,16 +81,16 @@ namespace Archimedes.Library.Logger
                 var previous = logs[counter - 1 - 1].TimeStamp;
                 var today = DateTime.Now;
 
-                var totalElapsed = (today - start).Milliseconds;
-                var elapsed = (today - previous).Milliseconds;
+                var totalElapsed = (today - start).TotalMilliseconds;
+                var elapsed = (today - previous).TotalMilliseconds;
 
                 logs.Add(new Log()
                 {
                     Id = counter,
                     LogId = id,
                     Description = message,
-                    ElapsedTimeSeconds = elapsed,
-                    TotalElapsedTimeSeconds = totalElapsed,
+                    ElapsedTimeSeconds = decimal.Parse(elapsed.ToString(CultureInfo.InvariantCulture)),
+                    TotalElapsedTimeSeconds = decimal.Parse(totalElapsed.ToString(CultureInfo.InvariantCulture)),
                     TimeStamp = today
                 });
 
