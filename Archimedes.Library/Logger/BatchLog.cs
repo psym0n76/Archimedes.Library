@@ -40,7 +40,7 @@ namespace Archimedes.Library.Logger
         }
 
 
-        public string Start(string threadId)
+        public string Start(string idThread)
         {
             lock (LockingObject)
             {
@@ -50,7 +50,7 @@ namespace Archimedes.Library.Logger
                     new Log()
                     {
                         Id = 1,
-                        LogId = $"{logId}{threadId}",
+                        LogId = $"{logId}{idThread}",
                         Description = "Start Logging",
                         ElapsedTimeSeconds = 0,
                         TotalElapsedTimeSeconds = 0,
@@ -58,7 +58,7 @@ namespace Archimedes.Library.Logger
                     }
                 };
 
-                _dictLogs[$"{logId}{threadId}"] = logs;
+                _dictLogs[$"{logId}{idThread}"] = logs;
                 return logId;
             }
         }
