@@ -94,7 +94,10 @@ namespace Archimedes.Library.Logger
                     TimeStamp = today
                 });
 
-                _dictLogs[idThread] = logs;
+                if (_dictLogs.ContainsKey(idThread))
+                {
+                    _dictLogs[idThread] = logs;
+                }
             }
         }
 
