@@ -117,9 +117,12 @@ namespace Archimedes.Library.Logger
 
             lock (LockingObject)
             {
+                var stringBuilder = new StringBuilder();
+
+                if (!_dictLogs.ContainsKey(idThread)) return stringBuilder.ToString();
+                
                 var logs = _dictLogs[idThread];
 
-                var stringBuilder = new StringBuilder();
                 var orderLog = logs.OrderBy(a => a.Id);
 
                 stringBuilder.AppendLine();
