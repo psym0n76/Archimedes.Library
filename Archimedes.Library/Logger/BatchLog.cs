@@ -44,13 +44,13 @@ namespace Archimedes.Library.Logger
         {
             lock (LockingObject)
             {
-                var logId = $"{threadId}{Guid.NewGuid()}";
+                var logId = $"{Guid.NewGuid()}";
                 var logs = new List<Log>
                 {
                     new Log()
                     {
                         Id = 1,
-                        LogId = logId,
+                        LogId = $"{logId}{threadId}",
                         Description = "Start Logging",
                         ElapsedTimeSeconds = 0,
                         TotalElapsedTimeSeconds = 0,
@@ -58,7 +58,7 @@ namespace Archimedes.Library.Logger
                     }
                 };
 
-                _dictLogs[threadId] = logs;
+                _dictLogs[$"{logId}{threadId}"] = logs;
                 return logId;
             }
         }
