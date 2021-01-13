@@ -65,16 +65,16 @@ namespace Archimedes.Library.Logger
 
 
 
-        private void Stop(string id)
+        private void Stop(string idThread)
         {
-            Update(id, "End Logging");
+            Update(idThread, "End Logging");
         }
 
-        public void Update(string id, string message)
+        public void Update(string idThread, string message)
         {
             lock (LockingObject)
             {
-                var logs = _dictLogs[id];
+                var logs = _dictLogs[idThread];
                 var counter = logs.Count + 1;
 
                 var start = logs[0].TimeStamp;
@@ -87,18 +87,18 @@ namespace Archimedes.Library.Logger
                 logs.Add(new Log()
                 {
                     Id = counter,
-                    LogId = id,
+                    LogId = idThread,
                     Description = message,
                     ElapsedTimeSeconds = decimal.Parse(elapsed.ToString(CultureInfo.InvariantCulture)),
                     TotalElapsedTimeSeconds = decimal.Parse(totalElapsed.ToString(CultureInfo.InvariantCulture)),
                     TimeStamp = today
                 });
 
-                _dictLogs[id] = logs;
+                _dictLogs[idThread] = logs;
             }
         }
 
-        public string Print(string id, string message = "", Exception e = null)
+        public string Print(string idThread, string message = "", Exception e = null)
         {
             if (e != null)
             {
@@ -107,14 +107,14 @@ namespace Archimedes.Library.Logger
 
             if (!string.IsNullOrEmpty(message))
             {
-                Update(id, message);
+                Update(idThread, message);
             }
 
-            Stop(id);
+            Stop(idThread);
 
             lock (LockingObject)
             {
-                var logs = _dictLogs[id];
+                var logs = _dictLogs[idThread];
 
                 var stringBuilder = new StringBuilder();
                 var orderLog = logs.OrderBy(a => a.Id);
