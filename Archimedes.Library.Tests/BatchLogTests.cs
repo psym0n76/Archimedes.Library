@@ -41,17 +41,9 @@ namespace Archimedes.Library.Tests
         {
             var logger = new BatchLog();
 
-            var id = logger.Start($"{Thread.CurrentThread.ManagedThreadId}");
-            Thread.Sleep(12);
+            var id = logger.Start("Test");
 
-            logger.Update($"{id}{Thread.CurrentThread.ManagedThreadId}", "update 1");
-            Thread.Sleep(10);
-
-            
-            logger.Update($"{id}{Thread.CurrentThread.ManagedThreadId}", "update 2");
-            Thread.Sleep(10);
-
-            var result = logger.Print($"{id}{Thread.CurrentThread.ManagedThreadId}");
+            var result = logger.Print(id);
 
             Assert.NotNull(result);
 

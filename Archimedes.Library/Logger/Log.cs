@@ -32,7 +32,7 @@ namespace Archimedes.Library.Logger
         public override string ToString()
         {
             return
-                $"{TimeStamp:yyyy-MM-dd HH:mm:ss.ffff}  LogId: {LogId.Substring(0, 8)} Id: {Id.ToString().PadRight(3,' ')} Elapsed: {ElapsedTimeText.PadRight(7, ' ')}TotalElapsed: {TotalElapsedTimeText.PadRight(7, ' ')}Text: {Description}";
+                $"{TimeStamp:yyyy-MM-dd HH:mm:ss.ffff}  LogId: {LogId.Substring(0, 8)} Id: {Id.ToString().PadRight(3,' ')} Elapsed: {ElapsedTimeText.PadRight(8, ' ')}TotalElapsed: {TotalElapsedTimeText.PadRight(8, ' ')}Text: {Description}";
         }
     }
 }

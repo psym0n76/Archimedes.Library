@@ -14,7 +14,7 @@ namespace Archimedes.Library.Logger
         private readonly ConcurrentDictionary<string, List<Log>> _dictLogs =
             new ConcurrentDictionary<string, List<Log>>();
 
-        public string Start()
+        public string Start(string message = "")
         {
             lock (LockingObject)
             {
@@ -34,35 +34,38 @@ namespace Archimedes.Library.Logger
 
                 _dictLogs[logId.ToString()] = logs;
 
+                if (!string.IsNullOrEmpty(message))
+                {
+                    Update(logId.ToString(),message);
+                }
+
                 return logId.ToString();
             }
-
         }
 
 
-        public string Start(string idThread)
-        {
-            lock (LockingObject)
-            {
-                var logId = $"{Guid.NewGuid()}";
-                var logs = new List<Log>
-                {
-                    new Log()
-                    {
-                        Id = 1,
-                        LogId = $"{logId}{idThread}",
-                        Description = "Start Logging",
-                        ElapsedTimeSeconds = 0,
-                        TotalElapsedTimeSeconds = 0,
-                        TimeStamp = DateTime.Now
-                    }
-                };
+        //public string Start(string idThread)
+        //{
+        //    lock (LockingObject)
+        //    {
+        //        var logId = $"{Guid.NewGuid()}";
+        //        var logs = new List<Log>
+        //        {
+        //            new Log()
+        //            {
+        //                Id = 1,
+        //                LogId = $"{logId}{idThread}",
+        //                Description = "Start Logging",
+        //                ElapsedTimeSeconds = 0,
+        //                TotalElapsedTimeSeconds = 0,
+        //                TimeStamp = DateTime.Now
+        //            }
+        //        };
 
-                _dictLogs[$"{logId}{idThread}"] = logs;
-                return logId;
-            }
-        }
-
+        //        _dictLogs[$"{logId}{idThread}"] = logs;
+        //        return logId;
+        //    }
+        //}
 
 
         private void Stop(string idThread)
