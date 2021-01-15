@@ -8,7 +8,7 @@ namespace Archimedes.Library.Message
 {
     public class CandleMessage
     {
-
+        public string Id { get; set; }
         public string Market { get; set; }
         public int MarketId { get; set; }
         public int ExternalMarketId { get; set; }
