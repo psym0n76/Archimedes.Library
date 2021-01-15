@@ -108,7 +108,7 @@ namespace Archimedes.Library.Logger
         {
             if (e != null)
             {
-                message = $"{message} \n\nErrorMessage: {e.Message} \n\nStackTrace: {e.StackTrace}\n\n";
+                message = $"{message} \n\nErrorMessage: {e.Message} \n\nStackTrace: {e.StackTrace}\n";
             }
 
             if (!string.IsNullOrEmpty(message))
