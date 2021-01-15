@@ -5,6 +5,7 @@ namespace Archimedes.Library.Message
 {
     public class PriceLevelMessage
     {
+        public string Id { get; set; }
         public string Strategy { get; set; }
         public string Market { get; set; }
 
