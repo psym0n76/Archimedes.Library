@@ -1,4 +1,6 @@
-﻿namespace Archimedes.Library.Extensions
+﻿using System;
+
+namespace Archimedes.Library.Extensions
 {
     public static class IntegerExtensions
     {
@@ -16,6 +18,14 @@
                 "D" => 1440,
                 _ => 1,
             };
+        }
+
+        public static int Round(this int i, int nearest)
+        {
+            if (nearest <= 0 || nearest % 10 != 0)
+                throw new ArgumentOutOfRangeException("nearest", "Must round to a positive multiple of 10");
+
+            return (i + 5 * nearest / 10) / nearest * nearest;
         }
     }
 }

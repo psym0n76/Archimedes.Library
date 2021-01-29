@@ -30,7 +30,7 @@ namespace Archimedes.Library.RabbitMq
             using var connection = factory.CreateConnection();
             using var channel = connection.CreateModel();
 
-            channel.ExchangeDeclare(exchange: exchange, type: ExchangeType.Fanout);
+            channel.ExchangeDeclare(exchange: exchange, type: ExchangeType.Fanout, autoDelete:true);
 
             var body = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(message));
 
@@ -55,7 +55,7 @@ namespace Archimedes.Library.RabbitMq
             using var connection = factory.CreateConnection();
             using var channel = connection.CreateModel();
 
-            channel.ExchangeDeclare(exchange: exchange, type: ExchangeType.Fanout);
+            channel.ExchangeDeclare(exchange: exchange, type: ExchangeType.Fanout, autoDelete: true);
 
             var body = Encoding.UTF8.GetBytes(JsonConvert.SerializeObject(messages));
 
