@@ -40,7 +40,7 @@ namespace Archimedes.Library.RabbitMq
 
 
             var queueName = channel.QueueDeclare(durable: false).QueueName;
-            channel.ExchangeDeclare(_exchange, ExchangeType.Fanout);
+            channel.ExchangeDeclare(_exchange, ExchangeType.Fanout, autoDelete: true);
 
             channel.QueueBind(queueName, _exchange, "");
 
